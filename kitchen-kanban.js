@@ -20,7 +20,7 @@ let currentProductIndex = -1;
 const productModal = document.getElementById("productModal");
 const modalOverlay = document.getElementById("modalOverlay");
 const closeModalBtn = document.getElementById("closeModal");
-const updateStatusBtn = document.getElementById("updateStatusBtn");
+// const updateStatusBtn = document.getElementById("updateStatusBtn");
 const modalStatusSelect = document.getElementById("modalStatusSelect");
 
 function openProductModal(productIndex) {
@@ -861,7 +861,7 @@ statusFilter.addEventListener("change", handleFilter);
 // Modal event listeners
 closeModalBtn.addEventListener("click", closeProductModal);
 modalOverlay.addEventListener("click", closeProductModal);
-updateStatusBtn.addEventListener("click", updateProductStatus);
+// updateStatusBtn.addEventListener("click", updateProductStatus);
 
 // Close modal with Escape key
 document.addEventListener("keydown", (e) => {
