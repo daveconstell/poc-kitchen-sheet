@@ -147,7 +147,7 @@ function closeProductModal() {
 function updateProductStatus() {
   if (currentProductIndex === -1) return;
 
-  const newStatus = modalStatusSelect.value;
+  const newStatus = document.getElementById('modalStatusSelect').value
   const product = orderData[currentProductIndex];
 
   // Update the product data
