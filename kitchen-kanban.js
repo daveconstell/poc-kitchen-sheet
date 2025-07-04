@@ -187,6 +187,9 @@ function updateProductStatus() {
   // Update kanban view if visible
   if (currentView === "kanban") {
     populateKanbanView();
+  } else {
+    // Update counts even if not in kanban view
+    updateKanbanCounts();
   }
 
   // Update modal display
@@ -607,6 +610,9 @@ function switchToTableView() {
     "hover:text-gray-800",
     "hover:bg-gray-300"
   );
+  
+  // Update kanban counts even when switching to table view
+  updateKanbanCounts();
 }
 
 function switchToKanbanView() {
@@ -705,8 +711,8 @@ function populateKanbanView() {
     }
   });
 
-  // Update counts
-  updateKanbanCounts(filteredOrders);
+  // Update counts with visible items in each column
+  updateKanbanCounts();
   
   // Initialize SortableJS for each column
   initializeSortable();
@@ -743,8 +749,8 @@ function initializeSortable() {
               updateTableRowStatus(orderIndex, newStatus);
             }
             
-            // Update counts
-            updateKanbanCounts(getFilteredOrders());
+            // Update counts with visible items in each column
+            updateKanbanCounts();
           }
         }
       });
@@ -753,14 +759,15 @@ function initializeSortable() {
 }
 
 // Update kanban counts
-function updateKanbanCounts(orders) {
-  const readyCount = orders.filter((order) => order.status === "Ready").length;
-  const progressCount = orders.filter(
-    (order) => order.status === "In Progress"
-  ).length;
-  const pendingCount = orders.filter(
-    (order) => order.status === "Pending"
-  ).length;
+function updateKanbanCounts() {
+  // Count actual visible items in each column
+  const readyColumn = document.getElementById("readyColumn");
+  const progressColumn = document.getElementById("progressColumn");
+  const pendingColumn = document.getElementById("pendingColumn");
+  
+  const readyCount = readyColumn ? readyColumn.children.length : 0;
+  const progressCount = progressColumn ? progressColumn.children.length : 0;
+  const pendingCount = pendingColumn ? pendingColumn.children.length : 0;
 
   document.getElementById("readyCount").textContent = readyCount;
   document.getElementById("progressCount").textContent = progressCount;
@@ -868,6 +875,9 @@ statusFilter.addEventListener("change", handleFilter);
 // Initialize with table view
 switchToTableView();
 addTableRowListeners();
+
+// Initialize kanban counts
+updateKanbanCounts();
 
 // Modal event listeners for closing
 modalOverlay.addEventListener("click", closeProductModal);
