@@ -87,7 +87,7 @@
         }
         </style>
     </head>
-    <body class="min-h-screen font-sans transition-all duration-300">
+    <body class="min-h-screen font-sans transition-all duration-300 text-sm md:text-base">
         <!-- Header -->
         <header class="bg-primary backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-600/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -139,8 +139,8 @@
                 </div>
                 <div class="absolute inset-0 bg-black bg-opacity-50"></div>
                 <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-6">
-                    <h1 id="page-title" class="text-5xl font-serif font-bold mb-4">Keukenblad</h1>
-                    <p class="text-xl font-sans max-w-2xl mx-auto leading-relaxed">
+                    <h1 id="page-title" class="text-2xl md:text-4xl lg:text-6xl font-serif font-bold mb-4">Keukenblad</h1>
+                    <p class="text-base md:text-xl lg:text-2xl font-sans max-w-2xl mx-auto leading-relaxed">
                         Een uitgebreid overzicht van de activiteiten in uw keuken.
                     </p>
                 </div>
@@ -149,7 +149,7 @@
                   <!-- Event Details Section -->
                   <section id="event-details"
                   class="bg-white/90 backdrop-blur-sm p-8 md:p-10 rounded-xl shadow-lg mb-10 border border-gray-200">
-             <h2 class="text-4xl font-serif font-bold text-gray-900 mb-8 pb-4">
+             <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-8 pb-4">
                  <i class="fas fa-calendar-alt mr-3 text-primary"></i>
                  Overzicht
              </h2>
@@ -202,24 +202,24 @@
             <!-- Orders Card -->
             <section class="bg-white/90 backdrop-blur-sm p-8 md:p-10 rounded-xl shadow-lg border border-gray-200">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-4xl font-serif font-bold text-gray-900">
+                    <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900">
                         <i class="fas fa-utensils mr-3 text-primary"></i>
                         Keuken Productie Schema
                     </h2>
                 </div>
-                <p class="text-lg text-gray-600 mb-10 leading-relaxed max-w-4xl">
+                <p class="text-sm md:text-base text-gray-600 mb-10 leading-relaxed max-w-4xl">
                     Real-time voorbereidings- en serviceschema voor het Dinsdag Lunch evenement. Monitor
                     voortgang, timing en kwaliteitscontrole voor alle menu-items.
                 </p>
                 <!-- View Toggle Buttons -->
                 <div class="flex flex-col md:flex-row bg-gray-100 rounded-xl p-2 gap-2 mb-10 border border-gray-200 max-w-md mx-auto">
                     <button id="tableViewBtn"
-                            class="px-6 py-3 flex-1 rounded-lg bg-primary text-white font-semibold hover:bg-primary/90 transition-all duration-200 flex items-center justify-center gap-3 shadow-md">
+                            class="px-6 py-3 flex-1 rounded-lg bg-primary text-white font-semibold text-sm md:text-base hover:bg-primary/90 transition-all duration-200 flex items-center justify-center gap-3 shadow-md">
                         <i class="fas fa-table"></i>
                         Tabelweergave
                     </button>
                     <button id="kanbanViewBtn"
-                            class="px-6 py-3 flex-1 rounded-lg bg-primary text-white font-semibold hover:bg-primary/90 transition-all duration-200 flex items-center justify-center gap-3 shadow-md">
+                            class="px-6 py-3 flex-1 rounded-lg bg-primary text-white font-semibold text-sm md:text-base hover:bg-primary/90 transition-all duration-200 flex items-center justify-center gap-3 shadow-md">
                         <i class="fas fa-columns"></i>
                         Kanbanweergave
                     </button>
@@ -228,11 +228,11 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                     <div>
                         <label for="categoryFilter"
-                               class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide">
+                               class="block text-gray-700 text-xs md:text-sm font-bold mb-3 uppercase tracking-wide">
                             Filteren op Categorie
                         </label>
                         <select id="categoryFilter"
-                                class="w-full p-4 rounded-lg bg-white text-gray-900 border-2 border-gray-200 focus-primary font-medium">
+                                class="w-full p-4 rounded-lg bg-white text-gray-900 border-2 border-gray-200 focus-primary font-medium text-sm md:text-base">
                             <option value="">Alle Categorieën</option>
                             <option value="Beverages">Dranken</option>
                             <option value="Appetizers">Voorgerechten</option>
@@ -244,11 +244,11 @@
                     </div>
                     <div>
                         <label for="guestTypeFilter"
-                               class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide">
+                               class="block text-gray-700 text-xs md:text-sm font-bold mb-3 uppercase tracking-wide">
                             Filteren op Gasttype
                         </label>
                         <select id="guestTypeFilter"
-                                class="w-full p-4 rounded-lg bg-white text-gray-900 border-2 border-gray-200 focus-primary font-medium">
+                                class="w-full p-4 rounded-lg bg-white text-gray-900 border-2 border-gray-200 focus-primary font-medium text-sm md:text-base">
                             <option value="">Alle Gasttypes</option>
                             <option value="All">Alle Gasten</option>
                             <option value="Adults">Volwassenen</option>
@@ -259,11 +259,11 @@
                     </div>
                     <div>
                         <label for="spaceFilter"
-                               class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide">
+                               class="block text-gray-700 text-xs md:text-sm font-bold mb-3 uppercase tracking-wide">
                             Filteren op Ruimte
                         </label>
                         <select id="spaceFilter"
-                                class="w-full p-4 rounded-lg bg-white text-gray-900 border-2 border-gray-200 focus-primary font-medium">
+                                class="w-full p-4 rounded-lg bg-white text-gray-900 border-2 border-gray-200 focus-primary font-medium text-sm md:text-base">
                             <option value="">Alle Ruimtes</option>
                             <option value="Banquet Hall B">Banquet Hall B</option>
                             <option value="Kitchen">Kitchen</option>
@@ -273,11 +273,11 @@
                     </div>
                     <div>
                         <label for="statusFilter"
-                               class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide">
+                               class="block text-gray-700 text-xs md:text-sm font-bold mb-3 uppercase tracking-wide">
                             Filteren op Status
                         </label>
                         <select id="statusFilter"
-                                class="w-full p-4 rounded-lg bg-white text-gray-900 border-2 border-gray-200 focus-primary font-medium">
+                                class="w-full p-4 rounded-lg bg-white text-gray-900 border-2 border-gray-200 focus-primary font-medium text-sm md:text-base">
                             <option value="">Alle Statussen</option>
                             <option value="Ready">Klaar</option>
                             <option value="In Progress">In behandeling</option>

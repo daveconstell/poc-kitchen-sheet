@@ -690,7 +690,7 @@ function switchToKanbanView() {
 function createKanbanCard(order, index) {
   const card = document.createElement("div");
   card.className =
-    "kanban-card bg-white rounded-lg p-4 border border-gray-200 hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm";
+    "kanban-card bg-white rounded-lg p-4 border border-gray-200 hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm text-sm md:text-base";
   card.setAttribute("data-category", order.category);
   card.setAttribute("data-guest-type", order.guestType);
   card.setAttribute("data-space", order.space);
@@ -699,14 +699,14 @@ function createKanbanCard(order, index) {
 
   card.innerHTML = `
                 <div class="mb-2">
-                    <h4 class="font-semibold text-gray-800 text-sm">${order.product}</h4>
-                    <p class="text-gray-500 text-xs">${order.time}</p>
+                    <h4 class="font-semibold text-gray-800 text-base md:text-lg lg:text-xl">${order.product}</h4>
+                    <p class="text-gray-500 text-xs md:text-sm">${order.time}</p>
                 </div>
                 <div class="flex justify-between items-center mb-2">
-                    <span class="border border-gray-300 bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">${order.category}</span>
-                    <span class="text-gray-800 font-bold">×${order.quantity}</span>
+                    <span class="border border-gray-300 bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs md:text-sm">${order.category}</span>
+                    <span class="text-gray-800 font-bold text-base md:text-lg">×${order.quantity}</span>
                 </div>
-                <div class="flex justify-between items-center text-xs text-gray-600">
+                <div class="flex justify-between items-center text-xs md:text-sm text-gray-600">
                     <span><i class="fas fa-users mr-1"></i>${order.guestType}</span>
                     <span><i class="fas fa-map-marker-alt mr-1"></i>${order.space}</span>
                 </div>
