@@ -682,6 +682,19 @@
                 });
             }
         });
+
+        // Modal overlay click closes modal
+        document.getElementById('offcanvas-backdrop').addEventListener('click', function () {
+            if (!document.getElementById('space-offcanvas').classList.contains('translate-x-full')) {
+                if (typeof closeOffcanvas === 'function') closeOffcanvas();
+            }
+        });
+        // Escape key closes modal
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && !document.getElementById('space-offcanvas').classList.contains('translate-x-full')) {
+                if (typeof closeOffcanvas === 'function') closeOffcanvas();
+            }
+        });
     </script>
 </body>
 

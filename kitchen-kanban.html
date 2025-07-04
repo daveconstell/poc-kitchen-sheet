@@ -403,6 +403,18 @@
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
         });
+        // Modal overlay click closes modal
+        document.getElementById('modalOverlay').addEventListener('click', function () {
+            if (!document.getElementById('productModal').classList.contains('translate-x-full')) {
+                if (typeof closeProductModal === 'function') closeProductModal();
+            }
+        });
+        // Escape key closes modal
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && !document.getElementById('productModal').classList.contains('translate-x-full')) {
+                if (typeof closeProductModal === 'function') closeProductModal();
+            }
+        });
     </script>
 </body>
 
