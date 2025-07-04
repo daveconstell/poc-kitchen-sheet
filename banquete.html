@@ -297,38 +297,50 @@
                                             <caption class="font-sans font-semibold text-base md:text-lg lg:text-xl pb-4 text-left text-gray-900">Producten</caption>
                                             <thead>
                                                 <tr class="border-b border-gray-200">
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Name</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[150px] w-[150px] hidden lg:table-cell">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[140px] lg:min-w-[240px] lg:w-1/3">Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary hidden lg:table-cell">Amount</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Chocolate Cookies","description":"Delicious chocolate cookies, freshly baked.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€81.00","total":"€81.00","time":"09:00 - 10:00","category":"Dessert","location":"Blauwe Kamer-1","notes":["Contains nuts. Serve with milk."],"guestTypes":[{"type":"Kids","count":10},{"type":"Adults","count":20}]}'>
-                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Chocolate Cookies</div>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">09:00 - 10:00</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Chocolate Cookies">Chocolate Cookies</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 09:00 - 10:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€81.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€81.00</td>
                                                 </tr>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Cannoli","description":"Classic Italian pastry with sweet ricotta filling.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€3.00","total":"€3.00","time":"09:00 - 10:00","category":"Dessert","location":"Blauwe Kamer-1","notes":["Keep refrigerated until serving."],"guestTypes":[{"type":"Kids","count":5},{"type":"VIP","count":2}]}'>
-                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Cannoli</div>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">09:00 - 10:00</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Cannoli">Cannoli</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 09:00 - 10:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€3.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€3.00</td>
                                                 </tr>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Quiche Lorraine","description":"Savory French tart with bacon, cheese, and custard.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"100 Kids","unitPrice":"€9.94","total":"€9.94","time":"09:00 - 10:00","category":"Main","location":"Blauwe Kamer-1","notes":["Vegetarian option available on request."],"guestTypes":[{"type":"Kids","count":100}]}'>
-                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Quiche Lorraine</div>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">09:00 - 10:00</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Quiche Lorraine">Quiche Lorraine</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 09:00 - 10:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 100 Kids</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">100 Kids</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">100 Kids</td>
                                                     <td class="font-sans px-6 py-4 text-right">€9.94</td>
                                                     <td class="font-sans px-6 py-4 text-right">€9.94</td>
                                                 </tr>
@@ -341,31 +353,37 @@
                                             <caption class="font-sans font-semibold text-base md:text-lg lg:text-xl pb-4 text-left text-gray-900">Spaces</caption>
                                             <thead>
                                                 <tr class="border-b border-gray-200">
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Space Name</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Capacity</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Layout</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[150px] w-[150px] hidden lg:table-cell">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[140px] lg:min-w-[240px] lg:w-1/3">Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary hidden lg:table-cell">Amount</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="border-b border-gray-100 space-row cursor-pointer hover:bg-primary/10" data-space='{"name":"Blauwe Kamer-1","time":"09:00 - 10:00","capacity":"50","layout":"Theater","amount":"1 hour","unitPrice":"€10.00","total":"€10.00","cover":"https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&w=600&h=400&fit=crop","description":"A bright, spacious room perfect for presentations and workshops. Features large windows and modern AV equipment.","notes":"Windows can be opened for fresh air. Projector remote is in the drawer."}'>
-                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
-                                                    <td class="font-sans px-6 py-4">Blauwe Kamer-1</td>
-                                                    <td class="font-sans px-6 py-4">50</td>
-                                                    <td class="font-sans px-6 py-4">Theater</td>
-                                                    <td class="font-sans px-6 py-4">1 hour</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">09:00 - 10:00</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <span class="font-semibold truncate" title="Blauwe Kamer-1">Blauwe Kamer-1</span>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 09:00 - 10:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 hour</span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 hour</td>
                                                     <td class="font-sans px-6 py-4 text-right">€10.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€10.00</td>
                                                 </tr>
                                                 <tr class="border-b border-gray-100 space-row cursor-pointer hover:bg-primary/10" data-space='{"name":"BRAT Room","time":"09:00 - 10:00","capacity":"100","layout":"U-Shape","amount":"1 hour","unitPrice":"€200.00","total":"€200.00","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","description":"Ideal for large meetings and conferences, the BRAT Room offers flexible seating and a private atmosphere.","notes":"Check AV setup before event. Coffee machine in the corner."}'>
-                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
-                                                    <td class="font-sans px-6 py-4">BRAT Room</td>
-                                                    <td class="font-sans px-6 py-4">100</td>
-                                                    <td class="font-sans px-6 py-4">U-Shape</td>
-                                                    <td class="font-sans px-6 py-4">1 hour</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">09:00 - 10:00</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <span class="font-semibold truncate" title="BRAT Room">BRAT Room</span>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 09:00 - 10:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 hour</span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 hour</td>
                                                     <td class="font-sans px-6 py-4 text-right">€200.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€200.00</td>
                                                 </tr>
@@ -396,29 +414,37 @@
                                             <caption class="font-sans font-semibold text-base md:text-lg lg:text-xl pb-4 text-left text-gray-900">Producten</caption>
                                             <thead>
                                                 <tr class="border-b border-gray-200">
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Name</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[140px] lg:min-w-[240px] lg:w-1/3">Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[150px] w-[150px] hidden lg:table-cell">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary hidden lg:table-cell">Amount</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Mexican Truffle Cake","description":"Rich chocolate cake with a hint of spice.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€200.00","total":"€200.00","time":"10:00 - 11:00","category":"Dessert","location":"BRAT Room","notes":["Gluten free."],"guestTypes":[{"type":"Adults","count":10}]}'>
-                                                    <td class="font-sans px-6 py-4">10:00 - 11:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Mexican Truffle Cake</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Mexican Truffle Cake">Mexican Truffle Cake</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 10:00 - 11:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">10:00 - 11:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€200.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€200.00</td>
                                                 </tr>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Chocolate Cookies","description":"Delicious chocolate cookies, freshly baked.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"100 Kids","unitPrice":"€80.00","total":"€80.00","time":"10:00 - 11:00","category":"Dessert","location":"BRAT Room","notes":["Contains nuts. Serve with milk."],"guestTypes":[{"type":"Kids","count":100}]}'>
-                                                    <td class="font-sans px-6 py-4">10:00 - 11:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Chocolate Cookies</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Chocolate Cookies">Chocolate Cookies</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 10:00 - 11:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 100 Kids</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">100 Kids</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">10:00 - 11:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">100 Kids</td>
                                                     <td class="font-sans px-6 py-4 text-right">€80.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€80.00</td>
                                                 </tr>
@@ -431,22 +457,25 @@
                                             <caption class="font-sans font-semibold text-base md:text-lg lg:text-xl pb-4 text-left text-gray-900">Spaces</caption>
                                             <thead>
                                                 <tr class="border-b border-gray-200">
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Space Name</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Capacity</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Layout</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[150px] w-[150px] hidden lg:table-cell">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[140px] lg:min-w-[240px] lg:w-1/3">Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary hidden lg:table-cell">Amount</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="border-b border-gray-100 space-row cursor-pointer hover:bg-primary/10" data-space='{"name":"BRAT Room","time":"10:00 - 11:00","capacity":"100","layout":"U-Shape","amount":"1 hour","unitPrice":"€200.00","total":"€200.00","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","description":"Ideal for large meetings and conferences, the BRAT Room offers flexible seating and a private atmosphere.","notes":"Check AV setup before event. Coffee machine in the corner."}'>
-                                                    <td class="font-sans px-6 py-4">10:00 - 11:00</td>
-                                                    <td class="font-sans px-6 py-4">BRAT Room</td>
-                                                    <td class="font-sans px-6 py-4">100</td>
-                                                    <td class="font-sans px-6 py-4">U-Shape</td>
-                                                    <td class="font-sans px-6 py-4">1 hour</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">10:00 - 11:00</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <span class="font-semibold truncate" title="BRAT Room">BRAT Room</span>
+                                                        <div class="flex flex-wrap items-center gap-4 lg:hidden mt-2 text-xs text-gray-600">
+                                                            <span class="flex items-center"><i class="fas fa-users mr-1"></i>100</span>
+                                                            <span class="flex items-center"><i class="fas fa-th-large mr-1"></i>U-Shape</span>
+                                                            <span class="flex items-center"><i class="fas fa-clock mr-1"></i>1 hour</span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">100</td>
                                                     <td class="font-sans px-6 py-4 text-right">€200.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€200.00</td>
                                                 </tr>
@@ -477,56 +506,76 @@
                                             <caption class="font-sans font-semibold text-base md:text-lg lg:text-xl pb-4 text-left text-gray-900">Producten</caption>
                                             <thead>
                                                 <tr class="border-b border-gray-200">
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Name</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[140px] lg:min-w-[240px] lg:w-1/3">Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[150px] w-[150px] hidden lg:table-cell">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary hidden lg:table-cell">Amount</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Zalm met groentjes","description":"Fresh salmon with seasonal vegetables.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€100.00","total":"€100.00","time":"11:00 - 12:00","category":"Main","location":"BRAT Room","notes":["Served with a side of mashed potatoes."],"guestTypes":[{"type":"Adults","count":10}]}'>
-                                                    <td class="font-sans px-6 py-4">11:00 - 12:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Zalm met groentjes</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Zalm met groentjes">Zalm met groentjes</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 11:00 - 12:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">11:00 - 12:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€100.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€100.00</td>
                                                 </tr>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Pizza","description":"Classic Margherita pizza.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€1,000.00","total":"€1,000.00","time":"11:00 - 12:00","category":"Main","location":"BRAT Room","notes":["Served with a side of salad."],"guestTypes":[{"type":"Adults","count":10}]}'>
-                                                    <td class="font-sans px-6 py-4">11:00 - 12:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Pizza</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Pizza">Pizza</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 11:00 - 12:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">11:00 - 12:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
                                                 </tr>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Chocolate Cookies","description":"Delicious chocolate cookies, freshly baked.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€80.00","total":"€80.00","time":"11:00 - 12:00","category":"Dessert","location":"BRAT Room","notes":["Contains nuts. Serve with milk."],"guestTypes":[{"type":"Adults","count":10}]}'>
-                                                    <td class="font-sans px-6 py-4">11:00 - 12:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Chocolate Cookies</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Chocolate Cookies">Chocolate Cookies</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 11:00 - 12:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">11:00 - 12:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€80.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€80.00</td>
                                                 </tr>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Cannoli - hehe's","description":"Italian pastry filled with ricotta cheese.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€3.00","total":"€3.00","time":"11:00 - 12:00","category":"Dessert","location":"BRAT Room","notes":["Gluten free."],"guestTypes":[{"type":"Adults","count":10}]}'>
-                                                    <td class="font-sans px-6 py-4">11:00 - 12:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Cannoli - hehe's</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Cannoli - hehe's">Cannoli - hehe's</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 11:00 - 12:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">11:00 - 12:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€3.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€3.00</td>
                                                 </tr>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Quiche Lorraine","description":"Savory French tart with bacon, cheese, and custard.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€9.50","total":"€9.50","time":"11:00 - 12:00","category":"Dessert","location":"BRAT Room","notes":["Gluten free."],"guestTypes":[{"type":"Adults","count":10}]}'>
-                                                    <td class="font-sans px-6 py-4">11:00 - 12:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Quiche Lorraine</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Quiche Lorraine">Quiche Lorraine</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 11:00 - 12:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">11:00 - 12:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€9.50</td>
                                                     <td class="font-sans px-6 py-4 text-right">€9.50</td>
                                                 </tr>
@@ -567,47 +616,63 @@
                                             <caption class="font-sans font-semibold text-base md:text-lg lg:text-xl pb-4 text-left text-gray-900">Producten</caption>
                                             <thead>
                                                 <tr class="border-b border-gray-200">
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Name</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[140px] lg:min-w-[240px] lg:w-1/3">Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[150px] w-[150px] hidden lg:table-cell">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary hidden lg:table-cell">Amount</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Ballonnen","description":"Beautiful balloons in various colors.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€1,000.00","total":"€1,000.00","time":"12:00 - 13:00","category":"Dessert","location":"BRAT Room","notes":["Can be inflated."],"guestTypes":[{"type":"Adults","count":10}]}'>
-                                                    <td class="font-sans px-6 py-4">12:00 - 13:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Ballonnen</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Ballonnen">Ballonnen</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 12:00 - 13:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">12:00 - 13:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
                                                 </tr>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Forkseee","description":"A unique fork with a handle shaped like a smiley face.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€13.00","total":"€13.00","time":"12:00 - 13:00","category":"Dessert","location":"BRAT Room","notes":["Can be used as a spoon."],"guestTypes":[{"type":"Adults","count":10}]}'>
-                                                    <td class="font-sans px-6 py-4">12:00 - 13:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Forkseee</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Forkseee">Forkseee</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 12:00 - 13:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">12:00 - 13:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€13.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€13.00</td>
                                                 </tr>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Zalm met groentjes","description":"Fresh salmon with seasonal vegetables.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€100.00","total":"€100.00","time":"12:00 - 13:00","category":"Main","location":"BRAT Room","notes":["Served with a side of mashed potatoes."],"guestTypes":[{"type":"Adults","count":10}]}'>
-                                                    <td class="font-sans px-6 py-4">12:00 - 13:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Zalm met groentjes</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Zalm met groentjes">Zalm met groentjes</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 12:00 - 13:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">12:00 - 13:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€100.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€100.00</td>
                                                 </tr>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Pizza","description":"Classic Margherita pizza.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€1,000.00","total":"€1,000.00","time":"12:00 - 13:00","category":"Main","location":"BRAT Room","notes":["Served with a side of salad."],"guestTypes":[{"type":"Adults","count":10}]}'>
-                                                    <td class="font-sans px-6 py-4">12:00 - 13:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Pizza</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Pizza">Pizza</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 12:00 - 13:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">12:00 - 13:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
                                                 </tr>
@@ -620,22 +685,23 @@
                                             <caption class="font-sans font-semibold text-base md:text-lg lg:text-xl pb-4 text-left text-gray-900">Spaces</caption>
                                             <thead>
                                                 <tr class="border-b border-gray-200">
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Space Name</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Capacity</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Layout</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[140px] lg:min-w-[240px] lg:w-1/3">Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[150px] w-[150px] hidden lg:table-cell">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary hidden lg:table-cell">Amount</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="border-b border-gray-100 space-row cursor-pointer hover:bg-primary/10" data-space='{"name":"Placeholder Room","time":"--","capacity":"-","layout":"-","amount":"-","unitPrice":"-","total":"-","cover":"https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&w=600&h=400&fit=crop","description":"No space assigned for this timeslot.","notes":"This is a placeholder space."}'>
-                                                    <td class="font-sans px-6 py-4">--</td>
-                                                    <td class="font-sans px-6 py-4">Placeholder Room</td>
-                                                    <td class="font-sans px-6 py-4">-</td>
-                                                    <td class="font-sans px-6 py-4">-</td>
-                                                    <td class="font-sans px-6 py-4">-</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <span class="font-semibold truncate" title="Placeholder Room">Placeholder Room</span>
+                                                        <div class="flex items-center gap-1 text-xs text-gray-600 mt-1 lg:hidden">
+                                                            <i class="fas fa-box"></i>-
+                                                        </div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px]">--</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">-</td>
                                                     <td class="font-sans px-6 py-4 text-right">-</td>
                                                     <td class="font-sans px-6 py-4 text-right">-</td>
                                                 </tr>
@@ -695,47 +761,63 @@
                                             <caption class="font-sans font-semibold text-base md:text-lg lg:text-xl pb-4 text-left text-gray-900">Producten</caption>
                                             <thead>
                                                 <tr class="border-b border-gray-200">
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Name</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[140px] lg:min-w-[240px] lg:w-1/3">Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[150px] w-[150px] hidden lg:table-cell">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary hidden lg:table-cell">Amount</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Mexican Truffle Cake","description":"Rich chocolate cake with a hint of spice.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€200.00","total":"€200.00","time":"09:00 - 10:00","category":"Dessert","location":"BRAT Room","notes":["Gluten free."],"guestTypes":[{"type":"Adults","count":10}]}'>
-                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Mexican Truffle Cake</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Mexican Truffle Cake">Mexican Truffle Cake</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 09:00 - 10:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">09:00 - 10:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€200.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€200.00</td>
                                                 </tr>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Product 1","description":"A generic product.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€3.00","total":"€3.00","time":"09:00 - 10:00","category":"Dessert","location":"BRAT Room","notes":["Gluten free."],"guestTypes":[{"type":"Adults","count":10}]}'>
-                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Product 1</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Product 1">Product 1</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 09:00 - 10:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">09:00 - 10:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€3.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€3.00</td>
                                                 </tr>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Pizza","description":"Classic Margherita pizza.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€1,000.00","total":"€1,000.00","time":"09:00 - 10:00","category":"Dessert","location":"BRAT Room","notes":["Served with a side of salad."],"guestTypes":[{"type":"Adults","count":10}]}'>
-                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Pizza</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Pizza">Pizza</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 09:00 - 10:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 1 piece</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">09:00 - 10:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
                                                     <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
                                                 </tr>
                                                 <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Chocolate Cookies","description":"Delicious chocolate cookies, freshly baked.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"100 Kids","unitPrice":"€80.00","total":"€80.00","time":"09:00 - 10:00","category":"Dessert","location":"BRAT Room","notes":["Contains nuts. Serve with milk."],"guestTypes":[{"type":"Kids","count":100}]}'>
-                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
-                                                    <td class="px-6 py-4">
-                                                        <div class="font-sans">Chocolate Cookies</div>
+                                                    <td class="px-6 py-4 align-top min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <div class="font-sans font-semibold truncate" title="Chocolate Cookies">Chocolate Cookies</div>
+                                                        <div class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
+                                                            <span><i class='fas fa-clock mr-1'></i><span class="font-semibold">Time:</span> 09:00 - 10:00</span>
+                                                            <span><i class='fas fa-box mr-1'></i><span class="font-semibold">Amount:</span> 100 Kids</span>
+                                                        </div>
                                                     </td>
-                                                    <td class="font-sans px-6 py-4">100 Kids</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">09:00 - 10:00</td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">100 Kids</td>
                                                     <td class="font-sans px-6 py-4 text-right">€80.00</td>
                                                     <td class="font-sans px-6 py-4 text-right">€80.00</td>
                                                 </tr>
@@ -748,22 +830,23 @@
                                             <caption class="font-sans font-semibold text-base md:text-lg lg:text-xl pb-4 text-left text-gray-900">Spaces</caption>
                                             <thead>
                                                 <tr class="border-b border-gray-200">
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Space Name</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Capacity</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Layout</th>
-                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[150px] w-[150px] hidden lg:table-cell">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary min-w-[140px] lg:min-w-[240px] lg:w-1/3">Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary hidden lg:table-cell">Amount</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
                                                     <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="border-b border-gray-100 space-row cursor-pointer hover:bg-primary/10" data-space='{"name":"Placeholder Room","time":"--","capacity":"-","layout":"-","amount":"-","unitPrice":"-","total":"-","cover":"https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&w=600&h=400&fit=crop","description":"No space assigned for this timeslot.","notes":"This is a placeholder space."}'>
-                                                    <td class="font-sans px-6 py-4">--</td>
-                                                    <td class="font-sans px-6 py-4">Placeholder Room</td>
-                                                    <td class="font-sans px-6 py-4">-</td>
-                                                    <td class="font-sans px-6 py-4">-</td>
-                                                    <td class="font-sans px-6 py-4">-</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">--</td>
+                                                    <td class="font-sans px-6 py-4 min-w-[140px] lg:min-w-[240px] lg:w-1/3">
+                                                        <span class="font-semibold truncate" title="Placeholder Room">Placeholder Room</span>
+                                                        <div class="flex items-center gap-1 text-xs text-gray-600 mt-1 lg:hidden">
+                                                            <i class="fas fa-box"></i>-
+                                                        </div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4 hidden lg:table-cell">-</td>
                                                     <td class="font-sans px-6 py-4 text-right">-</td>
                                                     <td class="font-sans px-6 py-4 text-right">-</td>
                                                 </tr>
