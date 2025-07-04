@@ -27,96 +27,127 @@ function openProductModal(productIndex) {
   currentProductIndex = productIndex;
   const product = orderData[productIndex];
 
-  // Compose details grid (two columns)
-  const [startTime, endTime] = product.time.split("–");
-  // Calculate duration
-  let duration = "-";
-  try {
-    const start = new Date(`2000-01-01 ${startTime}`);
-    const end = new Date(`2000-01-01 ${endTime}`);
-    duration = Math.round((end - start) / (1000 * 60)) + " minutes";
-  } catch {}
-
-  // Guest types as badges (if available)
-  let guestTypesHtml = "";
-  if (Array.isArray(product.guestTypes) && product.guestTypes.length) {
-    guestTypesHtml = `<div class='flex flex-wrap gap-2 mb-4'>${product.guestTypes.map(gt => `<span class='inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20'>${gt.type}: <span class='ml-1 font-bold'>${gt.count}</span></span>`).join('')}</div>`;
-  } else if (product.guestType) {
-    guestTypesHtml = `<span class='inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20'>${product.guestType}</span>`;
+  // Parse time for start/end/duration
+  let start = '-', end = '-', duration = '-';
+  if (product.time && product.time.includes('–')) {
+    [start, end] = product.time.split('–').map(t => t.trim());
+    try {
+      const d1 = new Date(`2000-01-01T${start}`);
+      const d2 = new Date(`2000-01-01T${end}`);
+      duration = Math.round((d2 - d1) / (1000 * 60)) + ' minutes';
+    } catch {}
   }
 
-  // Notes as styled block
-  let notesHtml = "";
+  // Notes as bullet points
+  let notesHtml = '';
   if (product.notes) {
     if (Array.isArray(product.notes)) {
-      notesHtml = `<div class='mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-300 rounded'><div class='text-xs text-yellow-700 font-bold uppercase mb-1'>Notes</div><div class='text-gray-700 font-sans whitespace-pre-line'>${product.notes.map(note => `• ${note}`).join('<br>')}</div></div>`;
+      notesHtml = product.notes.map(note => `<div class='mb-2'><i class="fas fa-circle text-xs text-gray-400 mr-2"></i>${note}</div>`).join('');
+    } else if (typeof product.notes === 'string' && product.notes.includes('.')) {
+      notesHtml = product.notes.split('.').filter(Boolean).map(note => `<div class='mb-2'><i class="fas fa-circle text-xs text-gray-400 mr-2"></i>${note.trim()}.</div>`).join('');
     } else {
-      notesHtml = `<div class='mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-300 rounded'><div class='text-xs text-yellow-700 font-bold uppercase mb-1'>Notes</div><div class='text-gray-700 font-sans whitespace-pre-line'>${product.notes}</div></div>`;
+      notesHtml = `<div class='mb-2'><i class="fas fa-circle text-xs text-gray-400 mr-2"></i>${product.notes}</div>`;
     }
   }
 
-  // Details grid
-  const detailsGrid = `
-    <div class="grid grid-cols-2 gap-4 mb-2">
-      <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Time</span><span class="text-gray-800 font-medium">${product.time || startTime || '-'}</span></div>
-      <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Amount</span><span class="text-gray-800 font-medium">${product.quantity || product.amount || '-'}</span></div>
-      <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Unit Price</span><span class="text-gray-800 font-medium">${product.unitPrice || '-'}</span></div>
-      <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Total</span><span class="text-gray-800 font-medium">${product.total || '-'}</span></div>
-      <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Category</span><span class="text-gray-800 font-medium">${product.category || '-'}</span></div>
-      <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Location</span><span class="text-gray-800 font-medium">${product.space || product.location || '-'}</span></div>
-    </div>
-  `;
+  // Status badge color
+  let statusClass = 'bg-blue-200 text-blue-800';
+  if (product.status === 'Ready') statusClass = 'bg-green-200 text-green-800';
+  else if (product.status === 'In Progress') statusClass = 'bg-yellow-200 text-yellow-800';
 
-  // Status control
-  let statusClass = "px-3 py-1 rounded-full text-sm font-medium ";
-  if (product.status === "Ready") {
-    statusClass += "bg-green-200 text-green-800";
-  } else if (product.status === "In Progress") {
-    statusClass += "bg-yellow-200 text-yellow-800";
-  } else if (product.status === "Pending") {
-    statusClass += "bg-blue-200 text-blue-800";
-  }
-
-  const statusControl = `
-    <div class="bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl p-6 border-2 border-primary/20 mt-8">
-      <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
-        <i class="fas fa-tasks mr-3 text-primary"></i>
-        Status
-      </h5>
-      <div class="space-y-6">
-        <div class="flex items-center justify-between">
-          <span class="text-gray-600 font-medium">Huidige Status:</span>
-          <span id="modalCurrentStatus" class="${statusClass}">${product.status}</span>
-        </div>
-        <div>
-          <label class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide">Status wijzigen:</label>
-          <select id="modalStatusSelect"
-                  class="w-full p-4 rounded-lg bg-white text-gray-900 border-2 border-gray-200 focus-primary font-medium">
-            <option value="Pending"${product.status === "Pending" ? " selected" : ""}>Pending</option>
-            <option value="In Progress"${product.status === "In Progress" ? " selected" : ""}>In Progress</option>
-            <option value="Ready"${product.status === "Ready" ? " selected" : ""}>Ready</option>
-          </select>
-        </div>
-        <button id="updateStatusBtn"
-                class="w-full bg-primary hover:bg-primary/90 text-white py-4 px-6 rounded-lg transition-colors font-bold text-lg shadow-lg hover:shadow-xl">
-          <i class="fas fa-save mr-2"></i>Status bijwerken
+  // Modal HTML (template with dynamic data)
+  productModal.innerHTML = `
+    <div class="h-full flex flex-col">
+      <div class="flex items-center justify-between p-8 border-b-2 border-gray-200 bg-primary text-white">
+        <h3 class="text-2xl font-serif font-bold">Product Details</h3>
+        <button id="closeModal" class="text-white hover:text-gray-200 transition-colors">
+          <i class="fas fa-times text-2xl"></i>
         </button>
       </div>
+      <div class="flex-1 overflow-y-auto p-8 space-y-8">
+        <div class="text-center">
+          <div class="w-full h-48 bg-gray-200 rounded-xl mb-6 flex items-center justify-center overflow-hidden border-2 border-gray-200">
+            <img id="productImage" src="${product.image || ''}" alt="${product.product || product.name || ''}" class="w-full h-full object-cover" width="336" height="192">
+          </div>
+          <h4 id="productTitle" class="text-3xl font-serif font-bold text-gray-900 mb-3">${product.product || product.name || ''}</h4>
+          <p id="productDescription" class="text-gray-600 text-base leading-relaxed text-balance">${product.description || ''}</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+          <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
+            <i class="fas fa-clipboard-list mr-3 text-primary"></i>
+            Bestelinformatie
+          </h5>
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 font-medium">Type Gast:</span>
+              <span id="modalGuestType" class="text-gray-900 font-bold">${product.guestType || '-'}</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 font-medium">Aantal:</span>
+              <span id="modalQuantity" class="text-gray-900 font-bold">${product.quantity || product.amount || '-'}</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 font-medium">Categorie:</span>
+              <span id="modalCategory" class="text-gray-900 font-bold">${product.category || '-'}</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 font-medium">Locatie:</span>
+              <span id="modalSpace" class="text-gray-900 font-bold">${product.space || product.location || '-'}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+          <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
+            <i class="fas fa-clock mr-3 text-primary"></i>
+            Tijdstip
+          </h5>
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 font-medium">Starttijd:</span>
+              <span id="modalStartTime" class="text-gray-900 font-bold">${start}</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 font-medium">Eindtijd:</span>
+              <span id="modalEndTime" class="text-gray-900 font-bold">${end}</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 font-medium">Duur:</span>
+              <span id="modalDuration" class="text-gray-900 font-bold">${duration}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+          <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
+            <i class="fas fa-sticky-note mr-3 text-primary"></i>
+            Speciale opmerkingen
+          </h5>
+          <div id="modalNotes" class="text-gray-700 text-base leading-relaxed">${notesHtml}</div>
+        </div>
+        <div class="bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl p-6 border-2 border-primary/20">
+          <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
+            <i class="fas fa-tasks mr-3 text-primary"></i>
+            Status
+          </h5>
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="text-gray-600 font-medium">Huidige Status:</span>
+              <span id="modalCurrentStatus" class="px-3 py-1 rounded-full text-sm font-medium ${statusClass}">${product.status}</span>
+            </div>
+            <div>
+              <label class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide">Status wijzigen:</label>
+              <select id="modalStatusSelect" class="w-full p-4 rounded-lg bg-white text-gray-900 border-2 border-gray-200 focus-primary font-medium">
+                <option value="Pending"${product.status === "Pending" ? " selected" : ""}>Pending</option>
+                <option value="In Progress"${product.status === "In Progress" ? " selected" : ""}>In Progress</option>
+                <option value="Ready"${product.status === "Ready" ? " selected" : ""}>Ready</option>
+              </select>
+            </div>
+            <button id="updateStatusBtn" class="w-full bg-primary hover:bg-primary/90 text-white py-4 px-6 rounded-lg transition-colors font-bold text-lg shadow-lg hover:shadow-xl">
+              <i class="fas fa-save mr-2"></i>Status bijwerken
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-  `;
-
-  // Compose modal content
-  document.getElementById('offcanvas-title').textContent = 'Product Details';
-  document.getElementById('offcanvas-content').innerHTML = `
-    <div class="mb-4">
-      <img src="${product.image || ''}" alt="Product Cover" class="w-full h-40 object-cover rounded-t-xl mb-4">
-      <h4 class="text-2xl font-serif font-bold mb-2 text-secondary">${product.product || product.name || ''}</h4>
-      <p class="text-gray-600 font-sans mb-4">${product.description || ''}</p>
-      ${detailsGrid}
-      ${guestTypesHtml}
-      ${notesHtml}
-    </div>
-    ${statusControl}
   `;
 
   // Show modal
@@ -124,11 +155,10 @@ function openProductModal(productIndex) {
   modalOverlay.classList.add("opacity-100");
   productModal.classList.remove("translate-x-full");
   productModal.classList.add("translate-x-0");
-
-  // Prevent body scroll
   document.body.style.overflow = "hidden";
 
-  // Attach status update event
+  // Attach close and status update events
+  document.getElementById('closeModal').onclick = closeProductModal;
   document.getElementById('updateStatusBtn').onclick = updateProductStatus;
   document.getElementById('modalStatusSelect').value = product.status;
 }
@@ -179,13 +209,15 @@ function updateProductStatus() {
 }
 
 // Drag and drop functionality
+let dragOverCard = null;
+let dragOverIndex = null;
 function handleDragStart(e) {
   draggedElement = this;
   this.style.opacity = "0.5";
   e.dataTransfer.effectAllowed = "move";
   e.dataTransfer.setData("text/html", this.outerHTML);
-
-  // Add a small delay to prevent accidental modal opening
+  dragOverCard = null;
+  dragOverIndex = null;
   setTimeout(() => {
     this.style.pointerEvents = "none";
   }, 100);
@@ -194,6 +226,8 @@ function handleDragStart(e) {
 function handleDragEnd() {
   this.style.opacity = "1";
   this.style.pointerEvents = "";
+  dragOverCard = null;
+  dragOverIndex = null;
   setTimeout(() => {
     draggedElement = null;
   }, 100);
@@ -202,42 +236,61 @@ function handleDragEnd() {
 function handleDragOver(e) {
   e.preventDefault();
   e.dataTransfer.dropEffect = "move";
+  if (this.classList.contains('kanban-card')) {
+    dragOverCard = this;
+    dragOverIndex = parseInt(this.getAttribute('data-order-index'));
+    this.style.backgroundColor = "rgba(124, 146, 134, 0.08)";
+  }
   return false;
 }
 
-function handleDragEnter() {
-  this.style.backgroundColor = "rgba(0, 0, 0, 0.05)";
+function handleDragEnter(e) {
+  if (this.classList.contains('kanban-card')) {
+    this.style.backgroundColor = "rgba(124, 146, 134, 0.08)";
+  }
 }
 
-function handleDragLeave() {
-  this.style.backgroundColor = "";
+function handleDragLeave(e) {
+  if (this.classList.contains('kanban-card')) {
+    this.style.backgroundColor = "";
+  }
 }
 
 function handleDrop(e) {
   e.preventDefault();
-  this.style.backgroundColor = "";
-
-  if (draggedElement !== this) {
-    const newStatus = this.closest("[data-status]").getAttribute("data-status");
-    const orderIndex = parseInt(
-      draggedElement.getAttribute("data-order-index")
-    );
-
-    // Update the order data
-    const originalOrder = orderData.find(
-      (_, index) => index === orderIndex
-    );
-    if (originalOrder) {
-      originalOrder.status = newStatus;
-
-      // Update the table row as well
-      updateTableRowStatus(orderIndex, newStatus);
-
-      // Refresh the kanban view
-      populateKanbanView();
-    }
+  if (this.classList.contains('kanban-card')) {
+    this.style.backgroundColor = "";
   }
+  if (!draggedElement) return false;
 
+  const newStatus = this.closest('[data-status]').getAttribute('data-status');
+  const draggedIndex = parseInt(draggedElement.getAttribute('data-order-index'));
+  const dropIndex = parseInt(this.getAttribute('data-order-index'));
+
+  // Remove from old position
+  const movingOrder = orderData.splice(draggedIndex, 1)[0];
+  movingOrder.status = newStatus;
+
+  // Find all cards in the new column (with newStatus)
+  let newColumnOrders = orderData.filter(o => o.status === newStatus);
+  // Find the index in orderData where to insert
+  let beforeOrder = orderData.find((o, i) => o.status === newStatus && orderData.indexOf(o) === dropIndex);
+  let insertAt = beforeOrder ? orderData.indexOf(beforeOrder) : -1;
+  if (insertAt === -1) {
+    // Insert at end of column
+    let lastIdx = -1;
+    for (let i = orderData.length - 1; i >= 0; i--) {
+      if (orderData[i].status === newStatus) {
+        lastIdx = i;
+        break;
+      }
+    }
+    insertAt = lastIdx + 1;
+  }
+  orderData.splice(insertAt, 0, movingOrder);
+
+  updateTableRowStatus(insertAt, newStatus);
+  populateKanbanView();
   return false;
 }
 
@@ -890,10 +943,30 @@ function initializeDragAndDrop() {
   const columns = ["pendingColumn", "progressColumn", "readyColumn"];
   columns.forEach((columnId) => {
     const column = document.getElementById(columnId);
-    column.addEventListener("dragover", handleDragOver);
-    column.addEventListener("dragenter", handleDragEnter);
-    column.addEventListener("dragleave", handleDragLeave);
-    column.addEventListener("drop", handleDrop);
+    // Make the column itself droppable (for dropping at the end)
+    column.addEventListener("dragover", function(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "move";
+    });
+    column.addEventListener("drop", function(e) {
+      e.preventDefault();
+      if (!draggedElement) return;
+      const newStatus = column.closest('[data-status]').getAttribute('data-status');
+      const draggedIndex = parseInt(draggedElement.getAttribute('data-order-index'));
+      const movingOrder = orderData.splice(draggedIndex, 1)[0];
+      movingOrder.status = newStatus;
+      // Insert at end of column
+      let lastIdx = -1;
+      for (let i = orderData.length - 1; i >= 0; i--) {
+        if (orderData[i].status === newStatus) {
+          lastIdx = i;
+          break;
+        }
+      }
+      orderData.splice(lastIdx + 1, 0, movingOrder);
+      updateTableRowStatus(lastIdx + 1, newStatus);
+      populateKanbanView();
+    });
   });
 }
 
