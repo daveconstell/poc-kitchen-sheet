@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Keukenblad</title>
+        <meta name="description"
+              content="Beheer en bekijk al uw aankomende evenementen met het Evenementenbeheer Dashboard.">
+        <meta name="keywords"
+              content="evenementenbeheer, dashboard, bedrijfsevenementen, bruiloften, conferenties">
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
+              rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Open Sans', 'sans-serif']
+                    },
+                    colors: {
+                        primary: '#7C9286',
+                        secondary: '#E5AEA1'
+                    },
+                   maxWidth: {
+                       '8xl': '1440px',
+                   }
+                }
+            }
+        }
+        </script>
+        <style>
+        html {
+            scroll-behavior: smooth;
+        }
+ 
+        body {
+            color: #111827;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Custom focus styles */
+        .focus-primary:focus {
+            outline: none;
+            ring: 2px;
+            ring-color: #7C9286;
+            border-color: #7C9286;
+        }
+        .table-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            padding-bottom: 1rem;
+            text-align: left;
+            color: #111827;
+        }
+        </style>
+    </head>
+    <body class="min-h-screen font-sans transition-all duration-300">
+        <!-- Header -->
+        <header class="bg-primary backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-600/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-[124px]">
+                    <!-- Logo -->
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 flex items-center">
+                            <img src="https://kloosterbethlehem.nl/wp-content/uploads/2022/06/Logo-wit.svg"
+                                 alt="Keukenblad Logo"
+                                 class="h-12 w-auto"
+                                 height="48"
+                                 width="192">
+                        </div>
+                    </div>
+                    <!-- Navigation -->
+                    <nav class="hidden md:flex space-x-8">
+                        <a href="./index.html"
+                           class="text-gray-200 hover:text-white transition-colors duration-200 font-medium">
+                            <i class="fas fa-home-alt mr-2"></i>Home
+                        </a>
+                    </nav>
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden">
+                        <button id="mobile-menu-button"
+                                class="text-gray-200 hover:text-white transition-colors duration-200">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu"
+                 class="hidden md:hidden bg-primary/95 backdrop-blur-md border-t border-gray-600/50">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="./index.html"
+                       class="block px-3 py-2 text-gray-200 hover:text-white transition-colors duration-200">
+                        <i class="fas fa-home-alt mr-2"></i>Home
+                    </a>
+                </div>
+            </div>
+        </header>
+        <!-- Back to Top Button -->
+        <button id="back-to-top"
+                class="fixed bottom-6 right-6 bg-primary text-white p-3 rounded-full shadow-lg hover:bg-opacity-90 transition-all duration-300 z-40 hidden">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <!-- Main Content -->
+        <main role="main" class="max-w-8xl mx-auto p-6 md:p-10 md:pt-20">
+            <!-- Page Header -->
+            <header class="relative h-64 rounded-xl overflow-hidden mb-16"
+                    aria-labelledby="page-title">
+                <div class="absolute inset-0 bg-cover bg-center"
+                     style="background-image: url('https://images.pexels.com/photos/326281/pexels-photo-326281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')">
+                </div>
+                <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-6">
+                    <h1 id="page-title" class="text-5xl font-serif font-bold mb-4">Banquete Sheet</h1>
+                    <p class="text-xl font-sans max-w-2xl mx-auto text-balance leading-relaxed">
+                        Een gedetailleerd overzicht van uw banketplanning en activiteiten.
+                    </p>
+                </div>
+            </header>
+            <!-- Summary Section -->
+            <section id="summary"
+                     class="bg-white/90 backdrop-blur-sm p-8 md:p-10 rounded-xl shadow-lg mb-10 border border-gray-200">
+                <h2 class="text-4xl font-serif font-bold text-gray-900 mb-8 pb-4">
+                    <i class="fas fa-calendar-alt mr-3 text-primary"></i>
+                    Event Details
+                </h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <!-- Total Hours -->
+                    <div class="bg-gray-50 rounded-xl p-6 text-center">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-clock text-3xl"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-semibold mb-2">Total Hours</h3>
+                        <p class="font-sans text-xl font-bold">8 hours</p>
+                    </div>
+                    <!-- Total Spaces -->
+                    <div class="bg-gray-50 rounded-xl p-6 text-center">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-building text-3xl"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-semibold mb-2">Total Spaces</h3>
+                        <p class="font-sans text-xl font-bold">2 spaces</p>
+                    </div>
+                    <!-- Total Products -->
+                    <div class="bg-gray-50 rounded-xl p-6 text-center">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-box text-3xl"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-semibold mb-2">Total Products</h3>
+                        <p class="font-sans text-xl font-bold">18 items</p>
+                    </div>
+                    <!-- Max Guests -->
+                    <div class="bg-gray-50 rounded-xl p-6 text-center">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-users text-3xl"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-semibold mb-2">Max Guests</h3>
+                        <p class="font-sans text-xl font-bold">100 Kids</p>
+                    </div>
+                </div>
+                <!-- Financial Summary -->
+                <div class="bg-gray-50 rounded-xl p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center items-center">
+                        <div>
+                            <h4 class="font-serif text-lg text-gray-600">Total Excluding VAT:</h4>
+                            <p class="font-sans text-lg font-semibold">€4,496.65</p>
+                        </div>
+                        <div>
+                            <h4 class="font-serif text-lg text-gray-600">VAT Amount:</h4>
+                            <p class="font-sans text-lg font-semibold">€875.79</p>
+                        </div>
+                        <div>
+                            <h4 class="font-serif text-lg text-gray-600">Total Including VAT:</h4>
+                            <p class="font-sans text-lg font-semibold">€5,372.44</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Event Details Section -->
+            <section id="event-details"
+                     class="bg-white/90 backdrop-blur-sm p-8 md:p-10 rounded-xl shadow-lg mb-10 border border-gray-200">
+                <h2 class="text-4xl font-serif font-bold text-gray-900 mb-8 pb-4">
+                    <i class="fas fa-calendar-alt mr-3 text-primary"></i>
+                    Overzicht
+                </h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-serif text-xl font-semibold mb-2">Status</h3>
+                        <p class="font-sans text-lg text-gray-600">Confirmed</p>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-xl font-semibold mb-2">Event Name</h3>
+                        <p class="font-sans text-lg text-gray-600">Summer Gala</p>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-xl font-semibold mb-2">Event Type</h3>
+                        <p class="font-sans text-lg text-gray-600">Corporate</p>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-xl font-semibold mb-2">Event Dates</h3>
+                        <p class="font-sans text-lg text-gray-600">July 13, 2025 - July 14, 2025</p>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-xl font-semibold mb-2">Main Booker</h3>
+                        <div class="flex items-center gap-3">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Doe avatar" class="w-8 h-8 rounded-full object-cover border border-gray-300">
+                            <div>
+                                <p class="font-sans text-lg text-gray-600">John Doe</p>
+                                <p class="font-sans text-md text-gray-500">john.doe@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-xl font-semibold mb-2">Venue Manager</h3>
+                        <div class="flex items-center gap-3">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jane Smith avatar" class="w-8 h-8 rounded-full object-cover border border-gray-300">
+                            <div>
+                                <p class="font-sans text-lg text-gray-600">Jane Smith</p>
+                                <p class="font-sans text-md text-gray-500">jane.smith@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-16">
+                    <h3 class="font-serif text-xl font-semibold mb-2">Event Description</h3>
+                    <p class="font-sans text-lg text-gray-600">
+                        An elegant summer gala to celebrate our company's success. The event will feature a dinner, awards ceremony, and live entertainment. We expect around 100 guests to attend this special evening.
+                    </p>
+                </div>
+            </section>
+            <section id="programma"
+                     class="bg-white/90 backdrop-blur-sm p-8 md:p-10 rounded-xl shadow-lg mb-10 border border-gray-200">
+                <h2 class="text-4xl font-serif font-bold text-gray-900 mb-8 pb-4">
+                    <i class="fas fa-calendar-alt mr-3 text-primary"></i>
+                    Programma
+                </h2>
+                <!-- Day 1 Program Card -->
+                <div class="bg-white rounded-xl border border-gray-200 mb-8 overflow-hidden">
+                    <div class="bg-gray-100 px-8 py-6 flex justify-between items-center">
+                        <h3 class="font-serif text-2xl font-semibold">Day 1 - July 13, 2025</h3>
+                        <span class="font-sans text-xl font-bold text-primary">€4,089.44</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <!-- Algemeen Timeslot -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="timeslot-header bg-gray-50 p-4 cursor-pointer hover:bg-gray-100 transition-colors flex justify-between items-center"
+                                 onclick="toggleTimeslot('day1-slot-algemeen')">
+                                <div>
+                                    <h4 class="font-serif text-xl font-semibold">Algemeen</h4>
+                                    <p class="font-sans text-gray-600">All day</p>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class="font-sans text-lg font-semibold text-primary">€0.00</span>
+                                    <i class="fas fa-chevron-down transition-transform duration-300"
+                                       id="day1-slot-algemeen-icon"></i>
+                                </div>
+                            </div>
+                            <div id="day1-slot-algemeen" class="timeslot-content hidden">
+                                <div class="p-6 border-t border-gray-100">
+                                    <p class="font-sans text-gray-500 italic">No items scheduled for this timeslot.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Timeslot 1 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="timeslot-header bg-gray-50 p-4 cursor-pointer hover:bg-gray-100 transition-colors flex justify-between items-center"
+                                 onclick="toggleTimeslot('day1-slot1')">
+                                <div>
+                                    <h4 class="font-serif text-xl font-semibold">gelegenheid-1</h4>
+                                    <p class="font-sans text-gray-600">09:00 - 10:00</p>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class="font-sans text-lg font-semibold text-primary">€303.94</span>
+                                    <i class="fas fa-chevron-down transition-transform duration-300"
+                                       id="day1-slot1-icon"></i>
+                                </div>
+                            </div>
+                            <div id="day1-slot1" class="timeslot-content hidden">
+                                <div class="p-6 border-t border-gray-100">
+                                    <!-- Description with Read More -->
+                                    <div class="mb-6">
+                                        <div class="font-sans text-gray-700">
+                                            <span id="day1-slot1-short">This is the most interesting part, as the rest of the day will be not very interesting and boring. And maybe too...</span>
+                                            <span id="day1-slot1-full" class="hidden">This is the most interesting part, as the rest of the day will be not very interesting and boring. And maybe too boring. This is the most interesting part, as the rest of the day will be not very interesting and boring. And maybe too boring. This is the most interesting part, as the rest of the day will be not very interesting and boring. And maybe too boring. This is the most interesting part, as the rest of the day will be not very interesting and boring. And maybe too boring.</span>
+                                            <button onclick="toggleDescription('day1-slot1')"
+                                                    class="text-primary hover:text-primary/80 ml-2 font-medium"
+                                                    id="day1-slot1-toggle">Read More</button>
+                                        </div>
+                                    </div>
+                                    <!-- Table -->
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full">
+                                            <caption class="table-title">Producten</caption>
+                                            <thead>
+                                                <tr class="border-b border-gray-200">
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Chocolate Cookies","description":"Delicious chocolate cookies, freshly baked.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€81.00","total":"€81.00","time":"09:00 - 10:00","category":"Dessert","location":"Blauwe Kamer-1","notes":["Contains nuts. Serve with milk."],"guestTypes":[{"type":"Kids","count":10},{"type":"Adults","count":20}]}'>
+                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Chocolate Cookies</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€81.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€81.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Cannoli","description":"Classic Italian pastry with sweet ricotta filling.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€3.00","total":"€3.00","time":"09:00 - 10:00","category":"Dessert","location":"Blauwe Kamer-1","notes":["Keep refrigerated until serving."],"guestTypes":[{"type":"Kids","count":5},{"type":"VIP","count":2}]}'>
+                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Cannoli</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€3.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€3.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Quiche Lorraine","description":"Savory French tart with bacon, cheese, and custard.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"100 Kids","unitPrice":"€9.94","total":"€9.94","time":"09:00 - 10:00","category":"Main","location":"Blauwe Kamer-1","notes":["Vegetarian option available on request."],"guestTypes":[{"type":"Kids","count":100}]}'>
+                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Quiche Lorraine</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">100 Kids</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€9.94</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€9.94</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- For each timeslot, ensure a Spaces table exists. If missing, add a placeholder: -->
+                                    <div class="overflow-x-auto mt-6">
+                                        <table class="w-full">
+                                            <caption class="table-title">Spaces</caption>
+                                            <thead>
+                                                <tr class="border-b border-gray-200">
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Space Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Capacity</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Layout</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="border-b border-gray-100 space-row cursor-pointer hover:bg-primary/10" data-space='{"name":"Blauwe Kamer-1","time":"09:00 - 10:00","capacity":"50","layout":"Theater","amount":"1 hour","unitPrice":"€10.00","total":"€10.00","cover":"https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&w=600&h=400&fit=crop","description":"A bright, spacious room perfect for presentations and workshops. Features large windows and modern AV equipment.","notes":"Windows can be opened for fresh air. Projector remote is in the drawer."}'>
+                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
+                                                    <td class="font-sans px-6 py-4">Blauwe Kamer-1</td>
+                                                    <td class="font-sans px-6 py-4">50</td>
+                                                    <td class="font-sans px-6 py-4">Theater</td>
+                                                    <td class="font-sans px-6 py-4">1 hour</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€10.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€10.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-100 space-row cursor-pointer hover:bg-primary/10" data-space='{"name":"BRAT Room","time":"09:00 - 10:00","capacity":"100","layout":"U-Shape","amount":"1 hour","unitPrice":"€200.00","total":"€200.00","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","description":"Ideal for large meetings and conferences, the BRAT Room offers flexible seating and a private atmosphere.","notes":"Check AV setup before event. Coffee machine in the corner."}'>
+                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
+                                                    <td class="font-sans px-6 py-4">BRAT Room</td>
+                                                    <td class="font-sans px-6 py-4">100</td>
+                                                    <td class="font-sans px-6 py-4">U-Shape</td>
+                                                    <td class="font-sans px-6 py-4">1 hour</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€200.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€200.00</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Timeslot 2 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="timeslot-header bg-gray-50 p-4 cursor-pointer hover:bg-gray-100 transition-colors flex justify-between items-center"
+                                 onclick="toggleTimeslot('day1-slot2')">
+                                <div>
+                                    <h4 class="font-serif text-xl font-semibold">gelegenheid-2</h4>
+                                    <p class="font-sans text-gray-600">10:00 - 11:00</p>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class="font-sans text-lg font-semibold text-primary">€480.00</span>
+                                    <i class="fas fa-chevron-down transition-transform duration-300"
+                                       id="day1-slot2-icon"></i>
+                                </div>
+                            </div>
+                            <div id="day1-slot2" class="timeslot-content hidden">
+                                <div class="p-6 border-t border-gray-100">
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full">
+                                            <caption class="table-title">Producten</caption>
+                                            <thead>
+                                                <tr class="border-b border-gray-200">
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Mexican Truffle Cake","description":"Rich chocolate cake with a hint of spice.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€200.00","total":"€200.00","time":"10:00 - 11:00","category":"Dessert","location":"BRAT Room","notes":["Gluten free."],"guestTypes":[{"type":"Adults","count":10}]}'>
+                                                    <td class="font-sans px-6 py-4">10:00 - 11:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Mexican Truffle Cake</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€200.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€200.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Chocolate Cookies","description":"Delicious chocolate cookies, freshly baked.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"100 Kids","unitPrice":"€80.00","total":"€80.00","time":"10:00 - 11:00","category":"Dessert","location":"BRAT Room","notes":["Contains nuts. Serve with milk."],"guestTypes":[{"type":"Kids","count":100}]}'>
+                                                    <td class="font-sans px-6 py-4">10:00 - 11:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Chocolate Cookies</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">100 Kids</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€80.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€80.00</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- For each timeslot, ensure a Spaces table exists. If missing, add a placeholder: -->
+                                    <div class="overflow-x-auto mt-6">
+                                        <table class="w-full">
+                                            <caption class="table-title">Spaces</caption>
+                                            <thead>
+                                                <tr class="border-b border-gray-200">
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Space Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Capacity</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Layout</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="border-b border-gray-100 space-row cursor-pointer hover:bg-primary/10" data-space='{"name":"BRAT Room","time":"10:00 - 11:00","capacity":"100","layout":"U-Shape","amount":"1 hour","unitPrice":"€200.00","total":"€200.00","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","description":"Ideal for large meetings and conferences, the BRAT Room offers flexible seating and a private atmosphere.","notes":"Check AV setup before event. Coffee machine in the corner."}'>
+                                                    <td class="font-sans px-6 py-4">10:00 - 11:00</td>
+                                                    <td class="font-sans px-6 py-4">BRAT Room</td>
+                                                    <td class="font-sans px-6 py-4">100</td>
+                                                    <td class="font-sans px-6 py-4">U-Shape</td>
+                                                    <td class="font-sans px-6 py-4">1 hour</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€200.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€200.00</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Timeslot 3 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="timeslot-header bg-gray-50 p-4 cursor-pointer hover:bg-gray-100 transition-colors flex justify-between items-center"
+                                 onclick="toggleTimeslot('day1-slot3')">
+                                <div>
+                                    <h4 class="font-serif text-xl font-semibold">gelegenheid-3</h4>
+                                    <p class="font-sans text-gray-600">11:00 - 12:00</p>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class="font-sans text-lg font-semibold text-primary">€1,192.50</span>
+                                    <i class="fas fa-chevron-down transition-transform duration-300"
+                                       id="day1-slot3-icon"></i>
+                                </div>
+                            </div>
+                            <div id="day1-slot3" class="timeslot-content hidden">
+                                <div class="p-6 border-t border-gray-100">
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full">
+                                            <caption class="table-title">Producten</caption>
+                                            <thead>
+                                                <tr class="border-b border-gray-200">
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Zalm met groentjes","description":"Fresh salmon with seasonal vegetables.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€100.00","total":"€100.00","time":"11:00 - 12:00","category":"Main","location":"BRAT Room","notes":["Served with a side of mashed potatoes."],"guestTypes":[{"type":"Adults","count":10}]}'>
+                                                    <td class="font-sans px-6 py-4">11:00 - 12:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Zalm met groentjes</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€100.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€100.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Pizza","description":"Classic Margherita pizza.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€1,000.00","total":"€1,000.00","time":"11:00 - 12:00","category":"Main","location":"BRAT Room","notes":["Served with a side of salad."],"guestTypes":[{"type":"Adults","count":10}]}'>
+                                                    <td class="font-sans px-6 py-4">11:00 - 12:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Pizza</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Chocolate Cookies","description":"Delicious chocolate cookies, freshly baked.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€80.00","total":"€80.00","time":"11:00 - 12:00","category":"Dessert","location":"BRAT Room","notes":["Contains nuts. Serve with milk."],"guestTypes":[{"type":"Adults","count":10}]}'>
+                                                    <td class="font-sans px-6 py-4">11:00 - 12:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Chocolate Cookies</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€80.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€80.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Cannoli - hehe's","description":"Italian pastry filled with ricotta cheese.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€3.00","total":"€3.00","time":"11:00 - 12:00","category":"Dessert","location":"BRAT Room","notes":["Gluten free."],"guestTypes":[{"type":"Adults","count":10}]}'>
+                                                    <td class="font-sans px-6 py-4">11:00 - 12:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Cannoli - hehe's</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€3.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€3.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Quiche Lorraine","description":"Savory French tart with bacon, cheese, and custard.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€9.50","total":"€9.50","time":"11:00 - 12:00","category":"Dessert","location":"BRAT Room","notes":["Gluten free."],"guestTypes":[{"type":"Adults","count":10}]}'>
+                                                    <td class="font-sans px-6 py-4">11:00 - 12:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Quiche Lorraine</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€9.50</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€9.50</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Timeslot 4 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="timeslot-header bg-gray-50 p-4 cursor-pointer hover:bg-gray-100 transition-colors flex justify-between items-center"
+                                 onclick="toggleTimeslot('day1-slot4')">
+                                <div>
+                                    <h4 class="font-serif text-xl font-semibold">gelegenheid-4</h4>
+                                    <p class="font-sans text-gray-600">12:00 - 13:00</p>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class="font-sans text-lg font-semibold text-primary">€2,113.00</span>
+                                    <i class="fas fa-chevron-down transition-transform duration-300"
+                                       id="day1-slot4-icon"></i>
+                                </div>
+                            </div>
+                            <div id="day1-slot4" class="timeslot-content hidden">
+                                <div class="p-6 border-t border-gray-100">
+                                    <!-- Description with Read More -->
+                                    <div class="mb-6">
+                                        <div class="font-sans text-gray-700">
+                                            <span id="day1-slot4-short">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in ullamcorper tellus, non auctor nunc...</span>
+                                            <span id="day1-slot4-full" class="hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in ullamcorper tellus, non auctor nunc. In at dictum nibh, a porta neque. Morbi porttitor felis id tempor egestas. Sed sed lectus dui. Duis non ullamcorper velit, ut porta urna. Mauris et ante at justo convallis lobortis rutrum auctor lacus. Suspendisse ornare ex nisl, sed convallis metus luctus non. Fusce mollis est nisi, ut posuere tortor consectetur porta. Duis vel interdum nulla, quis ultricies arcu. Nulla malesuada faucibus mauris, in varius augue imperdiet eget. Nunc nibh neque, rutrum at eros sit amet, blandit condimentum ipsum. Donec non tellus id sem hendrerit vulputate sed sit amet dolor. Maecenas iaculis eros lacus, at ornare ante volutpat bibendum.</span>
+                                            <button onclick="toggleDescription('day1-slot4')"
+                                                    class="text-primary hover:text-primary/80 ml-2 font-medium"
+                                                    id="day1-slot4-toggle">Read More</button>
+                                        </div>
+                                    </div>
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full">
+                                            <caption class="table-title">Producten</caption>
+                                            <thead>
+                                                <tr class="border-b border-gray-200">
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Ballonnen","description":"Beautiful balloons in various colors.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€1,000.00","total":"€1,000.00","time":"12:00 - 13:00","category":"Dessert","location":"BRAT Room","notes":["Can be inflated."],"guestTypes":[{"type":"Adults","count":10}]}'>
+                                                    <td class="font-sans px-6 py-4">12:00 - 13:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Ballonnen</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Forkseee","description":"A unique fork with a handle shaped like a smiley face.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€13.00","total":"€13.00","time":"12:00 - 13:00","category":"Dessert","location":"BRAT Room","notes":["Can be used as a spoon."],"guestTypes":[{"type":"Adults","count":10}]}'>
+                                                    <td class="font-sans px-6 py-4">12:00 - 13:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Forkseee</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€13.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€13.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Zalm met groentjes","description":"Fresh salmon with seasonal vegetables.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€100.00","total":"€100.00","time":"12:00 - 13:00","category":"Main","location":"BRAT Room","notes":["Served with a side of mashed potatoes."],"guestTypes":[{"type":"Adults","count":10}]}'>
+                                                    <td class="font-sans px-6 py-4">12:00 - 13:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Zalm met groentjes</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€100.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€100.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Pizza","description":"Classic Margherita pizza.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€1,000.00","total":"€1,000.00","time":"12:00 - 13:00","category":"Main","location":"BRAT Room","notes":["Served with a side of salad."],"guestTypes":[{"type":"Adults","count":10}]}'>
+                                                    <td class="font-sans px-6 py-4">12:00 - 13:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Pizza</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- For each timeslot, ensure a Spaces table exists. If missing, add a placeholder: -->
+                                    <div class="overflow-x-auto mt-6">
+                                        <table class="w-full">
+                                            <caption class="table-title">Spaces</caption>
+                                            <thead>
+                                                <tr class="border-b border-gray-200">
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Space Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Capacity</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Layout</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="border-b border-gray-100 space-row cursor-pointer hover:bg-primary/10" data-space='{"name":"Placeholder Room","time":"--","capacity":"-","layout":"-","amount":"-","unitPrice":"-","total":"-","cover":"https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&w=600&h=400&fit=crop","description":"No space assigned for this timeslot.","notes":"This is a placeholder space."}'>
+                                                    <td class="font-sans px-6 py-4">--</td>
+                                                    <td class="font-sans px-6 py-4">Placeholder Room</td>
+                                                    <td class="font-sans px-6 py-4">-</td>
+                                                    <td class="font-sans px-6 py-4">-</td>
+                                                    <td class="font-sans px-6 py-4">-</td>
+                                                    <td class="font-sans px-6 py-4 text-right">-</td>
+                                                    <td class="font-sans px-6 py-4 text-right">-</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Day 2 Program Card -->
+                <div class="bg-white rounded-xl border border-gray-200 mb-8 overflow-hidden">
+                    <div class="bg-gray-100 px-8 py-6 flex justify-between items-center">
+                        <h3 class="font-serif text-2xl font-semibold">Day 2 - July 14, 2025</h3>
+                        <span class="font-sans text-xl font-bold text-primary">€1,283.00</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <!-- Algemeen Timeslot -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="timeslot-header bg-gray-50 p-4 cursor-pointer hover:bg-gray-100 transition-colors flex justify-between items-center"
+                                 onclick="toggleTimeslot('day2-slot-algemeen')">
+                                <div>
+                                    <h4 class="font-serif text-xl font-semibold">Algemeen</h4>
+                                    <p class="font-sans text-gray-600">All day</p>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class="font-sans text-lg font-semibold text-primary">€0.00</span>
+                                    <i class="fas fa-chevron-down transition-transform duration-300"
+                                       id="day2-slot-algemeen-icon"></i>
+                                </div>
+                            </div>
+                            <div id="day2-slot-algemeen" class="timeslot-content hidden">
+                                <div class="p-6 border-t border-gray-100">
+                                    <p class="font-sans text-gray-500 italic">No items scheduled for this timeslot.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Day 2 Timeslot 1 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="timeslot-header bg-gray-50 p-4 cursor-pointer hover:bg-gray-100 transition-colors flex justify-between items-center"
+                                 onclick="toggleTimeslot('day2-slot1')">
+                                <div>
+                                    <h4 class="font-serif text-xl font-semibold">gelegenheid-1</h4>
+                                    <p class="font-sans text-gray-600">09:00 - 10:00</p>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class="font-sans text-lg font-semibold text-primary">€1,283.00</span>
+                                    <i class="fas fa-chevron-down transition-transform duration-300"
+                                       id="day2-slot1-icon"></i>
+                                </div>
+                            </div>
+                            <div id="day2-slot1" class="timeslot-content hidden">
+                                <div class="p-6 border-t border-gray-100">
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full">
+                                            <caption class="table-title">Producten</caption>
+                                            <thead>
+                                                <tr class="border-b border-gray-200">
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Mexican Truffle Cake","description":"Rich chocolate cake with a hint of spice.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€200.00","total":"€200.00","time":"09:00 - 10:00","category":"Dessert","location":"BRAT Room","notes":["Gluten free."],"guestTypes":[{"type":"Adults","count":10}]}'>
+                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Mexican Truffle Cake</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€200.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€200.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Product 1","description":"A generic product.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€3.00","total":"€3.00","time":"09:00 - 10:00","category":"Dessert","location":"BRAT Room","notes":["Gluten free."],"guestTypes":[{"type":"Adults","count":10}]}'>
+                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Product 1</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€3.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€3.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Pizza","description":"Classic Margherita pizza.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€1,000.00","total":"€1,000.00","time":"09:00 - 10:00","category":"Dessert","location":"BRAT Room","notes":["Served with a side of salad."],"guestTypes":[{"type":"Adults","count":10}]}'>
+                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Pizza</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">1 piece</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€1,000.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10" data-product='{"name":"Chocolate Cookies","description":"Delicious chocolate cookies, freshly baked.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"100 Kids","unitPrice":"€80.00","total":"€80.00","time":"09:00 - 10:00","category":"Dessert","location":"BRAT Room","notes":["Contains nuts. Serve with milk."],"guestTypes":[{"type":"Kids","count":100}]}'>
+                                                    <td class="font-sans px-6 py-4">09:00 - 10:00</td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="font-sans">Chocolate Cookies</div>
+                                                    </td>
+                                                    <td class="font-sans px-6 py-4">100 Kids</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€80.00</td>
+                                                    <td class="font-sans px-6 py-4 text-right">€80.00</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- For each timeslot, ensure a Spaces table exists. If missing, add a placeholder: -->
+                                    <div class="overflow-x-auto mt-6">
+                                        <table class="w-full">
+                                            <caption class="table-title">Spaces</caption>
+                                            <thead>
+                                                <tr class="border-b border-gray-200">
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Time</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Space Name</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Capacity</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Layout</th>
+                                                    <th class="font-serif text-left px-6 py-4 text-primary">Amount</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Unit Price</th>
+                                                    <th class="font-serif text-right px-6 py-4 text-primary">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="border-b border-gray-100 space-row cursor-pointer hover:bg-primary/10" data-space='{"name":"Placeholder Room","time":"--","capacity":"-","layout":"-","amount":"-","unitPrice":"-","total":"-","cover":"https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&w=600&h=400&fit=crop","description":"No space assigned for this timeslot.","notes":"This is a placeholder space."}'>
+                                                    <td class="font-sans px-6 py-4">--</td>
+                                                    <td class="font-sans px-6 py-4">Placeholder Room</td>
+                                                    <td class="font-sans px-6 py-4">-</td>
+                                                    <td class="font-sans px-6 py-4">-</td>
+                                                    <td class="font-sans px-6 py-4">-</td>
+                                                    <td class="font-sans px-6 py-4 text-right">-</td>
+                                                    <td class="font-sans px-6 py-4 text-right">-</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Day 2 Timeslot 2 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="timeslot-header bg-gray-50 p-4 cursor-pointer hover:bg-gray-100 transition-colors flex justify-between items-center"
+                                 onclick="toggleTimeslot('day2-slot2')">
+                                <div>
+                                    <h4 class="font-serif text-xl font-semibold">gelegenheid-2</h4>
+                                    <p class="font-sans text-gray-600">10:00 - 11:00</p>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class="font-sans text-lg font-semibold text-primary">€0.00</span>
+                                    <i class="fas fa-chevron-down transition-transform duration-300"
+                                       id="day2-slot2-icon"></i>
+                                </div>
+                            </div>
+                            <div id="day2-slot2" class="timeslot-content hidden">
+                                <div class="p-6 border-t border-gray-100">
+                                    <p class="font-sans text-gray-500 italic">No items scheduled for this timeslot.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Offcanvas Modal for Space Details -->
+        <div id="space-offcanvas" class="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col" style="will-change: transform;">
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <h3 id="offcanvas-title" class="text-2xl font-serif font-bold text-primary">Space Details</h3>
+                <button id="offcanvas-close" class="text-gray-500 hover:text-primary text-2xl focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="offcanvas-content" class="p-6 flex-1 overflow-y-auto">
+                <!-- Details will be injected here -->
+            </div>
+        </div>
+        <div id="offcanvas-backdrop" class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden"></div>
+        <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+
+        // Accordion functionality
+        function toggleTimeslot(slotId) {
+            const content = document.getElementById(slotId);
+            const icon = document.getElementById(slotId + '-icon');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.style.maxHeight = '0px';
+                setTimeout(() => {
+                    content.classList.add('hidden');
+                }, 300);
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Read More functionality
+        function toggleDescription(slotId) {
+            const shortText = document.getElementById(slotId + '-short');
+            const fullText = document.getElementById(slotId + '-full');
+            const toggle = document.getElementById(slotId + '-toggle');
+            const content = document.getElementById(slotId);
+            
+            if (fullText.classList.contains('hidden')) {
+                shortText.classList.add('hidden');
+                fullText.classList.remove('hidden');
+                toggle.textContent = 'Read Less';
+            } else {
+                shortText.classList.remove('hidden');
+                fullText.classList.add('hidden');
+                toggle.textContent = 'Read More';
+            }
+
+            // Recalculate max-height
+            if (content && !content.classList.contains('hidden')) {
+                setTimeout(() => {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }, 10);
+            }
+        }
+
+        // Add transition classes after page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const timeslotContents = document.querySelectorAll('.timeslot-content');
+            timeslotContents.forEach(content => {
+                content.style.transition = 'max-height 0.3s ease-in-out';
+                content.style.overflow = 'hidden';
+                content.style.maxHeight = '0px';
+            });
+
+            // Offcanvas modal logic
+            const offcanvas = document.getElementById('space-offcanvas');
+            const offcanvasBackdrop = document.getElementById('offcanvas-backdrop');
+            const offcanvasClose = document.getElementById('offcanvas-close');
+            const offcanvasContent = document.getElementById('offcanvas-content');
+            document.querySelectorAll('.space-row').forEach(row => {
+                row.addEventListener('click', function() {
+                    const data = JSON.parse(this.getAttribute('data-space'));
+                    offcanvasContent.innerHTML = `
+                        <div class="mb-4">
+                            <img src="${data.cover || 'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&w=600&h=400&fit=crop'}" alt="Space Cover" class="w-full h-40 object-cover rounded-t-xl mb-4">
+                            <h4 class="text-2xl font-serif font-bold mb-2 text-primary">${data.name}</h4>
+                            <p class="text-gray-600 font-sans mb-4">${data.description || ''}</p>
+                            <div class="grid grid-cols-2 gap-4 mb-2">
+                                <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Time</span><span class="text-gray-800 font-medium">${data.time}</span></div>
+                                <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Capacity</span><span class="text-gray-800 font-medium">${data.capacity}</span></div>
+                                <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Layout</span><span class="text-gray-800 font-medium">${data.layout}</span></div>
+                                <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Amount</span><span class="text-gray-800 font-medium">${data.amount}</span></div>
+                                <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Unit Price</span><span class="text-gray-800 font-medium">${data.unitPrice}</span></div>
+                                <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Total</span><span class="text-gray-800 font-medium">${data.total}</span></div>
+                            </div>
+                            ${data.notes ? `<div class='mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-300 rounded'><div class='text-xs text-yellow-700 font-bold uppercase mb-1'>Notes</div><div class='text-gray-700 font-sans whitespace-pre-line'>${data.notes}</div></div>` : ''}
+                        </div>
+                    `;
+                    offcanvas.classList.remove('translate-x-full');
+                    offcanvasBackdrop.classList.remove('hidden');
+                });
+            });
+            // Product modal logic
+            document.querySelectorAll('.product-row').forEach(row => {
+                row.addEventListener('click', function() {
+                    const data = JSON.parse(this.getAttribute('data-product'));
+                    document.getElementById('offcanvas-title').textContent = 'Product Details';
+                    offcanvasContent.innerHTML = `
+                        <div class="mb-4">
+                            <img src="${data.cover || ''}" alt="Product Cover" class="w-full h-40 object-cover rounded-t-xl mb-4">
+                            <h4 class="text-2xl font-serif font-bold mb-2 text-secondary">${data.name}</h4>
+                            <p class="text-gray-600 font-sans mb-4">${data.description || ''}</p>
+                            <div class="grid grid-cols-2 gap-4 mb-2">
+                                <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Time</span><span class="text-gray-800 font-medium">${data.time || data.startTime || '-'}</span></div>
+                                <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Amount</span><span class="text-gray-800 font-medium">${data.amount || '-'}</span></div>
+                                <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Unit Price</span><span class="text-gray-800 font-medium">${data.unitPrice || '-'}</span></div>
+                                <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Total</span><span class="text-gray-800 font-medium">${data.total || '-'}</span></div>
+                                <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Category</span><span class="text-gray-800 font-medium">${data.category || '-'}</span></div>
+                                <div class="flex flex-col"><span class="text-xs text-gray-400 uppercase mb-1">Location</span><span class="text-gray-800 font-medium">${data.location || '-'}</span></div>
+                            </div>
+                            ${Array.isArray(data.guestTypes) && data.guestTypes.length ? `<div class='flex flex-wrap gap-2 mb-4'>${data.guestTypes.map(gt => `<span class='inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20'>${gt.type}: <span class='ml-1 font-bold'>${gt.count}</span></span>`).join('')}</div>` : ''}
+                            ${data.notes ? `<div class='mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-300 rounded'><div class='text-xs text-yellow-700 font-bold uppercase mb-1'>Notes</div><div class='text-gray-700 font-sans whitespace-pre-line'>${Array.isArray(data.notes) ? data.notes.map(note => `• ${note}`).join('\n') : data.notes}</div></div>` : ''}
+                        </div>
+                    `;
+                    offcanvas.classList.remove('translate-x-full');
+                    offcanvasBackdrop.classList.remove('hidden');
+                });
+            });
+            function closeOffcanvas() {
+                offcanvas.classList.add('translate-x-full');
+                offcanvasBackdrop.classList.add('hidden');
+            }
+            offcanvasClose.addEventListener('click', closeOffcanvas);
+            offcanvasBackdrop.addEventListener('click', closeOffcanvas);
+        });
+        </script>
+    </body>
+</html>
