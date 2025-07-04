@@ -13,14 +13,12 @@ const tableBody = document.getElementById("ordersTableBody");
 
 // Current view state
 let currentView = "table";
-let draggedElement = null;
 let currentProductIndex = -1;
 
 // Modal functionality
 const productModal = document.getElementById("productModal");
 const modalOverlay = document.getElementById("modalOverlay");
 const closeModalBtn = document.getElementById("closeModal");
-// const updateStatusBtn = document.getElementById("updateStatusBtn");
 const modalStatusSelect = document.getElementById("modalStatusSelect");
 
 function openProductModal(productIndex) {
@@ -58,13 +56,13 @@ function openProductModal(productIndex) {
   // Modal HTML (template with dynamic data)
   productModal.innerHTML = `
     <div class="h-full flex flex-col">
-      <div class="flex items-center justify-between p-8 border-b-2 border-gray-200 bg-primary text-white">
+      <div class="flex items-center justify-between p-3 md:p-8 border-b-2 border-gray-200 bg-primary text-white">
         <h3 class="text-2xl font-serif font-bold">Product Details</h3>
         <button id="closeModal" class="text-white hover:text-gray-200 transition-colors">
           <i class="fas fa-times text-2xl"></i>
         </button>
       </div>
-      <div class="flex-1 overflow-y-auto p-8 space-y-8">
+      <div class="flex-1 overflow-y-auto p-3 md:p-8 space-y-4 md:space-y-8">
         <div class="text-center">
           <div class="w-full h-48 bg-gray-200 rounded-xl mb-6 flex items-center justify-center overflow-hidden border-2 border-gray-200">
             <img id="productImage" src="${product.image || ''}" alt="${product.product || product.name || ''}" class="w-full h-full object-cover" width="336" height="192">
@@ -72,7 +70,7 @@ function openProductModal(productIndex) {
           <h4 id="productTitle" class="text-3xl font-serif font-bold text-gray-900 mb-3">${product.product || product.name || ''}</h4>
           <p id="productDescription" class="text-gray-600 text-base leading-relaxed text-balance">${product.description || ''}</p>
         </div>
-        <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+        <div class="bg-gray-50 rounded-xl p-2 md:p-6 border-2 border-gray-200">
           <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
             <i class="fas fa-clipboard-list mr-3 text-primary"></i>
             Bestelinformatie
@@ -96,7 +94,7 @@ function openProductModal(productIndex) {
             </div>
           </div>
         </div>
-        <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+        <div class="bg-gray-50 rounded-xl p-2 md:p-6 border-2 border-gray-200">
           <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
             <i class="fas fa-clock mr-3 text-primary"></i>
             Tijdstip
@@ -116,14 +114,14 @@ function openProductModal(productIndex) {
             </div>
           </div>
         </div>
-        <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+        <div class="bg-gray-50 rounded-xl p-2 md:p-6 border-2 border-gray-200">
           <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
             <i class="fas fa-sticky-note mr-3 text-primary"></i>
             Speciale opmerkingen
           </h5>
           <div id="modalNotes" class="text-gray-700 text-base leading-relaxed">${notesHtml}</div>
         </div>
-        <div class="bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl p-6 border-2 border-primary/20">
+        <div class="bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl p-2 md:p-6 border-2 border-primary/20">
           <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
             <i class="fas fa-tasks mr-3 text-primary"></i>
             Status
@@ -206,115 +204,6 @@ function updateProductStatus() {
 
   // Close modal
   closeProductModal();
-}
-
-// Drag and drop functionality
-let dragOverCard = null;
-let dragOverIndex = null;
-function handleDragStart(e) {
-  draggedElement = this;
-  this.style.opacity = "0.5";
-  e.dataTransfer.effectAllowed = "move";
-  e.dataTransfer.setData("text/html", this.outerHTML);
-  dragOverCard = null;
-  dragOverIndex = null;
-  setTimeout(() => {
-    this.style.pointerEvents = "none";
-  }, 100);
-}
-
-function handleDragEnd() {
-  this.style.opacity = "1";
-  this.style.pointerEvents = "";
-  dragOverCard = null;
-  dragOverIndex = null;
-  setTimeout(() => {
-    draggedElement = null;
-  }, 100);
-}
-
-function handleDragOver(e) {
-  e.preventDefault();
-  e.dataTransfer.dropEffect = "move";
-  if (this.classList.contains('kanban-card')) {
-    dragOverCard = this;
-    dragOverIndex = parseInt(this.getAttribute('data-order-index'));
-    this.style.backgroundColor = "rgba(124, 146, 134, 0.08)";
-  }
-  return false;
-}
-
-function handleDragEnter(e) {
-  if (this.classList.contains('kanban-card')) {
-    this.style.backgroundColor = "rgba(124, 146, 134, 0.08)";
-  }
-}
-
-function handleDragLeave(e) {
-  if (this.classList.contains('kanban-card')) {
-    this.style.backgroundColor = "";
-  }
-}
-
-function handleDrop(e) {
-  e.preventDefault();
-  if (this.classList.contains('kanban-card')) {
-    this.style.backgroundColor = "";
-  }
-  if (!draggedElement) return false;
-
-  const newStatus = this.closest('[data-status]').getAttribute('data-status');
-  const draggedIndex = parseInt(draggedElement.getAttribute('data-order-index'));
-  const dropIndex = parseInt(this.getAttribute('data-order-index'));
-
-  // Remove from old position
-  const movingOrder = orderData.splice(draggedIndex, 1)[0];
-  movingOrder.status = newStatus;
-
-  // Find all cards in the new column (with newStatus)
-  let newColumnOrders = orderData.filter(o => o.status === newStatus);
-  // Find the index in orderData where to insert
-  let beforeOrder = orderData.find((o, i) => o.status === newStatus && orderData.indexOf(o) === dropIndex);
-  let insertAt = beforeOrder ? orderData.indexOf(beforeOrder) : -1;
-  if (insertAt === -1) {
-    // Insert at end of column
-    let lastIdx = -1;
-    for (let i = orderData.length - 1; i >= 0; i--) {
-      if (orderData[i].status === newStatus) {
-        lastIdx = i;
-        break;
-      }
-    }
-    insertAt = lastIdx + 1;
-  }
-  orderData.splice(insertAt, 0, movingOrder);
-
-  updateTableRowStatus(insertAt, newStatus);
-  populateKanbanView();
-  return false;
-}
-
-// Update table row status
-function updateTableRowStatus(orderIndex, newStatus) {
-  const rows = tableBody.getElementsByTagName("tr");
-  if (rows[orderIndex]) {
-    const statusCell = rows[orderIndex].cells[6];
-    const statusSpan = statusCell.querySelector("span");
-
-    // Remove old classes
-    statusSpan.className = "px-3 py-1 rounded-full text-sm font-medium";
-
-    // Add new class and update text
-    if (newStatus === "Ready") {
-      statusSpan.classList.add("bg-green-200", "text-green-800");
-    } else if (newStatus === "In Progress") {
-      statusSpan.classList.add("bg-yellow-200", "text-yellow-800");
-    } else if (newStatus === "Pending") {
-      statusSpan.classList.add("bg-blue-200", "text-blue-800");
-    }
-
-    statusSpan.textContent = newStatus;
-  }
 }
 
 // Order data extracted from table with additional details
@@ -644,6 +533,7 @@ const orderData = [
       "Sugar-free option. Include variety for visual appeal. Some guests prefer no citrus.",
   },
 ];
+
 function initializeTableView() {
   tableBody.innerHTML = ""; // Clear existing rows
 
@@ -700,7 +590,6 @@ function initializeTableView() {
 
 initializeTableView(); // Call this function to populate the table on load
 
-
 // View switching functions
 function switchToTableView() {
   currentView = "table";
@@ -748,7 +637,6 @@ function createKanbanCard(order, index) {
   card.setAttribute("data-guest-type", order.guestType);
   card.setAttribute("data-space", order.space);
   card.setAttribute("data-order-index", index);
-  card.setAttribute("draggable", "true");
 
   card.innerHTML = `
                 <div class="mb-2">
@@ -765,16 +653,9 @@ function createKanbanCard(order, index) {
                 </div>
             `;
 
-  // Add drag event listeners
-  card.addEventListener("dragstart", handleDragStart);
-  card.addEventListener("dragend", handleDragEnd);
-
   // Add click event listener for modal
   card.addEventListener("click", () => {
-    // Only open modal if not dragging
-    if (!draggedElement) {
-      openProductModal(index);
-    }
+    openProductModal(index);
   });
 
   return card;
@@ -801,8 +682,6 @@ function populateKanbanView() {
     const guestTypeValue = guestTypeFilter.value.toLowerCase();
     const spaceValue = spaceFilter.value.toLowerCase();
     const statusValue = statusFilter.value.toLowerCase();
-    
-    // These variables are used in the filtering logic below
 
     const categoryMatch =
       !categoryValue || order.category.toLowerCase().includes(categoryValue);
@@ -828,6 +707,49 @@ function populateKanbanView() {
 
   // Update counts
   updateKanbanCounts(filteredOrders);
+  
+  // Initialize SortableJS for each column
+  initializeSortable();
+}
+
+// Initialize SortableJS for kanban columns
+function initializeSortable() {
+  const columns = [
+    { id: 'pendingColumn', status: 'Pending' },
+    { id: 'progressColumn', status: 'In Progress' },
+    { id: 'readyColumn', status: 'Ready' }
+  ];
+
+  columns.forEach(column => {
+    const element = document.getElementById(column.id);
+    if (element) {
+      new Sortable(element, {
+        group: 'kanban',
+        animation: 150,
+        ghostClass: 'sortable-ghost',
+        chosenClass: 'sortable-chosen',
+        dragClass: 'sortable-drag',
+        onEnd: function(evt) {
+          const card = evt.item;
+          const newStatus = column.status;
+          const orderIndex = parseInt(card.getAttribute('data-order-index'));
+          
+          if (orderIndex !== -1) {
+            // Update the order status
+            orderData[orderIndex].status = newStatus;
+            
+            // Update table view if visible
+            if (currentView === "table") {
+              updateTableRowStatus(orderIndex, newStatus);
+            }
+            
+            // Update counts
+            updateKanbanCounts(getFilteredOrders());
+          }
+        }
+      });
+    }
+  });
 }
 
 // Update kanban counts
@@ -868,7 +790,6 @@ function getFilteredOrders() {
 
 // Filter table view
 function filterTable() {
-
   const allRows = Array.from(tableBody.getElementsByTagName("tr"));
   const categoryValue = categoryFilter.value.toLowerCase();
   const guestTypeValue = guestTypeFilter.value.toLowerCase();
@@ -877,8 +798,6 @@ function filterTable() {
 
   allRows.forEach((row, index) => {
     const order = orderData[index];
-
-  
 
     const categoryMatch =
       !categoryValue || order.category.toLowerCase().includes(categoryValue);
@@ -903,6 +822,29 @@ function handleFilter() {
   }
 }
 
+// Update table row status
+function updateTableRowStatus(orderIndex, newStatus) {
+  const rows = tableBody.getElementsByTagName("tr");
+  if (rows[orderIndex]) {
+    const statusCell = rows[orderIndex].cells[6];
+    const statusSpan = statusCell.querySelector("span");
+
+    // Remove old classes
+    statusSpan.className = "px-3 py-1 rounded-full text-sm font-medium";
+
+    // Add new class and update text
+    if (newStatus === "Ready") {
+      statusSpan.classList.add("bg-green-200", "text-green-800");
+    } else if (newStatus === "In Progress") {
+      statusSpan.classList.add("bg-yellow-200", "text-yellow-800");
+    } else if (newStatus === "Pending") {
+      statusSpan.classList.add("bg-blue-200", "text-blue-800");
+    }
+
+    statusSpan.textContent = newStatus;
+  }
+}
+
 // Event listeners
 tableViewBtn.addEventListener("click", switchToTableView);
 kanbanViewBtn.addEventListener("click", switchToKanbanView);
@@ -912,9 +854,7 @@ spaceFilter.addEventListener("change", handleFilter);
 statusFilter.addEventListener("change", handleFilter);
 
 // Modal event listeners
-closeModalBtn.addEventListener("click", closeProductModal);
 modalOverlay.addEventListener("click", closeProductModal);
-// updateStatusBtn.addEventListener("click", updateProductStatus);
 
 // Close modal with Escape key
 document.addEventListener("keydown", (e) => {
@@ -938,39 +878,6 @@ function addTableRowListeners() {
   });
 }
 
-// Add drag and drop listeners to columns
-function initializeDragAndDrop() {
-  const columns = ["pendingColumn", "progressColumn", "readyColumn"];
-  columns.forEach((columnId) => {
-    const column = document.getElementById(columnId);
-    // Make the column itself droppable (for dropping at the end)
-    column.addEventListener("dragover", function(e) {
-      e.preventDefault();
-      e.dataTransfer.dropEffect = "move";
-    });
-    column.addEventListener("drop", function(e) {
-      e.preventDefault();
-      if (!draggedElement) return;
-      const newStatus = column.closest('[data-status]').getAttribute('data-status');
-      const draggedIndex = parseInt(draggedElement.getAttribute('data-order-index'));
-      const movingOrder = orderData.splice(draggedIndex, 1)[0];
-      movingOrder.status = newStatus;
-      // Insert at end of column
-      let lastIdx = -1;
-      for (let i = orderData.length - 1; i >= 0; i--) {
-        if (orderData[i].status === newStatus) {
-          lastIdx = i;
-          break;
-        }
-      }
-      orderData.splice(lastIdx + 1, 0, movingOrder);
-      updateTableRowStatus(lastIdx + 1, newStatus);
-      populateKanbanView();
-    });
-  });
-}
-
 // Initialize with table view
 switchToTableView();
-initializeDragAndDrop();
 addTableRowListeners();
