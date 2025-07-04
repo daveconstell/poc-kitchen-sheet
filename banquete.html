@@ -119,7 +119,7 @@
         <!-- Summary Section -->
         <section id="summary"
             class="bg-white/90 backdrop-blur-sm p-7 md:p-10 rounded-xl shadow-lg mb-10 border border-gray-200">
-            <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-8 pb-4">
+            <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-4 md:mb-8 pb-4">
                 <i class="fas fa-calendar-alt mr-3 text-primary"></i>
                 Summary
             </h2>
@@ -180,7 +180,7 @@
         <!-- Event Details Section -->
         <section id="event-details"
             class="bg-white/90 backdrop-blur-sm p-7 md:p-10 rounded-xl shadow-lg mb-10 border border-gray-200">
-            <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-8 pb-4">
+            <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-4 md:mb-8 pb-4">
                 <i class="fas fa-calendar-alt mr-3 text-primary"></i>
                 Overzicht
             </h2>
@@ -648,6 +648,17 @@
                 document.getElementById('space-offcanvas').classList.add('translate-x-full');
                 document.getElementById('offcanvas-backdrop').classList.add('hidden');
             }
+
+            // Modal event listeners for closing
+            document.getElementById('offcanvas-backdrop').addEventListener('click', closeOffcanvas);
+
+            // Escape key closes modal
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && !document.getElementById('space-offcanvas').classList.contains('translate-x-full')) {
+                    closeOffcanvas();
+                }
+            });
+
             document.querySelectorAll('.space-row').forEach(row => {
                 row.addEventListener('click', function () {
                     const data = JSON.parse(this.getAttribute('data-space'));
@@ -680,19 +691,6 @@
                         toggleBtn.textContent = 'Read Less';
                     }
                 });
-            }
-        });
-
-        // Modal overlay click closes modal
-        document.getElementById('offcanvas-backdrop').addEventListener('click', function () {
-            if (!document.getElementById('space-offcanvas').classList.contains('translate-x-full')) {
-                if (typeof closeOffcanvas === 'function') closeOffcanvas();
-            }
-        });
-        // Escape key closes modal
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && !document.getElementById('space-offcanvas').classList.contains('translate-x-full')) {
-                if (typeof closeOffcanvas === 'function') closeOffcanvas();
             }
         });
     </script>

@@ -159,7 +159,7 @@
             <div class="absolute inset-0 bg-black bg-opacity-50"></div>
             <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-6">
                 <h1 id="page-title" class="text-2xl md:text-4xl lg:text-6xl font-serif font-bold mb-4">Keukenblad</h1>
-                <p class="text-base md:text-xl lg:text-2xl font-sans max-w-2xl mx-auto leading-relaxed">
+                <p class="text-base md:text-xl lg:text-2xl font-sans max-w-2xl mx-auto leading-relaxed text-balance">
                     Een uitgebreid overzicht van de activiteiten in uw keuken.
                 </p>
             </div>
@@ -168,7 +168,7 @@
         <!-- Event Details Section -->
         <section id="event-details"
             class="bg-white/90 backdrop-blur-sm p-7 md:p-10 rounded-xl shadow-lg mb-10 border border-gray-200">
-            <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-8 pb-4">
+            <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-4 md:mb-8 pb-4">
                 <i class="fas fa-calendar-alt mr-3 text-primary"></i>
                 Overzicht
             </h2>
@@ -314,13 +314,13 @@
                 <table class="min-w-full text-gray-900 bg-white" id="ordersTable">
                     <thead class="bg-primary text-white">
                         <tr>
-                            <th class="py-6 px-6 text-left font-bold w-40 hidden lg:table-cell">Tijd</th>
-                            <th class="py-6 px-6 text-left font-bold lg:w-auto">Product</th>
-                            <th class="py-6 px-6 text-left font-bold hidden lg:table-cell">Categorie</th>
-                            <th class="py-6 px-6 text-left font-bold hidden lg:table-cell">Aantal</th>
-                            <th class="py-6 px-6 text-left font-bold hidden lg:table-cell">Type Gast</th>
-                            <th class="py-6 px-6 text-left font-bold hidden lg:table-cell">Kamer/Ruimte</th>
-                            <th class="py-6 px-6 text-left font-bold hidden md:table-cell">Status</th>
+                            <th class="py-6 px-6 text-left font-bold w-40 hidden lg:table-cell truncate">Tijd</th>
+                            <th class="py-6 px-6 text-left font-bold lg:w-auto truncate">Product</th>
+                            <th class="py-6 px-6 text-left font-bold hidden lg:table-cell truncate">Categorie</th>
+                            <th class="py-6 px-6 text-left font-bold hidden lg:table-cell truncate">Aantal</th>
+                            <th class="py-6 px-6 text-left font-bold hidden lg:table-cell truncate">Type Gast</th>
+                            <th class="py-6 px-6 text-left font-bold hidden lg:table-cell truncate">Kamer/Ruimte</th>
+                            <th class="py-6 px-6 text-left font-bold hidden md:table-cell truncate">Status</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white" id="ordersTableBody">
@@ -423,18 +423,6 @@
         document.getElementById('mobile-menu-button').addEventListener('click', function () {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
-        });
-        // Modal overlay click closes modal
-        document.getElementById('modalOverlay').addEventListener('click', function () {
-            if (!document.getElementById('productModal').classList.contains('translate-x-full')) {
-                if (typeof closeProductModal === 'function') closeProductModal();
-            }
-        });
-        // Escape key closes modal
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && !document.getElementById('productModal').classList.contains('translate-x-full')) {
-                if (typeof closeProductModal === 'function') closeProductModal();
-            }
         });
     </script>
 </body>

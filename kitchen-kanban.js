@@ -56,13 +56,13 @@ function openProductModal(productIndex) {
   // Modal HTML (template with dynamic data)
   productModal.innerHTML = `
     <div class="h-full flex flex-col">
-      <div class="flex items-center justify-between p-3 md:p-8 border-b-2 border-gray-200 bg-primary text-white">
+      <div class="flex items-center justify-between p-8 border-b-2 border-gray-200 bg-primary text-white">
         <h3 class="text-2xl font-serif font-bold">Product Details</h3>
         <button id="closeModal" class="text-white hover:text-gray-200 transition-colors">
           <i class="fas fa-times text-2xl"></i>
         </button>
       </div>
-      <div class="flex-1 overflow-y-auto p-3 md:p-8 space-y-4 md:space-y-8">
+      <div class="flex-1 overflow-y-auto p-8 space-y-8">
         <div class="text-center">
           <div class="w-full h-48 bg-gray-200 rounded-xl mb-6 flex items-center justify-center overflow-hidden border-2 border-gray-200">
             <img id="productImage" src="${product.image || ''}" alt="${product.product || product.name || ''}" class="w-full h-full object-cover" width="336" height="192">
@@ -70,7 +70,7 @@ function openProductModal(productIndex) {
           <h4 id="productTitle" class="text-3xl font-serif font-bold text-gray-900 mb-3">${product.product || product.name || ''}</h4>
           <p id="productDescription" class="text-gray-600 text-base leading-relaxed text-balance">${product.description || ''}</p>
         </div>
-        <div class="bg-gray-50 rounded-xl p-2 md:p-6 border-2 border-gray-200">
+        <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
           <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
             <i class="fas fa-clipboard-list mr-3 text-primary"></i>
             Bestelinformatie
@@ -94,7 +94,7 @@ function openProductModal(productIndex) {
             </div>
           </div>
         </div>
-        <div class="bg-gray-50 rounded-xl p-2 md:p-6 border-2 border-gray-200">
+        <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
           <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
             <i class="fas fa-clock mr-3 text-primary"></i>
             Tijdstip
@@ -114,14 +114,14 @@ function openProductModal(productIndex) {
             </div>
           </div>
         </div>
-        <div class="bg-gray-50 rounded-xl p-2 md:p-6 border-2 border-gray-200">
+        <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
           <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
             <i class="fas fa-sticky-note mr-3 text-primary"></i>
             Speciale opmerkingen
           </h5>
           <div id="modalNotes" class="text-gray-700 text-base leading-relaxed">${notesHtml}</div>
         </div>
-        <div class="bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl p-2 md:p-6 border-2 border-primary/20">
+        <div class="bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl p-6 border-2 border-primary/20">
           <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
             <i class="fas fa-tasks mr-3 text-primary"></i>
             Status
@@ -129,7 +129,7 @@ function openProductModal(productIndex) {
           <div class="space-y-6">
             <div class="flex items-center justify-between">
               <span class="text-gray-600 font-medium">Huidige Status:</span>
-              <span id="modalCurrentStatus" class="px-3 py-1 rounded-full text-sm font-medium ${statusClass}">${product.status}</span>
+              <span id="modalCurrentStatus" class="px-3 py-1 rounded-full text-sm font-medium truncate max-w-[120px] inline-block ${statusClass}">${product.status}</span>
             </div>
             <div>
               <label class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide">Status wijzigen:</label>
@@ -551,7 +551,7 @@ function initializeTableView() {
       </td>
       <td class="py-4 px-6">
         <div class="text-center md:hidden mb-2">
-          <span class="px-3 py-1 rounded-full text-xs font-medium ${
+          <span class="px-3 py-1 rounded-full text-xs font-medium truncate max-w-[80px] inline-block ${
             order.status === "Ready"
               ? "bg-green-200 text-green-800"
               : order.status === "In Progress"
@@ -572,7 +572,7 @@ function initializeTableView() {
       <td class="py-4 px-6 hidden lg:table-cell">${order.guestType}</td>
       <td class="py-4 px-6 hidden lg:table-cell">${order.space}</td>
       <td class="py-4 px-6 hidden md:table-cell">
-        <span class="px-3 py-1 rounded-full text-xs font-medium ${
+        <span class="px-3 py-1 rounded-full text-xs font-medium truncate max-w-[100px] inline-block ${
           order.status === "Ready"
             ? "bg-green-200 text-green-800"
             : order.status === "In Progress"
@@ -822,6 +822,18 @@ function handleFilter() {
   }
 }
 
+// Add click listeners to table rows
+function addTableRowListeners() {
+  const rows = tableBody.getElementsByTagName("tr");
+  Array.from(rows).forEach((row, index) => {
+    row.style.cursor = "pointer";
+    row.classList.add("hover:bg-primary/5");
+    row.addEventListener("click", () => {
+      openProductModal(index);
+    });
+  });
+}
+
 // Update table row status
 function updateTableRowStatus(orderIndex, newStatus) {
   const rows = tableBody.getElementsByTagName("tr");
@@ -830,7 +842,7 @@ function updateTableRowStatus(orderIndex, newStatus) {
     const statusSpan = statusCell.querySelector("span");
 
     // Remove old classes
-    statusSpan.className = "px-3 py-1 rounded-full text-sm font-medium";
+    statusSpan.className = "px-3 py-1 rounded-full text-xs font-medium truncate max-w-[100px] inline-block";
 
     // Add new class and update text
     if (newStatus === "Ready") {
@@ -853,7 +865,11 @@ guestTypeFilter.addEventListener("change", handleFilter);
 spaceFilter.addEventListener("change", handleFilter);
 statusFilter.addEventListener("change", handleFilter);
 
-// Modal event listeners
+// Initialize with table view
+switchToTableView();
+addTableRowListeners();
+
+// Modal event listeners for closing
 modalOverlay.addEventListener("click", closeProductModal);
 
 // Close modal with Escape key
@@ -865,19 +881,3 @@ document.addEventListener("keydown", (e) => {
     closeProductModal();
   }
 });
-
-// Add click listeners to table rows
-function addTableRowListeners() {
-  const rows = tableBody.getElementsByTagName("tr");
-  Array.from(rows).forEach((row, index) => {
-    row.style.cursor = "pointer";
-    row.classList.add("hover:bg-primary/5");
-    row.addEventListener("click", () => {
-      openProductModal(index);
-    });
-  });
-}
-
-// Initialize with table view
-switchToTableView();
-addTableRowListeners();
