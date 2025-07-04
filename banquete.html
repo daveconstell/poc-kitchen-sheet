@@ -588,6 +588,7 @@
                 `;
                 document.getElementById('space-offcanvas').classList.remove('translate-x-full');
                 document.getElementById('offcanvas-backdrop').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
                 document.getElementById('offcanvas-close').onclick = closeOffcanvas;
             }
             function renderProductModal(data) {
@@ -642,11 +643,13 @@
                 `;
                 document.getElementById('space-offcanvas').classList.remove('translate-x-full');
                 document.getElementById('offcanvas-backdrop').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
                 document.getElementById('offcanvas-close').onclick = closeOffcanvas;
             }
             function closeOffcanvas() {
                 document.getElementById('space-offcanvas').classList.add('translate-x-full');
                 document.getElementById('offcanvas-backdrop').classList.add('hidden');
+                document.body.style.overflow = '';
             }
 
             // Modal event listeners for closing
