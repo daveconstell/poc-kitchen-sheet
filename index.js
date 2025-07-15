@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Remove chat code and implement event card toggle using click
+    // Apply background images from data attributes
+    document.querySelectorAll('[data-bg-url]').forEach(element => {
+        const bgUrl = element.getAttribute('data-bg-url');
+        if (bgUrl) {
+            element.style.backgroundImage = `url('${bgUrl}')`;
+        }
+    });
 
     // Staggered fade-in animation for event cards
     const allEventCards = document.querySelectorAll('.event-card');
@@ -14,15 +20,42 @@ document.addEventListener('DOMContentLoaded', function () {
             const content = card.querySelector('.event-card-content');
             const arrow = card.querySelector('.event-card-arrow');
             const isOpen = card.classList.contains('open');
+            
             if (isOpen) {
+                // Close the card
                 card.classList.remove('open');
-                content.style.maxHeight = '0';
+                content.classList.remove('event-card-content--open');
+                
+                // Reset height to 0 after a brief delay to allow for animation
+                setTimeout(() => {
+                    content.style.height = '0';
+                }, 50);
+                
                 if (arrow) arrow.style.transform = '';
             } else {
+                // Open the card
                 card.classList.add('open');
-                content.style.maxHeight = content.scrollHeight + 'px';
+                
+                // Set height to auto to calculate the full height
+                content.style.height = 'auto';
+                const height = content.scrollHeight;
+                
+                // Reset height to 0 and force a reflow
+                content.style.height = '0';
+                content.offsetHeight; // Force reflow
+                
+                // Add the open class and set the calculated height
+                content.classList.add('event-card-content--open');
+                content.style.height = height + 'px';
+                
                 if (arrow) arrow.style.transform = 'rotate(180deg)';
-                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Smooth scroll to the card on mobile only
+                if (window.innerWidth < 768) {
+                    setTimeout(() => {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 300);
+                }
             }
         });
     });
