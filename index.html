@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="nl">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keukenblad</title>
-    <meta name="description"
-        content="Beheer en bekijk al uw aankomende evenementen met het Evenementenbeheer Dashboard.">
-    <meta name="keywords" content="evenementenbeheer, dashboard, bedrijfsevenementen, bruiloften, conferenties">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
-        rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Keukenblad</title>
+        <meta name="description"
+              content="Beheer en bekijk al uw aankomende evenementen met het Evenementenbeheer Dashboard.">
+        <meta name="keywords"
+              content="evenementenbeheer, dashboard, bedrijfsevenementen, bruiloften, conferenties">
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
+              rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+              integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer" />
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -37,8 +40,8 @@
                 }
             }
         }
-    </script>
-    <style>
+        </script>
+        <style>
         html {
             scroll-behavior: smooth;
         }
@@ -55,437 +58,392 @@
             ring-color: #7C9286;
             border-color: #7C9286;
         }
-    </style>
-</head>
-
-<body
-    class="min-h-screen font-sans transition-all duration-300 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 dark:bg-gray-950 dark:text-gray-100 text-sm md:text-base">
-    <!-- Header -->
-    <header
-        class="bg-primary dark:bg-gray-900 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-600/50 dark:border-gray-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-[124px]">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <img src="https://kloosterbethlehem.nl/wp-content/uploads/2022/06/Logo-wit.svg"
-                            alt="Keukenblad Logo" class="h-12 w-auto">
+        </style>
+    </head>
+    <body class="min-h-screen font-sans transition-all duration-300 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 dark:bg-gray-950 dark:text-gray-100 text-sm md:text-base">
+        <!-- Header -->
+        <header class="bg-primary dark:bg-gray-900 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-600/50 dark:border-gray-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-[124px]">
+                    <!-- Logo -->
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 flex items-center">
+                            <img src="https://kloosterbethlehem.nl/wp-content/uploads/2022/06/Logo-wit.svg"
+                                 alt="Keukenblad Logo"
+                                 class="h-12 w-auto">
+                        </div>
+                    </div>
+                    <!-- Navigation -->
+                    <nav class="hidden md:flex space-x-8">
+                        <!-- Home link removed -->
+                    </nav>
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden">
+                        <button id="mobile-menu-button"
+                                class="text-gray-200 hover:text-white transition-colors duration-200">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
                     </div>
                 </div>
-                <!-- Navigation -->
-                <nav class="hidden md:flex space-x-8">
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu"
+                 class="hidden md:hidden bg-primary/95 backdrop-blur-md border-t border-gray-600/50">
+                <div class="px-2 pt-2 pb-3 space-y-1">
                     <!-- Home link removed -->
-                </nav>
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button"
-                        class="text-gray-200 hover:text-white transition-colors duration-200">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
                 </div>
-            </div>
-        </div>
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-primary/95 backdrop-blur-md border-t border-gray-600/50">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <!-- Home link removed -->
-            </div>
-        </div>
-    </header>
-    <!-- Main Content -->
-    <main role="main" class="max-w-8xl mx-auto p-6 md:p-10 md:pt-20">
-        <!-- Page Header -->
-        <header class="relative h-64 rounded-xl overflow-hidden mb-16" aria-labelledby="page-title">
-            <div class="absolute inset-0 bg-cover bg-center"
-                style="background-image: url('https://images.pexels.com/photos/326281/pexels-photo-326281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')">
-            </div>
-            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-            <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-6">
-                <h1 id="page-title" class="text-2xl md:text-4xl lg:text-6xl font-serif font-bold mb-4">Evenementenbeheer
-                    Dashboard</h1>
-                <p class="text-base md:text-xl lg:text-2xl font-sans max-w-2xl mx-auto leading-relaxed text-balance">
-                    Beheer en bekijk al uw aankomende evenementen op één centrale locatie.
-                </p>
             </div>
         </header>
-        <!-- Filter Section -->
-        <div
-            class="mb-16 p-7 md:p-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg">
-            <h2
-                class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 dark:text-white mb-8 flex items-center">
-                <i class="fas fa-filter mr-3 text-primary"></i>
-                Filters & Zoeken
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <label for="search-box"
-                        class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-3 uppercase tracking-wide truncate">
-                        Zoek Evenementen
-                    </label>
-                    <input type="text" id="search-box" placeholder="Voer evenementnaam in..."
-                        class="w-full px-4 py-4 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 border-2 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium dark:placeholder-gray-400">
+        <!-- Main Content -->
+        <main role="main" class="max-w-8xl mx-auto p-6 md:p-10 md:pt-20">
+            <!-- Page Header -->
+            <header class="relative h-64 rounded-xl overflow-hidden mb-16"
+                    aria-labelledby="page-title">
+                <div class="absolute inset-0 bg-cover bg-center"
+                     style="background-image: url('https://images.pexels.com/photos/326281/pexels-photo-326281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')">
                 </div>
-                <div>
-                    <label for="status-filter"
-                        class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-3 uppercase tracking-wide truncate">
-                        Filteren op Status
-                    </label>
-                    <select id="status-filter"
-                        class="w-full px-4 py-4 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 border-2 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
-                        <option value="all">Alle Statussen</option>
-                        <option value="Confirmed">Bevestigd</option>
-                        <option value="Pending">In afwachting</option>
-                    </select>
+                <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-6">
+                    <h1 id="page-title"
+                        class="text-2xl md:text-4xl lg:text-6xl font-serif font-bold mb-4">
+                        Evenementenbeheer
+                        Dashboard
+                    </h1>
+                    <p class="text-base md:text-xl lg:text-2xl font-sans max-w-2xl mx-auto leading-relaxed text-balance">
+                        Beheer en bekijk al uw aankomende evenementen op één centrale locatie.
+                    </p>
                 </div>
-                <div>
-                    <label for="type-filter"
-                        class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-3 uppercase tracking-wide truncate">
-                        Filteren op Evenementtype
-                    </label>
-                    <select id="type-filter"
-                        class="w-full px-4 py-4 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 border-2 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
-                        <option value="all">Alle Types</option>
-                        <option value="Corporate Event">Bedrijfsevenement</option>
-                        <option value="Wedding">Bruiloft</option>
-                        <option value="Conference">Conferentie</option>
-                        <option value="Private Party">Privéfeest</option>
-                        <option value="Workshop">Workshop</option>
-                    </select>
+            </header>
+            <!-- Filter Section -->
+            <div class="mb-16 p-7 md:p-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg">
+                <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 dark:text-white mb-8 flex items-center">
+                    <i class="fas fa-filter mr-3 text-primary"></i>
+                    Filters & Zoeken
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <label for="search-box"
+                               class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-3 uppercase tracking-wide truncate">
+                            Zoek Evenementen
+                        </label>
+                        <input type="text"
+                               id="search-box"
+                               placeholder="Voer evenementnaam in..."
+                               class="w-full px-4 py-4 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 border-2 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium dark:placeholder-gray-400">
+                    </div>
+                    <div>
+                        <label for="status-filter"
+                               class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-3 uppercase tracking-wide truncate">
+                            Filteren op Status
+                        </label>
+                        <select id="status-filter"
+                                class="w-full px-4 py-4 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 border-2 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
+                            <option value="all">Alle Statussen</option>
+                            <option value="Confirmed">Bevestigd</option>
+                            <option value="Pending">In afwachting</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="type-filter"
+                               class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-3 uppercase tracking-wide truncate">
+                            Filteren op Evenementtype
+                        </label>
+                        <select id="type-filter"
+                                class="w-full px-4 py-4 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 border-2 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
+                            <option value="all">Alle Types</option>
+                            <option value="Corporate Event">Bedrijfsevenement</option>
+                            <option value="Wedding">Bruiloft</option>
+                            <option value="Conference">Conferentie</option>
+                            <option value="Private Party">Privéfeest</option>
+                            <option value="Workshop">Workshop</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- Events Container -->
-        <div id="events-container" class="space-y-12">
-            <!-- Today's Events -->
-            <div class="event-group">
-                <h2
-                    class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 dark:text-white text-center mb-10 pb-4 border-b border-gray-300">
-                    <i class="fas fa-calendar-day mr-3 text-primary"></i>
-                    Vandaag
-                </h2>
-                <div class="space-y-8">
-                    <!-- Event Card 5 -->
-                    <div class="event-card bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-                        data-status="Confirmed" data-type="Workshop">
-                        <!-- Event Header (now a clickable div) -->
-                        <div
-                            class="event-card-header block p-8 bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors cursor-pointer">
-                            <div class="flex items-center justify-between">
-                                <div class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                                    <div class="flex items-center flex-1">
-                                        <img src="https://i.pravatar.cc/40?u=synergy" alt="Avatar of Synergy Inc."
-                                            class="w-16 h-16 rounded-full mr-6 ring-4 ring-primary/20" width="40"
-                                            height="40">
-                                        <div>
-                                            <h3
-                                                class="font-serif font-bold text-gray-900 dark:text-white text-base md:text-lg lg:text-xl event-name mb-2">
-                                                Team Building Workshop</h3>
-                                            <p
-                                                class="text-primary font-sans font-semibold text-sm md:text-base dark:text-secondary">
-                                                Synergy Inc.</p>
-                                        </div>
-                                    </div>
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                        <div>
-                                            <p
-                                                class="text-xs md:text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide font-sans mb-2">
-                                                Starttijd</p>
-                                            <p
-                                                class="text-gray-900 dark:text-gray-100 font-sans font-semibold text-sm md:text-base">
-                                                15 Jul 2025 18:00</p>
-                                        </div>
-                                        <div>
-                                            <p
-                                                class="text-xs md:text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide font-sans mb-2">
-                                                Eindtijd</p>
-                                            <p
-                                                class="text-gray-900 dark:text-gray-100 font-sans font-semibold text-sm md:text-base">
-                                                15 Jul 2025 23:00</p>
-                                        </div>
-                                        <div>
-                                            <p
-                                                class="text-xs md:text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide font-sans mb-2">
-                                                Evenementtype</p>
-                                            <p
-                                                class="text-gray-900 dark:text-gray-100 font-sans font-semibold text-sm md:text-base event-type">
-                                                Workshop</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ml-6">
-                                    <i
-                                        class="fas fa-chevron-down text-primary transition-transform duration-300 event-card-arrow text-2xl"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Event Body (Hidden by default) -->
-                        <div
-                            class="event-card-content max-h-0 overflow-hidden transition-all duration-500 bg-white dark:bg-gray-900">
-                            <!-- Cover Image -->
-                            <div class="h-64 bg-cover bg-center"
-                                style="background-image: url('https://images.pexels.com/photos/1595391/pexels-photo-1595391.jpeg?auto=compress&cs=tinysrgb&w=1200')">
-                                <div class="h-full bg-black bg-opacity-40 flex items-end">
-                                    <div class="p-8">
-                                        <h2 class="text-white text-xl md:text-2xl lg:text-4xl font-serif font-bold">Team
-                                            Building Workshop</h2>
-                                        <p class="text-white/90 font-sans font-medium text-sm md:text-base lg:text-lg">
-                                            Interactive team development session</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-7">
-                                <!-- Row 1: Overview and Guest Types -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                                    <!-- Overview Card -->
-                                    <div
-                                        class="bg-gray-50 dark:bg-gray-800 rounded-xl p-5 border-2 border-gray-200 dark:border-gray-700">
-                                        <h4
-                                            class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-700 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
-                                            <i class="fas fa-info-circle mr-3 text-primary"></i>
-                                            Overview
-                                        </h4>
-                                        <div class="space-y-4 font-sans text-sm">
-                                            <div class="flex justify-between items-center">
-                                                <span
-                                                    class="text-gray-600 dark:text-gray-300 font-medium">Status:</span>
-                                                <span
-                                                    class="event-status inline-flex px-4 py-2 rounded-full text-sm font-bold bg-primary text-white dark:bg-secondary dark:text-gray-900">
-                                                    <i class="fas fa-check mr-2"></i>Bevestigd
-                                                </span>
+            <!-- Events Container -->
+            <div id="events-container" class="space-y-12">
+                <!-- Today's Events -->
+                <div class="event-group">
+                    <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 dark:text-white text-center mb-10 pb-4 border-b border-gray-300">
+                        <i class="fas fa-calendar-day mr-3 text-primary"></i>
+                        Vandaag
+                    </h2>
+                    <div class="space-y-8">
+                        <!-- Event Card 5 -->
+                        <div class="event-card bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                             data-status="Confirmed"
+                             data-type="Workshop">
+                            <!-- Event Header (now a clickable div) -->
+                            <div class="event-card-header block p-8 bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                                        <div class="flex items-center flex-1">
+                                            <img src="https://i.pravatar.cc/40?u=synergy"
+                                                 alt="Avatar of Synergy Inc."
+                                                 class="w-16 h-16 rounded-full mr-6 ring-4 ring-primary/20"
+                                                 width="40"
+                                                 height="40">
+                                            <div>
+                                                <h3 class="font-serif font-bold text-gray-900 dark:text-white text-base md:text-lg lg:text-xl event-name mb-2">
+                                                    Team Building Workshop
+                                                </h3>
+                                                <p class="text-primary font-sans font-semibold text-sm md:text-base dark:text-secondary">Synergy Inc.</p>
                                             </div>
-                                            <div class="flex justify-between">
-                                                <span class="text-gray-600 dark:text-gray-300 font-medium">Totaal
+                                        </div>
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                            <div>
+                                                <p class="text-xs md:text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide font-sans mb-2">
+                                                    Starttijd
+                                                </p>
+                                                <p class="text-gray-900 dark:text-gray-100 font-sans font-semibold text-sm md:text-base">15 Jul 2025 18:00</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs md:text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide font-sans mb-2">
+                                                    Eindtijd
+                                                </p>
+                                                <p class="text-gray-900 dark:text-gray-100 font-sans font-semibold text-sm md:text-base">15 Jul 2025 23:00</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs md:text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide font-sans mb-2">
+                                                    Evenementtype
+                                                </p>
+                                                <p class="text-gray-900 dark:text-gray-100 font-sans font-semibold text-sm md:text-base event-type">Workshop</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ml-6">
+                                        <i class="fas fa-chevron-down text-primary transition-transform duration-300 event-card-arrow text-2xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Event Body (Hidden by default) -->
+                            <div class="event-card-content max-h-0 overflow-hidden transition-all duration-500 bg-white dark:bg-gray-900">
+                                <!-- Cover Image -->
+                                <div class="h-64 bg-cover bg-center"
+                                     style="background-image: url('https://images.pexels.com/photos/1595391/pexels-photo-1595391.jpeg?auto=compress&cs=tinysrgb&w=1200')">
+                                    <div class="h-full bg-black bg-opacity-40 flex items-end">
+                                        <div class="p-8">
+                                            <h2 class="text-white text-xl md:text-2xl lg:text-4xl font-serif font-bold">
+                                                Team
+                                                Building Workshop
+                                            </h2>
+                                            <p class="text-white/90 font-sans font-medium text-sm md:text-base lg:text-lg">Interactive team development session</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-7">
+                                    <!-- Row 1: Overview and Guest Types -->
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                        <!-- Overview Card -->
+                                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-5 border-2 border-gray-200 dark:border-gray-700">
+                                            <h4 class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-700 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
+                                                <i class="fas fa-info-circle mr-3 text-primary"></i>
+                                                Overview
+                                            </h4>
+                                            <div class="space-y-4 font-sans text-sm">
+                                                <div class="flex justify-between items-center">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Status:</span>
+                                                    <span class="event-status inline-flex px-4 py-2 rounded-full text-sm font-bold bg-primary text-white dark:bg-secondary dark:text-gray-900">
+                                                        <i class="fas fa-check mr-2"></i>Bevestigd
+                                                    </span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Totaal
                                                     Producten:</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">45</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span class="text-gray-600 dark:text-gray-300 font-medium">Totaal
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">45</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Totaal
                                                     Ruimtes:</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">3</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span class="text-gray-600 dark:text-gray-300 font-medium">Total
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">3</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Total
                                                     Onderdelen:</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">127</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span class="text-gray-600 dark:text-gray-300 font-medium">Totaal
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">127</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Totaal
                                                     Uren:</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">5h</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span class="text-gray-600 dark:text-gray-300 font-medium">Maximaal
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">5h</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Maximaal
                                                     Aantal Gasten:</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">250</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span
-                                                    class="text-gray-600 dark:text-gray-300 font-medium">Boeker:</span>
-                                                <span class="font-bold text-gray-900 dark:text-gray-100 text-base">Sarah
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">250</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Boeker:</span>
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">Sarah
                                                     Johnson</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span
-                                                    class="text-gray-600 dark:text-gray-300 font-medium">Locatiemanager:</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">Michael
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Locatiemanager:</span>
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">Michael
                                                     Chen</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- Guest Types Card -->
-                                    <div
-                                        class="bg-gray-50 dark:bg-gray-800 rounded-xl p-5 border-2 border-gray-200 dark:border-gray-700">
-                                        <h4
-                                            class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-700 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
-                                            <i class="fas fa-users mr-3 text-primary"></i>
-                                            Gasten Types
-                                        </h4>
-                                        <div class="space-y-4 font-sans text-sm">
-                                            <div class="flex justify-between">
-                                                <span
-                                                    class="text-gray-600 dark:text-gray-300 font-medium">Volwassenen</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">200</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span
-                                                    class="text-gray-600 dark:text-gray-300 font-medium">VIP-gasten</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">50</span>
-                                            </div>
-                                            <div class="flex justify-between border-t-2 border-primary pt-4 mt-6">
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">Totaal
+                                        <!-- Guest Types Card -->
+                                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-5 border-2 border-gray-200 dark:border-gray-700">
+                                            <h4 class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-700 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
+                                                <i class="fas fa-users mr-3 text-primary"></i>
+                                                Gasten Types
+                                            </h4>
+                                            <div class="space-y-4 font-sans text-sm">
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Volwassenen</span>
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">200</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">VIP-gasten</span>
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">50</span>
+                                                </div>
+                                                <div class="flex justify-between border-t-2 border-primary pt-4 mt-6">
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">Totaal
                                                     Gasten:</span>
-                                                <span
-                                                    class="font-black text-primary dark:text-secondary text-xl">250</span>
+                                                    <span class="font-black text-primary dark:text-secondary text-xl">250</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Row 2: Spaces and Products -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                                    <!-- Spaces Card -->
-                                    <div
-                                        class="bg-gray-50 dark:bg-gray-800 rounded-xl p-5 border-2 border-gray-200 dark:border-gray-700">
-                                        <h4
-                                            class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-700 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
-                                            <i class="fas fa-map-marker-alt mr-3 text-primary"></i>
-                                            Ruimtes
-                                        </h4>
-                                        <div class="space-y-4 font-sans text-sm">
-                                            <div class="flex justify-between">
-                                                <span class="text-gray-600 dark:text-gray-300 font-medium">Grand
+                                    <!-- Row 2: Spaces and Products -->
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                        <!-- Spaces Card -->
+                                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-5 border-2 border-gray-200 dark:border-gray-700">
+                                            <h4 class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-700 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
+                                                <i class="fas fa-map-marker-alt mr-3 text-primary"></i>
+                                                Ruimtes
+                                            </h4>
+                                            <div class="space-y-4 font-sans text-sm">
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Grand
                                                     Ballroom</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">5h</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span class="text-gray-600 dark:text-gray-300 font-medium">VIP
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">5h</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">VIP
                                                     Lounge</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">3h</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span class="text-gray-600 dark:text-gray-300 font-medium">Outdoor
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">3h</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Outdoor
                                                     Terrace</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">2h</span>
-                                            </div>
-                                            <div class="flex justify-between border-t-2 border-primary pt-4 mt-6">
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">Totaal
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">2h</span>
+                                                </div>
+                                                <div class="flex justify-between border-t-2 border-primary pt-4 mt-6">
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">Totaal
                                                     Uren:</span>
-                                                <span
-                                                    class="font-black text-primary dark:text-secondary text-xl">5h</span>
+                                                    <span class="font-black text-primary dark:text-secondary text-xl">5h</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Products Card -->
+                                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-5 border-2 border-gray-200 dark:border-gray-700">
+                                            <h4 class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-700 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
+                                                <i class="fas fa-box mr-3 text-primary"></i>
+                                                Producten
+                                            </h4>
+                                            <div class="space-y-4 font-sans text-sm">
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Premium
+                                                    Catering</span>
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">250</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Audio
+                                                    Equipment</span>
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">5</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Floral
+                                                    Arrangements</span>
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">12</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Bar
+                                                    Service</span>
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">3</span>
+                                                </div>
+                                                <div class="flex justify-between border-t-2 border-primary pt-4 mt-6">
+                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">Totaal
+                                                    Producten:</span>
+                                                    <span class="font-black text-primary dark:text-secondary text-xl">45</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Products Card -->
-                                    <div
-                                        class="bg-gray-50 dark:bg-gray-800 rounded-xl p-5 border-2 border-gray-200 dark:border-gray-700">
-                                        <h4
-                                            class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-700 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
-                                            <i class="fas fa-box mr-3 text-primary"></i>
-                                            Producten
+                                    <!-- Row 3: Financial Summary -->
+                                    <div class="bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/10 rounded-xl p-5 border-2 border-primary/30 dark:border-primary/40">
+                                        <h4 class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-primary dark:border-primary pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
+                                            <i class="fas fa-euro-sign mr-3 text-primary"></i>
+                                            Financieel Overzicht
                                         </h4>
                                         <div class="space-y-4 font-sans text-sm">
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 dark:text-gray-300 font-medium">Premium
-                                                    Catering</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">250</span>
+                                                <span class="text-gray-700 dark:text-gray-200 font-medium">Bedrag (excl.
+                                                BTW):</span>
+                                                <span class="font-bold text-gray-900 dark:text-gray-100 text-base">€15.750,00</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 dark:text-gray-300 font-medium">Audio
-                                                    Equipment</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">5</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span class="text-gray-600 dark:text-gray-300 font-medium">Floral
-                                                    Arrangements</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">12</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span class="text-gray-600 dark:text-gray-300 font-medium">Bar
-                                                    Service</span>
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">3</span>
+                                                <span class="text-gray-700 dark:text-gray-200 font-medium">BTW-bedrag:</span>
+                                                <span class="font-bold text-gray-900 dark:text-gray-100 text-base">€3.150,00</span>
                                             </div>
                                             <div class="flex justify-between border-t-2 border-primary pt-4 mt-6">
-                                                <span
-                                                    class="font-bold text-gray-900 dark:text-gray-100 text-base">Totaal
-                                                    Producten:</span>
-                                                <span
-                                                    class="font-black text-primary dark:text-secondary text-xl">45</span>
+                                                <span class="font-bold text-gray-900 dark:text-gray-100 text-lg">Totaal
+                                                (incl. BTW):</span>
+                                                <span class="font-black text-primary dark:text-secondary text-2xl">€18.900,00</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Row 3: Financial Summary -->
-                                <div
-                                    class="bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/10 rounded-xl p-5 border-2 border-primary/30 dark:border-primary/40">
-                                    <h4
-                                        class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-primary dark:border-primary pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
-                                        <i class="fas fa-euro-sign mr-3 text-primary"></i>
-                                        Financieel Overzicht
-                                    </h4>
-                                    <div class="space-y-4 font-sans text-sm">
-                                        <div class="flex justify-between">
-                                            <span class="text-gray-700 dark:text-gray-200 font-medium">Bedrag (excl.
-                                                BTW):</span>
-                                            <span
-                                                class="font-bold text-gray-900 dark:text-gray-100 text-base">€15.750,00</span>
+                                <!-- Event Footer -->
+                                <div class="bg-gray-50 dark:bg-gray-800 px-8 py-6 border-t-2 border-gray-200 dark:border-gray-700">
+                                    <div class="flex md:justify-end items-center w-full">
+                                        <div class="grid w-full md:w-auto grid-cols-1 md:grid-cols-2 gap-4 font-sans">
+                                            <a href="./banquete.html"
+                                               class="text-center bg-primary hover:bg-primary/90 text-white dark:text-gray-900 px-8 py-4 rounded-xl font-bold transition-all duration-200 shadow-lg hover:shadow-xl text-lg">
+                                                <i class="fas fa-concierge-bell mr-2"></i>
+                                                Banqueting
+                                            </a>
+                                            <a href="./kitchen-kanban.html"
+                                               class="text-center border-2 border-primary bg-transparent text-primary dark:text-secondary hover:bg-primary hover:text-white dark:hover:text-gray-900 px-8 py-4 rounded-xl font-bold transition-all duration-200 shadow-lg hover:shadow-xl text-lg">
+                                                <i class="fas fa-utensils mr-2"></i>
+                                                Keukenweergave
+                                            </a>
                                         </div>
-                                        <div class="flex justify-between">
-                                            <span
-                                                class="text-gray-700 dark:text-gray-200 font-medium">BTW-bedrag:</span>
-                                            <span
-                                                class="font-bold text-gray-900 dark:text-gray-100 text-base">€3.150,00</span>
-                                        </div>
-                                        <div class="flex justify-between border-t-2 border-primary pt-4 mt-6">
-                                            <span class="font-bold text-gray-900 dark:text-gray-100 text-lg">Totaal
-                                                (incl. BTW):</span>
-                                            <span
-                                                class="font-black text-primary dark:text-secondary text-2xl">€18.900,00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Event Footer -->
-                            <div
-                                class="bg-gray-50 dark:bg-gray-800 px-8 py-6 border-t-2 border-gray-200 dark:border-gray-700">
-                                <div class="flex md:justify-end items-center w-full">
-                                    <div class="grid w-full md:w-auto grid-cols-1 md:grid-cols-2 gap-4 font-sans">
-                                        <a href="./banquete.html"
-                                            class="text-center bg-primary hover:bg-primary/90 text-white dark:text-gray-900 px-8 py-4 rounded-xl font-bold transition-all duration-200 shadow-lg hover:shadow-xl text-lg">
-                                            <i class="fas fa-concierge-bell mr-2"></i>
-                                            Banquete
-                                        </a>
-                                        <a href="./kitchen-kanban.html"
-                                            class="text-center border-2 border-primary bg-transparent text-primary dark:text-secondary hover:bg-primary hover:text-white dark:hover:text-gray-900 px-8 py-4 rounded-xl font-bold transition-all duration-200 shadow-lg hover:shadow-xl text-lg">
-                                            <i class="fas fa-utensils mr-2"></i>
-                                            Keukenweergave
-                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- Upcoming Events -->
+                <div class="event-group">
+                    <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 dark:text-white text-center mb-10 pb-4 border-b border-gray-300">
+                        <i class="fas fa-calendar-alt mr-3 text-primary"></i>
+                        Aankomend
+                    </h2>
+                    <div class="space-y-8"></div>
+                </div>
             </div>
-            <!-- Upcoming Events -->
-            <div class="event-group">
-                <h2
-                    class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 dark:text-white text-center mb-10 pb-4 border-b border-gray-300">
-                    <i class="fas fa-calendar-alt mr-3 text-primary"></i>
-                    Aankomend
-                </h2>
-                <div class="space-y-8"></div>
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden text-center">
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-11 border-1 border-gray-200 dark:border-gray-700 shadow-lg w-full">
+                    <i class="fas fa-calendar-times text-primary text-6xl mb-6"></i>
+                    <h3 class="font-serif font-bold text-xl md:text-2xl lg:text-3xl text-gray-900 dark:text-white mb-3">
+                        Geen
+                        evenementen gevonden
+                    </h3>
+                    <p class="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                        Probeer uw zoek- of
+                        filtercriteria aan te passen.
+                    </p>
+                </div>
             </div>
-        </div>
-        <!-- Empty State -->
-        <div id="empty-state" class="hidden text-center">
-            <div
-                class="bg-white dark:bg-gray-800 rounded-xl p-11 border-1 border-gray-200 dark:border-gray-700 shadow-lg w-full">
-                <i class="fas fa-calendar-times text-primary text-6xl mb-6"></i>
-                <h3 class="font-serif font-bold text-xl md:text-2xl lg:text-3xl text-gray-900 dark:text-white mb-3">Geen
-                    evenementen gevonden</h3>
-                <p class="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-relaxed">Probeer uw zoek- of
-                    filtercriteria aan te passen.</p>
-            </div>
-        </div>
-    </main>
-    <!-- JavaScript -->
-    <script>
+        </main>
+        <!-- JavaScript -->
+        <script>
         // Mobile menu toggle
         document.getElementById('mobile-menu-button').addEventListener('click', function () {
             const mobileMenu = document.getElementById('mobile-menu');
@@ -504,11 +462,8 @@
                 }
             });
         });
-    </script>
-    <script src="./index.js"></script>
-    <script>
-        // (Theme switcher removed)
-    </script>
-</body>
-
+        </script>
+        <script src="./index.js"></script>
+        <script>// (Theme switcher removed)</script>
+    </body>
 </html>
