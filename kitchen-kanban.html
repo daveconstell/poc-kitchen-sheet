@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="nl">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Keukenblad</title>
         <meta name="description"
-              content="Beheer en bekijk al uw aankomende evenementen met het Evenementenbeheer Dashboard.">
+              content="Beheer en bekijk al uw aankomende evenementen met het Evenementenbeheer Dashboard." />
         <meta name="keywords"
-              content="evenementenbeheer, dashboard, bedrijfsevenementen, bruiloften, conferenties">
+              content="evenementenbeheer, dashboard, bedrijfsevenementen, bruiloften, conferenties" />
         <!-- Google Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
-              rel="stylesheet">
+              rel="stylesheet" />
         <!-- Font Awesome -->
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -28,19 +28,19 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'serif': ['Playfair Display', 'serif'],
-                        'sans': ['Open Sans', 'sans-serif']
+                        serif: ["Playfair Display", "serif"],
+                        sans: ["Open Sans", "sans-serif"],
                     },
                     colors: {
-                        primary: '#7C9286',
-                        secondary: '#E5AEA1'
+                        primary: "#7C9286",
+                        secondary: "#E5AEA1",
                     },
                     maxWidth: {
-                        '8xl': '1440px',
-                    }
-                }
-            }
-        }
+                        "8xl": "1440px",
+                    },
+                },
+            },
+        };
         </script>
         <style>
         html {
@@ -49,7 +49,7 @@
 
         body {
             color: #111827;
-            font-family: 'Open Sans', sans-serif;
+            font-family: "Open Sans", sans-serif;
         }
 
         /* Card body transition */
@@ -57,7 +57,8 @@
             max-height: 0;
             opacity: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out, padding 0.5s ease-in-out;
+            transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out,
+                padding 0.5s ease-in-out;
         }
 
         .card-body.expanded {
@@ -66,34 +67,49 @@
         }
 
         /* Kanban card description/notes transition */
-        .kanban-description, .kanban-notes {
+        .kanban-description,
+        .kanban-notes {
             max-height: 0;
             opacity: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out, margin 0.5s ease-in-out;
+            transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out,
+                margin 0.5s ease-in-out;
         }
 
-        .kanban-description.expanded, .kanban-notes.expanded {
+        .kanban-description.expanded,
+        .kanban-notes.expanded {
             max-height: 1000px;
             opacity: 1;
         }
 
-/* Kanban card hover effect */
-.kanban-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    background-color: rgba(124, 146, 134, 0.1); /* Light version of primary color (#7C9286) */
-}
+        /* Kanban card hover effect */
+        .kanban-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background-color: rgba(124,
+                    146,
+                    134,
+                    0.1);
+            /* Light version of primary color (#7C9286) */
+        }
 
-/* Table card hover effect */
-#ordersTableBody > div:hover {
-    background-color: rgba(124, 146, 134, 0.1); /* Light version of primary color (#7C9286) */
-}
+        /* Table card hover effect */
+        #ordersTableBody>div:hover {
+            background-color: rgba(124,
+                    146,
+                    134,
+                    0.1);
+            /* Light version of primary color (#7C9286) */
+        }
 
-/* Card header on hover - 5% darker than body */
-#ordersTableBody > div:hover > div:first-child {
-    background-color: rgba(124, 146, 134, 0.15); /* 5% darker than the body hover color */
-}
+        /* Card header on hover - 5% darker than body */
+        #ordersTableBody>div:hover>div:first-child {
+            background-color: rgba(124,
+                    146,
+                    134,
+                    0.15);
+            /* 5% darker than the body hover color */
+        }
 
         @keyframes fadeIn {
             from {
@@ -126,15 +142,15 @@
         .focus-primary:focus {
             outline: none;
             ring: 2px;
-            ring-color: #7C9286;
-            border-color: #7C9286;
+            ring-color: #7c9286;
+            border-color: #7c9286;
         }
 
         /* SortableJS styles */
         .sortable-ghost {
             opacity: 0.4;
             background: #f3f4f6 !important;
-            border: 2px dashed #7C9286 !important;
+            border: 2px dashed #7c9286 !important;
         }
 
         .sortable-chosen {
@@ -171,7 +187,7 @@
                                  alt="Keukenblad Logo"
                                  class="h-12 w-auto"
                                  height="48"
-                                 width="192">
+                                 width="192" />
                         </div>
                     </div>
                     <!-- Navigation -->
@@ -248,7 +264,7 @@
                                  alt="John Doe avatar"
                                  class="w-8 h-8 rounded-full object-cover border border-gray-300"
                                  width="32"
-                                 height="32">
+                                 height="32" />
                             <div>
                                 <p class="font-sans text-lg text-gray-600">John Doe</p>
                                 <p class="font-sans text-md text-gray-500">john.doe@example.com</p>
@@ -262,7 +278,7 @@
                                  alt="Jane Smith avatar"
                                  class="w-8 h-8 rounded-full object-cover border border-gray-300"
                                  width="32"
-                                 height="32">
+                                 height="32" />
                             <div>
                                 <p class="font-sans text-lg text-gray-600">Jane Smith</p>
                                 <p class="font-sans text-md text-gray-500">jane.smith@example.com</p>
@@ -272,9 +288,10 @@
                     <div class="bg-gray-50 rounded-xl p-6 border flex flex-col col-span-full">
                         <h3 class="font-serif text-xl font-semibold mb-2">Event Description</h3>
                         <p class="font-sans text-lg text-gray-600">
-                            An elegant summer gala to celebrate our company's success. The event will feature a dinner,
-                            awards
-                            ceremony, and live entertainment. We expect around 100 guests to attend this special evening.
+                            An elegant summer gala to celebrate our company's success. The
+                            event will feature a dinner, awards ceremony, and live
+                            entertainment. We expect around 100 guests to attend this special
+                            evening.
                         </p>
                     </div>
                 </div>
@@ -290,15 +307,16 @@
                     <div class="flex items-center gap-3">
                         <span class="text-gray-600 font-medium">Full View</span>
                         <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" id="fullViewToggle" class="sr-only peer">
+                            <input type="checkbox" id="fullViewToggle" class="sr-only peer" />
                             <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary">
                             </div>
                         </label>
                     </div>
                 </div>
                 <p class="text-sm md:text-base text-gray-600 mb-10 leading-relaxed max-w-4xl">
-                    Real-time voorbereidings- en serviceschema voor het Dinsdag Lunch evenement. Monitor
-                    voortgang, timing en kwaliteitscontrole voor alle menu-items.
+                    Real-time voorbereidings- en serviceschema voor het Dinsdag Lunch
+                    evenement. Monitor voortgang, timing en kwaliteitscontrole voor alle
+                    menu-items.
                 </p>
                 <!-- View Toggle Buttons -->
                 <div class="flex flex-col md:flex-row bg-gray-100 rounded-xl p-1 mb-10 border border-gray-200 w-full md:max-w-md">
@@ -386,7 +404,8 @@
                                 </div>
                                 <h3 class="text-xl font-serif font-bold text-gray-700 mb-2">Geen items gevonden</h3>
                                 <p class="text-gray-500 text-center max-w-md">
-                                    Er zijn momenteel geen items om weer te geven. Pas uw filters aan of voeg nieuwe items toe.
+                                    Er zijn momenteel geen items om weer te geven. Pas uw filters
+                                    aan of voeg nieuwe items toe.
                                 </p>
                             </div>
                         </div>
@@ -495,14 +514,16 @@
                  class="fixed inset-0 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 z-40">
             </div>
         </main>
-        <script src="./kitchen-kanban.js"> </script>
+        <script src="./kitchen-kanban.js"></script>
         <!-- JavaScript -->
         <script>
         // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function () {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
+        document
+            .getElementById("mobile-menu-button")
+            .addEventListener("click", function () {
+                const mobileMenu = document.getElementById("mobile-menu");
+                mobileMenu.classList.toggle("hidden");
+            });
         </script>
     </body>
 </html>
