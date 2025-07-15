@@ -519,7 +519,7 @@
             function renderSpaceModal(data) {
                 document.getElementById('space-offcanvas').innerHTML = `
                     <div class="h-full flex flex-col">
-                        <div class="flex items-center justify-between p-8 border-b-2 border-gray-200 bg-primary text-white">
+                        <div class="flex items-center justify-between p-8 border-b border-gray-200 bg-primary text-white">
                             <h3 class="text-2xl font-serif font-bold">Ruimte Details</h3>
                             <button id="offcanvas-close" class="text-white hover:text-gray-200 transition-colors">
                                 <i class="fas fa-times text-2xl"></i>
@@ -527,13 +527,13 @@
                         </div>
                         <div class="flex-1 overflow-y-auto p-8 space-y-8">
                             <div class="text-center">
-                                <div class="w-full h-48 bg-gray-200 rounded-xl mb-6 flex items-center justify-center overflow-hidden border-2 border-gray-200">
+                                <div class="w-full h-48 bg-gray-200 rounded-xl mb-6 flex items-center justify-center overflow-hidden border border-gray-200">
                                     <img src="${data.cover || ''}" alt="${data.name || ''}" class="w-full h-full object-cover" width="336" height="192">
                                 </div>
                                 <h4 class="text-3xl font-serif font-bold text-gray-900 mb-3">${data.name || ''}</h4>
                                 <p class="text-gray-600 text-base leading-relaxed text-balance">${data.description || ''}</p>
                             </div>
-                            <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+                            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
                                 <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
                                     <i class="fas fa-building mr-3 text-primary"></i>
                                     Ruimte Informatie
@@ -547,7 +547,7 @@
                                     <div class="flex justify-between items-center"><span class="text-gray-600 font-medium">Totaal:</span><span class="text-gray-900 font-bold">${data.total || '-'}</span></div>
                                 </div>
                             </div>
-                            <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+                            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
                                 <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
                                     <i class="fas fa-sticky-note mr-3 text-primary"></i>
                                     Speciale opmerkingen
@@ -565,7 +565,7 @@
             function renderProductModal(data) {
                 document.getElementById('space-offcanvas').innerHTML = `
                     <div class="h-full flex flex-col">
-                        <div class="flex items-center justify-between p-8 border-b-2 border-gray-200 bg-primary text-white">
+                        <div class="flex items-center justify-between p-8 border-b border-gray-200 bg-primary text-white">
                             <h3 class="text-2xl font-serif font-bold">Product Details</h3>
                             <button id="offcanvas-close" class="text-white hover:text-gray-200 transition-colors">
                                 <i class="fas fa-times text-2xl"></i>
@@ -573,13 +573,13 @@
                         </div>
                         <div class="flex-1 overflow-y-auto p-8 space-y-8">
                             <div class="text-center">
-                                <div class="w-full h-48 bg-gray-200 rounded-xl mb-6 flex items-center justify-center overflow-hidden border-2 border-gray-200">
+                                <div class="w-full h-48 bg-gray-200 rounded-xl mb-6 flex items-center justify-center overflow-hidden border border-gray-200">
                                     <img src="${data.cover || ''}" alt="${data.name || ''}" class="w-full h-full object-cover" width="336" height="192">
                                 </div>
                                 <h4 class="text-3xl font-serif font-bold text-gray-900 mb-3">${data.name || ''}</h4>
                                 <p class="text-gray-600 text-base leading-relaxed text-balance">${data.description || ''}</p>
                             </div>
-                            <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+                            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
                                 <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
                                     <i class="fas fa-clipboard-list mr-3 text-primary"></i>
                                     Bestelinformatie
@@ -591,7 +591,7 @@
                                     <div class="flex justify-between items-center"><span class="text-gray-600 font-medium">Locatie:</span><span class="text-gray-900 font-bold">${data.location || '-'}</span></div>
                                 </div>
                             </div>
-                            <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+                            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
                                 <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
                                     <i class="fas fa-clock mr-3 text-primary"></i>
                                     Tijdstip
@@ -602,7 +602,7 @@
                                     <div class="flex justify-between items-center"><span class="text-gray-600 font-medium">Duur:</span><span class="text-gray-900 font-bold">-</span></div>
                                 </div>
                             </div>
-                            <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+                            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
                                 <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
                                     <i class="fas fa-sticky-note mr-3 text-primary"></i>
                                     Speciale opmerkingen

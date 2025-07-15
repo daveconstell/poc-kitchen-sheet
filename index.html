@@ -11,7 +11,7 @@
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
               rel="stylesheet">
         <!-- Font Awesome -->
         <link rel="stylesheet"
@@ -60,9 +60,9 @@
         }
         </style>
     </head>
-    <body class="min-h-screen font-sans transition-all duration-300 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 dark:bg-gray-950 dark:text-gray-100 text-sm md:text-base">
+    <body class="min-h-screen font-sans transition-all duration-300 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 text-sm md:text-base">
         <!-- Header -->
-        <header class="bg-primary dark:bg-gray-900 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-600/50 dark:border-gray-700">
+        <header class="bg-primary backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-600/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-[124px]">
                     <!-- Logo -->
@@ -114,29 +114,29 @@
                 </div>
             </header>
             <!-- Filter Section -->
-            <div class="mb-16 p-7 md:p-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg">
-                <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 dark:text-white mb-8 flex items-center">
+            <div class="mb-16 p-7 md:p-10 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-200 shadow-lg">
+                <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-8 flex items-center">
                     <i class="fas fa-filter mr-3 text-primary"></i>
                     Filters & Zoeken
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div>
                         <label for="search-box"
-                               class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-3 uppercase tracking-wide truncate">
+                               class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide truncate">
                             Zoek Evenementen
                         </label>
                         <input type="text"
                                id="search-box"
                                placeholder="Voer evenementnaam in..."
-                               class="w-full px-4 py-4 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 border-2 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium dark:placeholder-gray-400">
+                               class="w-full px-4 py-4 rounded-lg bg-white text-gray-900 border border-gray-200 focus:ring focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
                     </div>
                     <div>
                         <label for="status-filter"
-                               class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-3 uppercase tracking-wide truncate">
+                               class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide truncate">
                             Filteren op Status
                         </label>
                         <select id="status-filter"
-                                class="w-full px-4 py-4 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 border-2 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
+                                class="w-full px-4 py-4 rounded-lg bg-white text-gray-900 border border-gray-200 focus:ring focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
                             <option value="all">Alle Statussen</option>
                             <option value="Confirmed">Bevestigd</option>
                             <option value="Pending">In afwachting</option>
@@ -144,11 +144,11 @@
                     </div>
                     <div>
                         <label for="type-filter"
-                               class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-3 uppercase tracking-wide truncate">
+                               class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide truncate">
                             Filteren op Evenementtype
                         </label>
                         <select id="type-filter"
-                                class="w-full px-4 py-4 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 border-2 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
+                                class="w-full px-4 py-4 rounded-lg bg-white text-gray-900 border border-gray-200 focus:ring focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
                             <option value="all">Alle Types</option>
                             <option value="Corporate Event">Bedrijfsevenement</option>
                             <option value="Wedding">Bruiloft</option>
@@ -163,17 +163,17 @@
             <div id="events-container" class="space-y-12">
                 <!-- Today's Events -->
                 <div class="event-group">
-                    <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 dark:text-white text-center mb-10 pb-4 border-b border-gray-300">
+                    <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 text-center mb-10 pb-4 border-b border-gray-200/60">
                         <i class="fas fa-calendar-day mr-3 text-primary"></i>
                         Vandaag
                     </h2>
                     <div class="space-y-8">
                         <!-- Event Card 5 -->
-                        <div class="event-card bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                        <div class="event-card bg-white rounded-xl border border-gray-200 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
                              data-status="Confirmed"
                              data-type="Workshop">
                             <!-- Event Header (now a clickable div) -->
-                            <div class="event-card-header block p-8 bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+                            <div class="event-card-header block p-8 bg-white hover:bg-gray-50 transition-colors cursor-pointer">
                                 <div class="flex items-center justify-between">
                                     <div class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                                         <div class="flex items-center flex-1">
@@ -183,10 +183,10 @@
                                                  width="40"
                                                  height="40">
                                             <div>
-                                                <h3 class="font-serif font-bold text-gray-900 dark:text-white text-base md:text-lg lg:text-xl event-name mb-2">
+                                                <h3 class="font-serif font-bold text-gray-900 text-base md:text-lg lg:text-xl event-name mb-2">
                                                     Event name goes here
                                                 </h3>
-                                                <p class="text-primary font-sans font-semibold text-sm md:text-base dark:text-secondary">
+                                                <p class="text-primary font-sans font-semibold text-sm md:text-base">
                                                     <i class="fas fa-building mr-1"></i>
                                                     Company or Mainbooker
                                                 </p>
@@ -194,25 +194,25 @@
                                         </div>
                                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                                             <div>
-                                                <p class="text-xs md:text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide font-sans mb-2">
+                                                <p class="text-xs md:text-sm font-semibold text-gray-500 uppercase tracking-wide font-sans mb-2">
                                                     <i class="fas fa-calendar mr-1"></i>
                                                     Datum
                                                 </p>
-                                                <p class="text-gray-900 dark:text-gray-100 font-sans font-semibold text-sm md:text-base">15 Jul 2025</p>
+                                                <p class="text-gray-600 font-sans text-sm md:text-base">15 Jul 2025</p>
                                             </div>
                                             <div>
-                                                <p class="text-xs md:text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide font-sans mb-2">
+                                                <p class="text-xs md:text-sm font-semibold text-gray-500 uppercase tracking-wide font-sans mb-2">
                                                     <i class="fas fa-clock mr-1"></i>
                                                     Tijd
                                                 </p>
-                                                <p class="text-gray-900 dark:text-gray-100 font-sans font-semibold text-sm md:text-base">10:00 - 17:00</p>
+                                                <p class="text-gray-600 font-sans text-sm md:text-base">10:00 - 17:00</p>
                                             </div>
                                             <div>
-                                                <p class="text-xs md:text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide font-sans mb-2">
+                                                <p class="text-xs md:text-sm font-semibold text-gray-500 uppercase tracking-wide font-sans mb-2">
                                                     <i class="fas fa-users mr-1"></i>
                                                     10-100
                                                 </p>
-                                                <p class="text-gray-900 dark:text-gray-100 font-sans font-semibold text-sm md:text-base event-type">AR / BR / XF</p>
+                                                <p class="text-gray-600 font-sans text-sm md:text-base event-type">AR / BR / XF</p>
                                             </div>
                                         </div>
                                     </div>
@@ -222,7 +222,8 @@
                                 </div>
                             </div>
                             <!-- Event Body (Hidden by default) -->
-                            <div class="event-card-content max-h-0 overflow-hidden transition-all duration-500 bg-white dark:bg-gray-900">
+                            <div class="event-card-content transition-all duration-500 bg-white"
+                                 style="max-height: 0px">
                                 <!-- Cover Image -->
                                 <div class="h-64 bg-cover bg-center"
                                      style="background-image: url('https://images.pexels.com/photos/1595391/pexels-photo-1595391.jpeg?auto=compress&cs=tinysrgb&w=1200')">
@@ -240,86 +241,73 @@
                                     <!-- Row 1: Overview and Guest Types -->
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                                         <!-- Overview Card -->
-                                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-5 border-2 border-gray-200 dark:border-gray-700">
-                                            <h4 class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-700 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
+                                        <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                                            <h4 class="font-serif font-bold text-gray-900 border-b border-gray-200/50 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
                                                 <i class="fas fa-info-circle mr-3 text-primary"></i>
                                                 Overview
                                             </h4>
                                             <div class="space-y-4 font-sans text-sm">
                                                 <div class="flex justify-between items-center">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Status:</span>
-                                                    <span class="event-status inline-flex px-4 py-2 rounded-full text-sm font-bold bg-primary text-white dark:bg-secondary dark:text-gray-900">
+                                                    <span class="text-gray-600 font-medium">Status:</span>
+                                                    <span class="event-status inline-flex px-4 py-2 rounded-full text-sm font-bold bg-primary text-white">
                                                         <i class="fas fa-check mr-2"></i>Bevestigd
                                                     </span>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Totaal
+                                                    <span class="text-gray-600 font-medium">Totaal
                                                     Producten:</span>
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">45</span>
+                                                    <span class="font-bold text-gray-900 text-base">45</span>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Totaal
+                                                    <span class="text-gray-600 font-medium">Totaal
                                                     Ruimtes:</span>
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">3</span>
+                                                    <span class="font-bold text-gray-900 text-base">3</span>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Total
+                                                    <span class="text-gray-600 font-medium">Total
                                                     Onderdelen:</span>
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">127</span>
+                                                    <span class="font-bold text-gray-900 text-base">127</span>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Totaal
+                                                    <span class="text-gray-600 font-medium">Totaal
                                                     Uren:</span>
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">5h</span>
+                                                    <span class="font-bold text-gray-900 text-base">5h</span>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Maximaal
+                                                    <span class="text-gray-600 font-medium">Maximaal
                                                     Aantal Gasten:</span>
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">250</span>
+                                                    <span class="font-bold text-gray-900 text-base">250</span>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Boeker:</span>
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">Sarah
+                                                    <span class="text-gray-600 font-medium">Boeker:</span>
+                                                    <span class="font-bold text-gray-900 text-base">Sarah
                                                     Johnson</span>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Locatiemanager:</span>
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">Michael
+                                                    <span class="text-gray-600 font-medium">Locatiemanager:</span>
+                                                    <span class="font-bold text-gray-900 text-base">Michael
                                                     Chen</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- Guest Types Card -->
-                                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-5 border-2 border-gray-200 dark:border-gray-700">
-                                            <h4 class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-700 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
+                                        <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                                            <h4 class="font-serif font-bold text-gray-900 border-b border-gray-200/50 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
                                                 <i class="fas fa-users mr-3 text-primary"></i>
                                                 Programma - Program Name
                                             </h4>
-                                            <div class="space-y-4">
-                                                <div class="grid grid-cols-2 items-center">
-                                                    <div class="flex gap-4 items-center flex-1">
-                                                        <div class="w-24">
-                                                            <span class="text-sm text-gray-600 dark:text-gray-300 font-medium">Jul 13</span>
+                                            <div class="space-y-2">
+                                                <div class="flex items-center">
+                                                    <div class="flex flex-col flex-1 lg:flex-row lg:items-center lg:gap-2">
+                                                        <div class="lg:w-24">
+                                                            <span class="text-gray-600 text-sm font-medium">10:00 - 17:00</span>
                                                         </div>
-                                                        <div class="flex-1">
-                                                            <span class="text-sm font-semibold text-gray-900 dark:text-gray-100">Algemeen</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex items-center justify-end">
-                                                        <span class="font-bold text-sm text-gray-900 dark:text-gray-100">10 Kids, 2 Adults</span>
-                                                    </div>
-                                                </div>
-                                                <div class="grid grid-cols-2 items-center">
-                                                    <div class="flex gap-4 items-center flex-1">
-                                                        <div class="w-24">
-                                                            <span class="text-gray-600 dark:text-gray-300 text-sm font-medium">10:00 - 17:00</span>
-                                                        </div>
-                                                        <div class="flex-1">
-                                                            <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Timeslot 1</span>
+                                                        <div class="lg:flex-1">
+                                                            <span class="font-semibold text-gray-900 text-sm truncate">Timeslot 1</span>
                                                         </div>
                                                     </div>
-                                                    <div class="flex items-center justify-end">
-                                                        <span class="font-bold text-gray-900 dark:text-gray-100 text-sm">10 Kids, 2 Adults</span>
+                                                    <div class="flex items-center justify-start md:justify-end">
+                                                        <span class="font-bold text-gray-900 text-sm truncate">10 Kids, 2 Adults</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -328,104 +316,104 @@
                                     <!-- Row 2: Spaces and Products -->
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                                         <!-- Spaces Card -->
-                                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-5 border-2 border-gray-200 dark:border-gray-700">
-                                            <h4 class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-700 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
+                                        <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                                            <h4 class="font-serif font-bold text-gray-900 border-b border-gray-200/50 pb-4 mb-4 text-sm md:text-base lg:text-lg flex items-center">
                                                 <i class="fas fa-map-marker-alt mr-3 text-primary"></i>
                                                 Ruimtes
                                             </h4>
                                             <div class="space-y-4 font-sans text-sm">
                                                 <div class="flex justify-between">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Grand
+                                                    <span class="text-gray-600 font-medium">Grand
                                                     Ballroom</span>
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">10:00 - 17:00</span>
+                                                    <span class="font-bold text-gray-900 text-base">10:00 - 17:00</span>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">VIP
+                                                    <span class="text-gray-600 font-medium">VIP
                                                     Lounge</span>
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">10:00 - 17:00</span>
+                                                    <span class="font-bold text-gray-900 text-base">10:00 - 17:00</span>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Outdoor
+                                                    <span class="text-gray-600 font-medium">Outdoor
                                                     Terrace</span>
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">10:00 - 17:00</span>
+                                                    <span class="font-bold text-gray-900 text-base">10:00 - 17:00</span>
                                                 </div>
-                                                <div class="flex justify-between border-t-2 border-primary pt-4 mt-6">
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">Totaal
+                                                <div class="flex justify-between border-t border-primary/40 pt-4 mt-6">
+                                                    <span class="font-semibold text-gray-900 text-base">Totaal
                                                     Uren:</span>
-                                                    <span class="font-black text-primary dark:text-secondary text-xl">24</span>
+                                                    <span class="font-bold text-primary text-xl">24</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- Products Card -->
-                                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-5 border-2 border-gray-200 dark:border-gray-700">
-                                            <h4 class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-700 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
+                                        <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                                            <h4 class="font-serif font-bold text-gray-900 border-b border-gray-200/50 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
                                                 <i class="fas fa-box mr-3 text-primary"></i>
                                                 Producten
                                             </h4>
                                             <div class="space-y-4 font-sans text-sm">
                                                 <div class="flex justify-between">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Premium
+                                                    <span class="text-gray-600 font-medium">Premium
                                                     Catering</span>
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">250</span>
+                                                    <span class="font-bold text-gray-900 text-base">250</span>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Audio
+                                                    <span class="text-gray-600 font-medium">Audio
                                                     Equipment</span>
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">5</span>
+                                                    <span class="font-bold text-gray-900 text-base">5</span>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Floral
+                                                    <span class="text-gray-600 font-medium">Floral
                                                     Arrangements</span>
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">12</span>
+                                                    <span class="font-bold text-gray-900 text-base">12</span>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <span class="text-gray-600 dark:text-gray-300 font-medium">Bar
+                                                    <span class="text-gray-600 font-medium">Bar
                                                     Service</span>
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">3</span>
+                                                    <span class="font-bold text-gray-900 text-base">3</span>
                                                 </div>
-                                                <div class="flex justify-between border-t-2 border-primary pt-4 mt-6">
-                                                    <span class="font-bold text-gray-900 dark:text-gray-100 text-base">Totaal
+                                                <div class="flex justify-between border-t border-primary/40 pt-4 mt-6">
+                                                    <span class="font-semibold text-gray-900 text-base">Totaal
                                                     Producten:</span>
-                                                    <span class="font-black text-primary dark:text-secondary text-xl">45</span>
+                                                    <span class="font-bold text-primary text-xl">45</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Row 3: Financial Summary -->
-                                    <div class="bg-gradient-to-r from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/10 rounded-xl p-5 border-2 border-primary/30 dark:border-primary/40">
-                                        <h4 class="font-serif font-bold text-gray-900 dark:text-white border-b-2 border-primary dark:border-primary pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
+                                    <div class="bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl p-5 border border-primary/30">
+                                        <h4 class="font-serif font-bold text-gray-900 border-b border-primary/40 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
                                             <i class="fas fa-euro-sign mr-3 text-primary"></i>
                                             Financieel Overzicht
                                         </h4>
                                         <div class="space-y-4 font-sans text-sm">
                                             <div class="flex justify-between">
-                                                <span class="text-gray-700 dark:text-gray-200 font-medium">Bedrag (excl.
+                                                <span class="text-gray-700 font-medium">Bedrag (excl.
                                                 BTW):</span>
-                                                <span class="font-bold text-gray-900 dark:text-gray-100 text-base">€15.750,00</span>
+                                                <span class="font-bold text-gray-900 text-base">€15.750,00</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-gray-700 dark:text-gray-200 font-medium">BTW-bedrag:</span>
-                                                <span class="font-bold text-gray-900 dark:text-gray-100 text-base">€3.150,00</span>
+                                                <span class="text-gray-700 font-medium">BTW-bedrag:</span>
+                                                <span class="font-bold text-gray-900 text-base">€3.150,00</span>
                                             </div>
-                                            <div class="flex justify-between border-t-2 border-primary pt-4 mt-6">
-                                                <span class="font-bold text-gray-900 dark:text-gray-100 text-lg">Totaal
+                                            <div class="flex justify-between border-t border-primary/40 pt-4 mt-6">
+                                                <span class="font-semibold text-gray-900 text-lg">Totaal
                                                 (incl. BTW):</span>
-                                                <span class="font-black text-primary dark:text-secondary text-2xl">€18.900,00</span>
+                                                <span class="font-bold text-primary text-2xl">€18.900,00</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Event Footer -->
-                                <div class="bg-gray-50 dark:bg-gray-800 px-8 py-6 border-t-2 border-gray-200 dark:border-gray-700">
+                                <div class="bg-gray-50 px-8 py-6 border-t border-gray-200/50">
                                     <div class="flex md:justify-end items-center w-full">
                                         <div class="grid w-full md:w-auto grid-cols-1 md:grid-cols-2 gap-4 font-sans">
                                             <a href="./banquete.html"
-                                               class="text-center bg-primary hover:bg-primary/90 text-white dark:text-gray-900 px-8 py-4 rounded-xl font-bold transition-all duration-200 shadow-lg hover:shadow-xl text-lg">
+                                               class="text-center bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold transition-all duration-200 shadow-lg hover:shadow-xl text-lg">
                                                 <i class="fas fa-concierge-bell mr-2"></i>
                                                 Banqueting
                                             </a>
                                             <a href="./kitchen-kanban.html"
-                                               class="text-center border-2 border-primary bg-transparent text-primary dark:text-secondary hover:bg-primary hover:text-white dark:hover:text-gray-900 px-8 py-4 rounded-xl font-bold transition-all duration-200 shadow-lg hover:shadow-xl text-lg">
+                                               class="text-center border border-primary bg-transparent text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-xl font-bold transition-all duration-200 shadow-lg hover:shadow-xl text-lg">
                                                 <i class="fas fa-utensils mr-2"></i>
                                                 Keukenweergave
                                             </a>
@@ -438,7 +426,7 @@
                 </div>
                 <!-- Upcoming Events -->
                 <div class="event-group">
-                    <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 dark:text-white text-center mb-10 pb-4 border-b border-gray-300">
+                    <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 text-center mb-10 pb-4 border-b border-gray-200/60">
                         <i class="fas fa-calendar-alt mr-3 text-primary"></i>
                         Aankomend
                     </h2>
@@ -447,13 +435,13 @@
             </div>
             <!-- Empty State -->
             <div id="empty-state" class="hidden text-center">
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-11 border-1 border-gray-200 dark:border-gray-700 shadow-lg w-full">
+                <div class="bg-white rounded-xl p-11 border border-gray-200 shadow-lg w-full">
                     <i class="fas fa-calendar-times text-primary text-6xl mb-6"></i>
-                    <h3 class="font-serif font-bold text-xl md:text-2xl lg:text-3xl text-gray-900 dark:text-white mb-3">
+                    <h3 class="font-serif font-bold text-xl md:text-2xl lg:text-3xl text-gray-900 mb-3">
                         Geen
                         evenementen gevonden
                     </h3>
-                    <p class="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                    <p class="text-sm md:text-base text-gray-600 leading-relaxed">
                         Probeer uw zoek- of
                         filtercriteria aan te passen.
                     </p>
