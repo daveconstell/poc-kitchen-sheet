@@ -52,11 +52,48 @@
             font-family: 'Open Sans', sans-serif;
         }
 
-        /* Kanban card hover effect */
-        .kanban-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        /* Card body transition */
+        .card-body {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out, padding 0.5s ease-in-out;
         }
+
+        .card-body.expanded {
+            max-height: 1000px;
+            opacity: 1;
+        }
+
+        /* Kanban card description/notes transition */
+        .kanban-description, .kanban-notes {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out, margin 0.5s ease-in-out;
+        }
+
+        .kanban-description.expanded, .kanban-notes.expanded {
+            max-height: 1000px;
+            opacity: 1;
+        }
+
+/* Kanban card hover effect */
+.kanban-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background-color: rgba(124, 146, 134, 0.1); /* Light version of primary color (#7C9286) */
+}
+
+/* Table card hover effect */
+#ordersTableBody > div:hover {
+    background-color: rgba(124, 146, 134, 0.1); /* Light version of primary color (#7C9286) */
+}
+
+/* Card header on hover - 5% darker than body */
+#ordersTableBody > div:hover > div:first-child {
+    background-color: rgba(124, 146, 134, 0.15); /* 5% darker than the body hover color */
+}
 
         @keyframes fadeIn {
             from {
@@ -111,6 +148,15 @@
             transform: rotate(5deg);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3) !important;
         }
+
+        /* Pending column text alignment */
+        [data-status="Pending"] #pendingColumn {
+            text-align: left;
+        }
+
+        [data-status="Pending"] #pendingColumn * {
+            text-align: left;
+        }
         </style>
     </head>
     <body class="min-h-screen font-sans transition-all duration-300 text-sm md:text-base">
@@ -156,12 +202,11 @@
             </div>
         </header>
         <!-- Main Content -->
-        <main role="main" class="max-w-8xl mx-auto p-6 md:p-10 md:pt-20">
+        <main role="main" class="max-w-[1440px] mx-auto p-6 md:p-10 md:pt-20">
             <!-- Page Header -->
             <header class="relative h-64 rounded-xl overflow-hidden mb-16"
                     aria-labelledby="page-title">
-                <div class="absolute inset-0 bg-cover bg-center"
-                     style="background-image: url('https://images.pexels.com/photos/326281/pexels-photo-326281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')">
+                <div class="absolute inset-0 bg-cover bg-center bg-[url('https://images.pexels.com/photos/326281/pexels-photo-326281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')]">
                 </div>
                 <div class="absolute inset-0 bg-black bg-opacity-50"></div>
                 <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-6">
@@ -201,7 +246,9 @@
                         <div class="flex items-center gap-3">
                             <img src="https://randomuser.me/api/portraits/men/32.jpg"
                                  alt="John Doe avatar"
-                                 class="w-8 h-8 rounded-full object-cover border border-gray-300">
+                                 class="w-8 h-8 rounded-full object-cover border border-gray-300"
+                                 width="32"
+                                 height="32">
                             <div>
                                 <p class="font-sans text-lg text-gray-600">John Doe</p>
                                 <p class="font-sans text-md text-gray-500">john.doe@example.com</p>
@@ -213,7 +260,9 @@
                         <div class="flex items-center gap-3">
                             <img src="https://randomuser.me/api/portraits/women/44.jpg"
                                  alt="Jane Smith avatar"
-                                 class="w-8 h-8 rounded-full object-cover border border-gray-300">
+                                 class="w-8 h-8 rounded-full object-cover border border-gray-300"
+                                 width="32"
+                                 height="32">
                             <div>
                                 <p class="font-sans text-lg text-gray-600">Jane Smith</p>
                                 <p class="font-sans text-md text-gray-500">jane.smith@example.com</p>
@@ -232,25 +281,34 @@
             </section>
             <!-- Orders Card -->
             <section class="bg-white/90 backdrop-blur-sm p-7 md:p-10 rounded-xl shadow-lg border border-gray-200">
-                <div class="flex justify-between items-center mb-4">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
                     <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900">
                         <i class="fas fa-utensils mr-3 text-primary"></i>
                         Keuken Productie Schema
                     </h2>
+                    <!-- Full View Toggle -->
+                    <div class="flex items-center gap-3">
+                        <span class="text-gray-600 font-medium">Full View</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="fullViewToggle" class="sr-only peer">
+                            <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary">
+                            </div>
+                        </label>
+                    </div>
                 </div>
                 <p class="text-sm md:text-base text-gray-600 mb-10 leading-relaxed max-w-4xl">
                     Real-time voorbereidings- en serviceschema voor het Dinsdag Lunch evenement. Monitor
                     voortgang, timing en kwaliteitscontrole voor alle menu-items.
                 </p>
                 <!-- View Toggle Buttons -->
-                <div class="flex flex-col md:flex-row bg-gray-100 rounded-xl p-1 gap-2 mb-10 border border-gray-200 max-w-md">
+                <div class="flex flex-col md:flex-row bg-gray-100 rounded-xl p-1 mb-10 border border-gray-200 w-full md:max-w-md">
                     <button id="tableViewBtn"
-                            class="px-6 py-3 flex-1 rounded-lg bg-primary text-white font-semibold text-sm md:text-base hover:bg-primary/90 transition-all duration-200 flex items-center justify-center gap-3 shadow-md">
+                            class="px-6 py-3 flex-1 md:rounded-l-lg bg-gray-300 text-gray-700 data-[active=true]:bg-primary data-[active=true]:text-white font-semibold text-sm md:text-base transition-all duration-200 flex items-center justify-center gap-3 shadow-md rounded-t-lg md:rounded-t-l-lg md:rounded-tr-none">
                         <i class="fas fa-table"></i>
                         Tabelweergave
                     </button>
                     <button id="kanbanViewBtn"
-                            class="px-6 py-3 flex-1 rounded-lg bg-primary text-white font-semibold text-sm md:text-base hover:bg-primary/90 transition-all duration-200 flex items-center justify-center gap-3 shadow-md">
+                            class="px-6 py-3 flex-1 md:rounded-r-lg bg-gray-300 text-gray-700 data-[active=true]:bg-primary data-[active=true]:text-white font-semibold text-sm md:text-base transition-all duration-200 flex items-center justify-center gap-3 shadow-md rounded-b-lg md:rounded-b-r-lg md:rounded-tl-none md:rounded-bl-none">
                         <i class="fas fa-columns"></i>
                         Kanbanweergave
                     </button>
@@ -316,64 +374,31 @@
                         </select>
                     </div>
                 </div>
-                <!-- Table View -->
-                <div id="tableView"
-                     class="overflow-x-auto rounded-lg border border-gray-200 p-3">
-                    <table class="min-w-full text-gray-900 bg-white" id="ordersTable">
-                        <thead class="bg-primary text-white">
-                            <tr>
-                                <th class="py-6 px-6 text-left font-bold w-40 hidden lg:table-cell truncate">Tijd</th>
-                                <th class="py-6 px-6 text-left font-bold lg:w-auto truncate">Product</th>
-                                <th class="py-6 px-6 text-left font-bold hidden lg:table-cell truncate">Categorie</th>
-                                <th class="py-6 px-6 text-left font-bold hidden lg:table-cell truncate">Aantal</th>
-                                <th class="py-6 px-6 text-left font-bold hidden lg:table-cell truncate">Type Gast</th>
-                                <th class="py-6 px-6 text-left font-bold hidden lg:table-cell truncate">Kamer/Ruimte</th>
-                                <th class="py-6 px-6 text-left font-bold hidden md:table-cell truncate">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white" id="ordersTableBody">
-                            <tr class="border-b border-gray-200 hover:bg-primary/5 cursor-pointer transition-colors duration-200">
-                                <td class="py-6 px-6 hidden lg:table-cell">
-                                    <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-2 font-semibold text-gray-700">
-                                        <span class="text-left">10:30</span>
-                                        <span class="text-gray-400">–</span>
-                                        <span class="text-right">11:00</span>
-                                    </div>
-                                </td>
-                                <td class="py-6 px-6">
-                                    <div class="text-center md:hidden mb-3">
-                                        <span class="px-4 py-2 rounded-full text-sm font-bold bg-emerald-100 text-emerald-800">
-                                            <i class="fas fa-check mr-1"></i>Ready
-                                        </span>
-                                    </div>
-                                    <div class="text-center mb-3 md:mb-0 md:text-left font-bold text-lg text-gray-900">
-                                        Fresh
-                                        Fruit Juice
-                                    </div>
-                                    <div class="text-sm text-gray-600 lg:hidden mt-2 flex flex-col gap-2 md:block font-medium">
-                                        <span class="mr-3"><i class="fas fa-clock mr-2 text-primary"></i>10:30 –
-                                        11:00</span>
-                                        <span class="mr-3"><i class="fas fa-tag mr-2 text-primary"></i>Beverages</span>
-                                        <span class="mr-3"><i class="fas fa-users mr-2 text-primary"></i>VIP (15)</span>
-                                        <span><i class="fas fa-map-marker-alt mr-2 text-primary"></i>Bar Area</span>
-                                    </div>
-                                </td>
-                                <td class="py-6 px-6 hidden lg:table-cell font-semibold text-gray-700">Beverages</td>
-                                <td class="py-6 px-6 hidden lg:table-cell font-bold text-gray-900">15</td>
-                                <td class="py-6 px-6 hidden lg:table-cell font-semibold text-gray-700">VIP</td>
-                                <td class="py-6 px-6 hidden lg:table-cell font-semibold text-gray-700">Bar Area</td>
-                                <td class="py-6 px-6 hidden md:table-cell">
-                                    <span class="px-4 py-2 rounded-full text-sm font-bold bg-emerald-100 text-emerald-800">
-                                        <i class="fas fa-check mr-1"></i>Ready
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <!-- Table View (Enhanced Card Layout) -->
+                <div id="tableView">
+                    <!-- Empty State -->
+                    <div id="tableEmptyState"
+                         class="rounded-xl border border-gray-200 p-4 bg-gray-50 hidden">
+                        <div class="items-center justify-center flex h-full w-full">
+                            <div class="py-16 flex flex-col items-center justify-center">
+                                <div class="bg-gray-100 p-6 rounded-full mb-6">
+                                    <i class="fas fa-utensils text-4xl text-gray-400"></i>
+                                </div>
+                                <h3 class="text-xl font-serif font-bold text-gray-700 mb-2">Geen items gevonden</h3>
+                                <p class="text-gray-500 text-center max-w-md">
+                                    Er zijn momenteel geen items om weer te geven. Pas uw filters aan of voeg nieuwe items toe.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Cards Container -->
+                    <div id="ordersTableBody">
+                        <!-- Cards will be dynamically generated by JavaScript -->
+                    </div>
                 </div>
                 <!-- Kanban View -->
                 <div id="kanbanView" class="hidden">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                         <!-- Pending Column -->
                         <div class="rounded-xl border-2 border-blue-200 bg-white shadow-lg"
                              data-status="Pending">
@@ -385,7 +410,16 @@
                                           id="pendingCount">0</span>
                                 </div>
                             </div>
-                            <div id="pendingColumn" class="p-5 space-y-4 min-h-[300px]"></div>
+                            <div id="pendingColumn" class="p-5 space-y-4 min-h-[300px]">
+                                <!-- Empty state for Pending column -->
+                                <div id="pendingEmptyState"
+                                     class="hidden py-10 flex flex-col items-center justify-center">
+                                    <div class="bg-gray-100 p-4 rounded-full mb-4">
+                                        <i class="fas fa-inbox text-2xl text-blue-400"></i>
+                                    </div>
+                                    <p class="text-gray-500 text-center">Geen items in afwachting</p>
+                                </div>
+                            </div>
                         </div>
                         <!-- In Progress Column -->
                         <div class="rounded-xl border-2 border-yellow-200 bg-white shadow-lg"
@@ -398,7 +432,16 @@
                                           id="progressCount">0</span>
                                 </div>
                             </div>
-                            <div id="progressColumn" class="p-5 space-y-4 min-h-[300px]"></div>
+                            <div id="progressColumn" class="p-5 space-y-4 min-h-[300px]">
+                                <!-- Empty state for In Progress column -->
+                                <div id="progressEmptyState"
+                                     class="hidden py-10 flex flex-col items-center justify-center">
+                                    <div class="bg-gray-100 p-4 rounded-full mb-4">
+                                        <i class="fas fa-spinner text-2xl text-yellow-400"></i>
+                                    </div>
+                                    <p class="text-gray-500 text-center">Geen items in behandeling</p>
+                                </div>
+                            </div>
                         </div>
                         <!-- Ready Column -->
                         <div class="rounded-xl border-2 border-emerald-200 bg-white shadow-lg"
@@ -411,14 +454,41 @@
                                           id="readyCount">0</span>
                                 </div>
                             </div>
-                            <div id="readyColumn" class="p-5 space-y-4 min-h-[300px]"></div>
+                            <div id="readyColumn" class="p-5 space-y-4 min-h-[300px]">
+                                <!-- Empty state for Ready column -->
+                                <div id="readyEmptyState"
+                                     class="hidden py-10 flex flex-col items-center justify-center">
+                                    <div class="bg-gray-100 p-4 rounded-full mb-4">
+                                        <i class="fas fa-check text-2xl text-emerald-400"></i>
+                                    </div>
+                                    <p class="text-gray-500 text-center">Geen items klaar</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
             <!-- Product Modal (Off-canvas) -->
             <div id="productModal"
-                 class="fixed inset-y-0 right-0 w-full sm:w-[500px] bg-white transform transition-transform duration-300 ease-in-out z-50 shadow-2xl border-l-0 sm:border-l-4 border-primary translate-x-full">
+                 class="fixed inset-y-0 right-0 w-full sm:w-[700px] bg-white transform transition-transform duration-300 ease-in-out z-50 shadow-2xl border-l-0 sm:border-l-4 border-primary translate-x-full">
+                <!-- Status Selection Buttons -->
+                <div class="flex flex-col md:flex-row gap-4 p-6">
+                    <button data-status="Pending"
+                            class="status-btn w-full md:w-auto flex-1 px-6 py-3 rounded-lg text-sm md:text-base font-semibold transition-all duration-200 bg-blue-100 text-blue-700 hover:bg-blue-200 md:flex-initial">
+                        <i class="fas fa-clock mr-2"></i>
+                        Pending
+                    </button>
+                    <button data-status="In Progress"
+                            class="status-btn w-full md:w-auto flex-1 px-6 py-3 rounded-lg text-sm md:text-base font-semibold transition-all duration-200 bg-yellow-100 text-yellow-700 hover:bg-yellow-200 md:flex-initial">
+                        <i class="fas fa-spinner mr-2"></i>
+                        In Progress
+                    </button>
+                    <button data-status="Ready"
+                            class="status-btn w-full md:w-auto flex-1 px-6 py-3 rounded-lg text-sm md:text-base font-semibold transition-all duration-200 bg-emerald-100 text-emerald-700 hover:bg-emerald-200 md:flex-initial">
+                        <i class="fas fa-check mr-2"></i>
+                        Ready
+                    </button>
+                </div>
             </div>
             <!-- Modal Overlay -->
             <div id="modalOverlay"
