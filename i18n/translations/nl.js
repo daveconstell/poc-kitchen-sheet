@@ -15,7 +15,7 @@ window.translations_nl = {
 
     // Main page
     "main": {
-      "title": "Event Operation Dashboard",
+      "title": "Evenementen Beheer Dashboard",
       "subtitle": "Beheer en bekijk al uw aankomende evenementen op één centrale locatie.",
       "filters": {
         "title": "Filters & Zoeken",
@@ -49,7 +49,7 @@ window.translations_nl = {
       "time": "Tijd",
       "status": "Status",
       "status_confirmed": "Bevestigd",
-      "overview": "Overview",
+      "overview": "Overzicht",
       "total_products": "Totaal Producten",
       "total_spaces": "Totaal Ruimtes",
       "total_components": "Total Onderdelen",
@@ -65,7 +65,23 @@ window.translations_nl = {
       "vat_amount": "BTW-bedrag",
       "total_incl": "Totaal (incl. BTW)",
       "banqueting": "Banqueting",
-      "kitchen_view": "Keukenweergave"
+      "kitchen_view": "Keukenweergave",
+      "name_placeholder": "Evenementnaam hier",
+      "company_placeholder": "Bedrijf of Hoofdboeker",
+      "guest_count": "10-100",
+      "guest_types": "AR/BR/XF",
+      "title_placeholder": "Team Building Workshop",
+      "description_placeholder": "Interactieve teamontwikkelingssessie",
+      "space1_name": "Grote Balzaal",
+      "space2_name": "VIP Lounge",
+      "space3_name": "Buitenterras",
+      "product1_name": "Premium Catering",
+      "product2_name": "Audioapparatuur",
+      "product3_name": "Bloemstukken",
+      "product4_name": "Barservice",
+      "program_name": "Programmanaam",
+      "timeslot1": "Tijdslot 1",
+      "guest_details": "10 Kinderen, 2 Volwassenen"
     },
 
     // Kitchen page
@@ -76,7 +92,13 @@ window.translations_nl = {
       "full_view": "Volledig Overzicht",
       "table_view": "Tabelweergave",
       "kanban_view": "Kanbanweergave",
+      "home": "Home",
+      "description": "Real-time voorbereidings- en serviceschema voor het Dinsdag Lunch evenement. Monitor voortgang, timing en kwaliteitscontrole voor alle menu-items.",
       "filter": {
+        "category_label": "Filteren op Categorie",
+        "guest_type_label": "Filteren op Gasttype",
+        "space_label": "Filteren op Ruimte",
+        "status_label": "Filteren op Status",
         "category": "Filteren op Categorie",
         "all_categories": "Alle Categorieën",
         "beverages": "Dranken",
@@ -106,7 +128,18 @@ window.translations_nl = {
         "no_pending": "Geen items in afwachting",
         "no_progress": "Geen items in behandeling",
         "no_ready": "Geen items klaar"
-      }
+      },
+      "product_details": "Product Details",
+      "order_information": "Bestelinformatie",
+      "guest_type_amount": "Gasttype/Aantal:",
+      "category": "Categorie:",
+      "location": "Locatie:",
+      "time": "Tijdstip",
+      "start_time": "Starttijd:",
+      "end_time": "Eindtijd:",
+      "duration": "Duur:",
+      "special_notes": "Speciale opmerkingen",
+      "notes": "Opmerkingen:"
     },
 
     // Banquete page
@@ -142,7 +175,43 @@ window.translations_nl = {
       "unit_price": "Eenheidsprijs",
       "total": "Totaal",
       "read_more": "Lees meer",
-      "read_less": "Lees minder"
+      "read_less": "Lees minder",
+      "no_items": "Geen items gepland voor dit tijdslot.",
+      "time_label": "Tijd:",
+      "amount_label": "Aantal:",
+      "capacity_label": "Capaciteit:",
+      "layout_label": "Indeling:",
+      "space_details": "Ruimte Details",
+      "space_information": "Ruimte Informatie",
+      "product_details": "Product Details",
+      "order_information": "Bestelinformatie",
+      "guest_type": "Gasttype:",
+      "category": "Categorie:",
+      "location": "Locatie:",
+      "start_time": "Starttijd:",
+      "end_time": "Eindtijd:",
+      "duration": "Duur:",
+      "special_notes": "Speciale opmerkingen",
+      "unit_price": "Prijs per eenheid:"
+    },
+
+    // Kitchen page event details
+    "kitchen_event": {
+      "subtitle": "Een uitgebreid overzicht van de activiteiten in uw keuken.",
+      "overview": "Overzicht",
+      "production_schedule": "Keuken Productie Schema",
+      "full_view": "Volledig Overzicht",
+      "table_view": "Tabelweergave",
+      "kanban_view": "Kanbanweergave",
+      "event": {
+        "status": "Status",
+        "name": "Evenementnaam",
+        "type": "Evenementtype",
+        "dates": "Evenementdata",
+        "main_booker": "Hoofdboeker",
+        "venue_manager": "Locatiemanager",
+        "description": "Evenementbeschrijving"
+      }
     }
   }
 };

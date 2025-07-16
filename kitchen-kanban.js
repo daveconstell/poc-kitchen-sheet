@@ -33,6 +33,16 @@ const modalOverlay = document.getElementById("modalOverlay");
 const closeModalBtn = document.getElementById("closeModal");
 const modalStatusSelect = document.getElementById("modalStatusSelect");
 
+/**
+ * Refreshes translations for all elements with data-i18n attributes
+ * This is particularly useful after dynamically adding content to the DOM
+ */
+function refreshTranslations() {
+  if (window.i18nUtils && typeof window.i18nUtils.updateContent === 'function') {
+    window.i18nUtils.updateContent();
+  }
+}
+
 function openProductModal(productId) {
   currentProductId = productId;
   const order = findOrderById(productId);
@@ -64,16 +74,24 @@ function openProductModal(productId) {
     }
   }
 
-  // Status badge color
+  // Status badge color and translation key
   let statusClass = 'bg-blue-200 text-blue-800';
-  if (order.status === 'Ready') statusClass = 'bg-green-200 text-green-800';
-  else if (order.status === 'In Progress') statusClass = 'bg-yellow-200 text-yellow-800';
+  let statusTranslationKey = 'kitchen.filter.pending';
+
+  if (order.status === 'Ready') {
+    statusClass = 'bg-green-200 text-green-800';
+    statusTranslationKey = 'kitchen.filter.ready';
+  }
+  else if (order.status === 'In Progress') {
+    statusClass = 'bg-yellow-200 text-yellow-800';
+    statusTranslationKey = 'kitchen.filter.in_progress';
+  }
 
   // Modal HTML (template with dynamic data)
   productModal.innerHTML = `
     <div class="h-full flex flex-col">
       <div class="flex items-center justify-between p-8 border-b-2 border-gray-200 bg-primary text-white">
-        <h3 class="text-2xl font-serif font-bold">Product Details</h3>
+        <h3 class="text-2xl font-serif font-bold" data-i18n="kitchen.product_details">Product Details</h3>
         <button id="closeModal" class="text-white hover:text-gray-200 transition-colors">
           <i class="fas fa-times text-2xl"></i>
         </button>
@@ -87,14 +105,14 @@ function openProductModal(productId) {
 
           <!-- Status Toggle Group Buttons -->
           <div class="flex justify-center mt-4 mb-8">
-            <button id="statusPendingBtn" class="px-6 py-3 flex-1 rounded-l-lg bg-gray-300 text-gray-700 data-[active=true]:bg-blue-500 data-[active=true]:text-white font-semibold text-sm md:text-base transition-all duration-200 flex items-center justify-center gap-3 shadow-md">
-              <i class="fas fa-clock mr-2"></i>Pending
+            <button id="statusPendingBtn" class="px-6 py-3 flex-1 rounded-l-lg bg-gray-300 text-gray-700 data-[active=true]:bg-blue-500 data-[active=true]:text-white font-semibold text-sm md:text-base transition-all duration-200 flex flex-col items-center justify-center shadow-md">
+              <i class="fas fa-clock mb-2"></i><span data-i18n="kitchen.filter.pending">Pending</span>
             </button>
-            <button id="statusProgressBtn" class="px-6 py-3 flex-1 bg-gray-300 text-gray-700 data-[active=true]:bg-yellow-500 data-[active=true]:text-white font-semibold text-sm md:text-base transition-all duration-200 flex items-center justify-center gap-3 shadow-md">
-              <i class="fas fa-spinner mr-2"></i>In Progress
+            <button id="statusProgressBtn" class="px-6 py-3 flex-1 bg-gray-300 text-gray-700 data-[active=true]:bg-yellow-500 data-[active=true]:text-white font-semibold text-sm md:text-base transition-all duration-200 flex flex-col items-center justify-center shadow-md">
+              <i class="fas fa-spinner mb-2"></i><span data-i18n="kitchen.filter.in_progress">In Progress</span>
             </button>
-            <button id="statusReadyBtn" class="px-6 py-3 flex-1 rounded-r-lg bg-gray-300 text-gray-700 data-[active=true]:bg-emerald-500 data-[active=true]:text-white font-semibold text-sm md:text-base transition-all duration-200 flex items-center justify-center gap-3 shadow-md">
-              <i class="fas fa-check mr-2"></i>Ready
+            <button id="statusReadyBtn" class="px-6 py-3 flex-1 rounded-r-lg bg-gray-300 text-gray-700 data-[active=true]:bg-emerald-500 data-[active=true]:text-white font-semibold text-sm md:text-base transition-all duration-200 flex flex-col items-center justify-center shadow-md">
+              <i class="fas fa-check mb-2"></i><span data-i18n="kitchen.filter.ready">Ready</span>
             </button>
           </div>
 
@@ -103,20 +121,20 @@ function openProductModal(productId) {
         <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
           <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
             <i class="fas fa-clipboard-list mr-3 text-primary"></i>
-            Bestelinformatie
+            <span data-i18n="kitchen.order_information">Bestelinformatie</span>
           </h5>
           <div class="space-y-4">
             <div class="flex justify-between items-center">
-              <span class="text-gray-600 font-medium">Aantal/Type Gast:</span>
+              <span class="text-gray-600 font-medium" data-i18n="kitchen.guest_type_amount">Aantal/Type Gast:</span>
               <span id="modalGuestType" class="text-gray-900 font-bold">${order.guestTypeAmount && order.guestTypeAmount.length > 0 ?
                 order.guestTypeAmount.map(gta => `${gta.guestType} (${gta.amount})`).join(', ') : '-'}</span>
             </div>
             <div class="flex justify-between items-center">
-              <span class="text-gray-600 font-medium">Categorie:</span>
+              <span class="text-gray-600 font-medium" data-i18n="kitchen.category">Categorie:</span>
               <span id="modalCategory" class="text-gray-900 font-bold">${order.category || '-'}</span>
             </div>
             <div class="flex justify-between items-center">
-              <span class="text-gray-600 font-medium">Locatie:</span>
+              <span class="text-gray-600 font-medium" data-i18n="kitchen.location">Locatie:</span>
               <span id="modalSpace" class="text-gray-900 font-bold">${Array.isArray(order.space) ? order.space.join(', ') : (order.space || order.location || '-')}</span>
             </div>
           </div>
@@ -124,19 +142,19 @@ function openProductModal(productId) {
         <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
           <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
             <i class="fas fa-clock mr-3 text-primary"></i>
-            Tijdstip
+            <span data-i18n="kitchen.time">Tijdstip</span>
           </h5>
           <div class="space-y-4">
             <div class="flex justify-between items-center">
-              <span class="text-gray-600 font-medium">Starttijd:</span>
+              <span class="text-gray-600 font-medium" data-i18n="kitchen.start_time">Starttijd:</span>
               <span id="modalStartTime" class="text-gray-900 font-bold">${start}</span>
             </div>
             <div class="flex justify-between items-center">
-              <span class="text-gray-600 font-medium">Eindtijd:</span>
+              <span class="text-gray-600 font-medium" data-i18n="kitchen.end_time">Eindtijd:</span>
               <span id="modalEndTime" class="text-gray-900 font-bold">${end}</span>
             </div>
             <div class="flex justify-between items-center">
-              <span class="text-gray-600 font-medium">Duur:</span>
+              <span class="text-gray-600 font-medium" data-i18n="kitchen.duration">Duur:</span>
               <span id="modalDuration" class="text-gray-900 font-bold">${duration}</span>
             </div>
           </div>
@@ -144,7 +162,7 @@ function openProductModal(productId) {
         <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
           <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
             <i class="fas fa-sticky-note mr-3 text-primary"></i>
-            Speciale opmerkingen
+            <span data-i18n="kitchen.special_notes">Speciale opmerkingen</span>
           </h5>
           <div id="modalNotes" class="text-gray-700 text-base leading-relaxed">${notesHtml}</div>
         </div>
@@ -172,6 +190,9 @@ function openProductModal(productId) {
   document.getElementById('statusReadyBtn').onclick = function() {
     updateProductStatus('Ready');
   };
+
+  // Refresh translations after modal content is populated
+  refreshTranslations();
 
 // Set initial active status button
 const pendingBtn = document.getElementById('statusPendingBtn');
@@ -221,6 +242,9 @@ function updateProductStatus(newStatus) {
   // Update the order data
   order.status = newStatus;
 
+  // Refresh translations
+  refreshTranslations();
+
   // Update table view
   const orderIndex = findOrderIndexById(currentProductId);
   if (orderIndex !== -1) {
@@ -261,193 +285,196 @@ function initializeTableView() {
 
     card.setAttribute("data-order-index", index);
 
-    // Status badge color and icon
-    let statusClass = 'bg-blue-100 text-blue-800';
-    let statusIcon = '<i class="fas fa-clock mr-2"></i>';
+  // Status badge color and icon
+  let statusClass = 'bg-blue-100 text-blue-800';
+  let statusIcon = '<i class="fas fa-clock mr-2"></i>';
+  let statusTranslationKey = 'kitchen.filter.pending';
 
-    if (order.status === 'Ready') {
-      statusClass = 'bg-emerald-100 text-emerald-800';
-      statusIcon = '<i class="fas fa-check mr-2"></i>';
-    } else if (order.status === 'In Progress') {
-      statusClass = 'bg-yellow-100 text-yellow-800';
-      statusIcon = '<i class="fas fa-spinner fa-spin mr-2"></i>';
-    }
+  if (order.status === 'Ready') {
+    statusClass = 'bg-emerald-100 text-emerald-800';
+    statusIcon = '<i class="fas fa-check mr-2"></i>';
+    statusTranslationKey = 'kitchen.filter.ready';
+  } else if (order.status === 'In Progress') {
+    statusClass = 'bg-yellow-100 text-yellow-800';
+    statusIcon = '<i class="fas fa-spinner fa-spin mr-2"></i>';
+    statusTranslationKey = 'kitchen.filter.in_progress';
+  }
 
     // Split time for display
     const [startTime, endTime] = order.time.split("–").map(t => t.trim());
 
-    // Create card content with responsive layout
-    card.innerHTML = `
-      <!-- Card Header - Responsive Layout -->
-      <div class="p-4 cursor-pointer">
-        <!-- Mobile Layout (1 column) -->
-        <div class="block md:hidden">
-          <!-- Time (top left) and Status (top right) -->
-          <div class="flex justify-between items-center mb-3">
-            <span class="text-sm text-gray-600 font-medium">
-              <i class="fas fa-clock mr-1 text-primary"></i>${startTime} – ${endTime}
-            </span>
-            <span class="px-3 py-1 rounded-full text-xs font-bold ${statusClass} flex items-center whitespace-nowrap">
-              ${statusIcon}${order.status}
-            </span>
-          </div>
-
-          <!-- Product Name (centered) -->
-          <h3 class="font-bold text-lg text-gray-800 mb-3 text-center truncate">
-            ${order.product}
-          </h3>
-
-          <!-- Info underneath product name -->
-          <div class="text-center space-y-2">
-            <div class="flex justify-center items-center text-sm text-gray-600">
-              <i class="fas fa-users text-primary mr-2"></i>
-              <span class="font-semibold">${order.guestTypeAmount && order.guestTypeAmount.length > 0 ?
-                order.guestTypeAmount.map(gta => `${gta.guestType} (${gta.amount})`).join(', ') : '-'}</span>
-            </div>
-            <div class="flex justify-center gap-4 text-sm text-gray-600">
-              <div class="flex items-center">
-                <i class="fas fa-map-marker-alt text-primary mr-1"></i>
-                <span>${Array.isArray(order.space) ? order.space.join(', ') : order.space}</span>
+        // Create card content with responsive layout
+        card.innerHTML = `
+          <!-- Card Header - Responsive Layout -->
+          <div class="p-4 cursor-pointer">
+            <!-- Mobile Layout (1 column) -->
+            <div class="block md:hidden">
+              <!-- Time (top left) and Status (top right) -->
+              <div class="flex justify-between items-center mb-3">
+                <span class="text-sm text-gray-600 font-medium">
+                  <i class="fas fa-clock mr-1 text-primary"></i>${startTime} – ${endTime}
+                </span>
+                <span class="px-3 py-1 rounded-full text-xs font-bold ${statusClass} flex items-center whitespace-nowrap">
+                  ${statusIcon}<span data-i18n="${statusTranslationKey}">${order.status}</span>
+                </span>
               </div>
-              <div class="flex items-center">
-                <i class="fas fa-tag text-primary mr-1"></i>
-                <span>${order.category}</span>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- Tablet Layout (3 columns) -->
-        <div class="hidden md:grid lg:hidden grid-cols-3 gap-4 items-center">
-          <!-- Column 1: Product Name with time, space, category underneath -->
-          <div>
-            <h3 class="font-bold text-lg text-gray-800 mb-2 truncate">
-              ${order.product}
-            </h3>
-            <div class="space-y-1 text-sm text-gray-600">
-              <div>
-                <i class="fas fa-clock mr-1 text-primary"></i>${startTime} – ${endTime}
-              </div>
-              <div class="flex items-center">
-                <i class="fas fa-map-marker-alt text-primary mr-1"></i>
-                <span>${Array.isArray(order.space) ? order.space.join(', ') : order.space}</span>
-              </div>
-              <div class="flex items-center">
-                <i class="fas fa-tag text-primary mr-1"></i>
-                <span>${order.category}</span>
-              </div>
-            </div>
-          </div>
+              <!-- Product Name (centered) -->
+              <h3 class="font-bold text-lg text-gray-800 mb-3 text-center truncate">
+                ${order.product}
+              </h3>
 
-          <!-- Column 2: Guest Type Amount -->
-          <div class="flex justify-end">
-            <div class="flex items-center text-sm">
-              <i class="fas fa-users text-primary mr-2"></i>
-              <span class="font-semibold">${order.guestTypeAmount && order.guestTypeAmount.length > 0 ?
-                order.guestTypeAmount.map(gta => `${gta.guestType} (${gta.amount})`).join(', ') : '-'}</span>
-            </div>
-          </div>
-
-          <!-- Column 3: Status -->
-          <div class="flex justify-end">
-            <span class="px-4 py-2 rounded-full text-sm font-bold ${statusClass} flex items-center whitespace-nowrap">
-              ${statusIcon}${order.status}
-            </span>
-          </div>
-        </div>
-
-        <!-- Desktop Layout (4 columns with custom grid template) -->
-        <div class="hidden lg:grid gap-4 items-center" style="grid-template-columns: 120px 1fr auto 140px;">
-          <!-- Column 1: Time (fixed width 120px) -->
-          <div class="flex justify-start">
-            <span class="text-sm text-gray-600 font-medium">${startTime} – ${endTime}</span>
-          </div>
-
-          <!-- Column 2: Product Name with space, category underneath (flexible width) -->
-          <div>
-            <h3 class="font-bold text-lg text-gray-800 mb-2 truncate">
-              ${order.product}
-            </h3>
-            <div class="flex gap-4 text-sm text-gray-600">
-              <div class="flex items-center">
-                <i class="fas fa-map-marker-alt text-primary mr-1"></i>
-                <span>${Array.isArray(order.space) ? order.space.join(', ') : order.space}</span>
-              </div>
-              <div class="flex items-center">
-                <i class="fas fa-tag text-primary mr-1"></i>
-                <span>${order.category}</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Column 3: Guest Type Amount (auto width) -->
-          <div class="flex justify-end">
-            <div class="flex items-center text-sm">
-              <i class="fas fa-users text-primary mr-2"></i>
-              <span class="font-semibold">${order.guestTypeAmount && order.guestTypeAmount.length > 0 ?
-                order.guestTypeAmount.map(gta => `${gta.guestType} (${gta.amount})`).join(', ') : '-'}</span>
-            </div>
-          </div>
-
-          <!-- Column 4: Status (fixed width 140px) -->
-          <div class="flex justify-end">
-            <span class="px-4 py-2 rounded-full text-sm font-bold ${statusClass} flex items-center whitespace-nowrap">
-              ${statusIcon}${order.status}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card Content -->
-      <div class="card-body p-4">
-        <div class="flex flex-wrap lg:flex-nowrap gap-8">
-          <!-- Product Image -->
-          <div class="w-full lg:w-1/4 mb-4 lg:mb-0">
-            <div class="w-full h-40 bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
-              ${order.image ?
-                `<img src="${order.image}" alt="${order.product}" class="w-full h-full object-cover">` :
-                `<div class="w-full h-full flex items-center justify-center bg-gray-100">
-                  <i class="fas fa-image text-gray-400 text-3xl"></i>
-                </div>`
-              }
-            </div>
-          </div>
-
-          <!-- Product Info -->
-          <div class="w-full lg:w-3/4">
-            ${order.description ? `
-            <!-- Product Description -->
-            <div class="mb-5">
-              <h4 class="text-lg font-semibold text-gray-700 mb-2">Description</h4>
-              <p class="text-gray-600">
-                ${order.description}
-              </p>
-            </div>
-            ` : ''}
-
-            ${order.notes ? `
-            <!-- Product Notes -->
-            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
-              <div class="text-gray-700">
-                <div class="flex items-start mb-3">
-                  <i class="fas fa-sticky-note text-yellow-500 mr-2 mt-1"></i>
-                  <span class="font-semibold text-lg">Notes:</span>
+              <!-- Info underneath product name -->
+              <div class="text-center space-y-2">
+                <div class="flex justify-center items-center text-sm text-gray-600">
+                  <i class="fas fa-users text-primary mr-2"></i>
+                  <span class="font-semibold">${order.guestTypeAmount && order.guestTypeAmount.length > 0 ?
+                    order.guestTypeAmount.map(gta => `${gta.guestType} (${gta.amount})`).join(', ') : '-'}</span>
                 </div>
-                <ul class="list-disc pl-10 space-y-2">
-                  ${Array.isArray(order.notes)
-                    ? order.notes.map(note => `<li>${note}</li>`).join('')
-                    : typeof order.notes === 'string' && order.notes.includes('.')
-                      ? order.notes.split('.').filter(Boolean).map(note => `<li>${note.trim()}.</li>`).join('')
-                      : `<li>${order.notes}</li>`
-                  }
-                </ul>
+                <div class="flex justify-center gap-4 text-sm text-gray-600">
+                  <div class="flex items-center">
+                    <i class="fas fa-map-marker-alt text-primary mr-1"></i>
+                    <span>${Array.isArray(order.space) ? order.space.join(', ') : order.space}</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fas fa-tag text-primary mr-1"></i>
+                    <span>${order.category}</span>
+                  </div>
+                </div>
               </div>
             </div>
-            ` : ''}
+
+            <!-- Tablet Layout (3 columns) -->
+            <div class="hidden md:grid lg:hidden grid-cols-3 gap-4 items-center">
+              <!-- Column 1: Product Name with time, space, category underneath -->
+              <div>
+                <h3 class="font-bold text-lg text-gray-800 mb-2 truncate">
+                  ${order.product}
+                </h3>
+                <div class="space-y-1 text-sm text-gray-600">
+                  <div>
+                    <i class="fas fa-clock mr-1 text-primary"></i>${startTime} – ${endTime}
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fas fa-map-marker-alt text-primary mr-1"></i>
+                    <span>${Array.isArray(order.space) ? order.space.join(', ') : order.space}</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fas fa-tag text-primary mr-1"></i>
+                    <span>${order.category}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Column 2: Guest Type Amount -->
+              <div class="flex justify-end">
+                <div class="flex items-center text-sm">
+                  <i class="fas fa-users text-primary mr-2"></i>
+                  <span class="font-semibold">${order.guestTypeAmount && order.guestTypeAmount.length > 0 ?
+                    order.guestTypeAmount.map(gta => `${gta.guestType} (${gta.amount})`).join(', ') : '-'}</span>
+                </div>
+              </div>
+
+              <!-- Column 3: Status -->
+              <div class="flex justify-end">
+                <span class="px-4 py-2 rounded-full text-sm font-bold ${statusClass} flex items-center whitespace-nowrap">
+                  ${statusIcon}<span data-i18n="${statusTranslationKey}">${order.status}</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Desktop Layout (4 columns with custom grid template) -->
+            <div class="hidden lg:grid gap-4 items-center" style="grid-template-columns: 120px 1fr auto 160px;">
+              <!-- Column 1: Time (fixed width 120px) -->
+              <div class="flex justify-start">
+                <span class="text-sm text-gray-600 font-medium">${startTime} – ${endTime}</span>
+              </div>
+
+              <!-- Column 2: Product Name with space, category underneath (flexible width) -->
+              <div>
+                <h3 class="font-bold text-lg text-gray-800 mb-2 truncate">
+                  ${order.product}
+                </h3>
+                <div class="flex gap-4 text-sm text-gray-600">
+                  <div class="flex items-center">
+                    <i class="fas fa-map-marker-alt text-primary mr-1"></i>
+                    <span>${Array.isArray(order.space) ? order.space.join(', ') : order.space}</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fas fa-tag text-primary mr-1"></i>
+                    <span>${order.category}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Column 3: Guest Type Amount (auto width) -->
+              <div class="flex justify-end">
+                <div class="flex items-center text-sm">
+                  <i class="fas fa-users text-primary mr-2"></i>
+                  <span class="font-semibold">${order.guestTypeAmount && order.guestTypeAmount.length > 0 ?
+                    order.guestTypeAmount.map(gta => `${gta.guestType} (${gta.amount})`).join(', ') : '-'}</span>
+                </div>
+              </div>
+
+              <!-- Column 4: Status (fixed width 140px) -->
+              <div class="flex justify-end">
+                <span class="px-4 py-2 rounded-full text-sm font-bold ${statusClass} flex items-center whitespace-nowrap">
+                  ${statusIcon}<span data-i18n="${statusTranslationKey}">${order.status}</span>
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    `;
+
+          <!-- Card Content -->
+          <div class="card-body p-4">
+            <div class="flex flex-wrap lg:flex-nowrap gap-8">
+              <!-- Product Image -->
+              <div class="w-full lg:w-1/4 mb-4 lg:mb-0">
+                <div class="w-full h-40 bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
+                  ${order.image ?
+                    `<img src="${order.image}" alt="${order.product}" class="w-full h-full object-cover">` :
+                    `<div class="w-full h-full flex items-center justify-center bg-gray-100">
+                      <i class="fas fa-image text-gray-400 text-3xl"></i>
+                    </div>`
+                  }
+                </div>
+              </div>
+
+              <!-- Product Info -->
+              <div class="w-full lg:w-3/4">
+                ${order.description ? `
+                <!-- Product Description -->
+                <div class="mb-5">
+                  <h4 class="text-lg font-semibold text-gray-700 mb-2" data-i18n="kitchen.description">Description</h4>
+                  <p class="text-gray-600">
+                    ${order.description}
+                  </p>
+                </div>
+                ` : ''}
+
+                ${order.notes ? `
+                <!-- Product Notes -->
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                  <div class="text-gray-700">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-sticky-note text-yellow-500 mr-2 mt-1"></i>
+                      <span class="font-semibold text-lg" data-i18n="kitchen.notes">Notes:</span>
+                    </div>
+                    <ul class="list-disc pl-10 space-y-2">
+                      ${Array.isArray(order.notes)
+                        ? order.notes.map(note => `<li>${note}</li>`).join('')
+                        : typeof order.notes === 'string' && order.notes.includes('.')
+                          ? order.notes.split('.').filter(Boolean).map(note => `<li>${note.trim()}.</li>`).join('')
+                          : `<li>${order.notes}</li>`
+                      }
+                    </ul>
+                  </div>
+                </div>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        `;
 
     // Add click event listener for modal only to the header
     const cardHeader = card.querySelector('div:first-child');
@@ -934,7 +961,19 @@ function updateTableRowStatus(orderIndex, newStatus) {
       statusBadge.classList.add(...statusClass.split(' '));
 
       // Update content
-      statusBadge.innerHTML = `${statusIcon}${newStatus}`;
+      // Get translation key based on status
+      let statusTranslationKey = 'kitchen.filter.pending';
+      if (newStatus === 'Ready') {
+        statusTranslationKey = 'kitchen.filter.ready';
+      } else if (newStatus === 'In Progress') {
+        statusTranslationKey = 'kitchen.filter.in_progress';
+      }
+
+      // Update with translated content
+      statusBadge.innerHTML = `${statusIcon}<span data-i18n="${statusTranslationKey}">${newStatus}</span>`;
+
+      // Refresh translations
+      refreshTranslations();
     });
   }
 }
