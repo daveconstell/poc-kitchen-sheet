@@ -20,73 +20,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'serif': ['Playfair Display', 'serif'],
-                        'sans': ['Open Sans', 'sans-serif']
-                    },
-                    colors: {
-                        primary: '#7C9286',
-                        secondary: '#E5AEA1'
-                    },
-                    maxWidth: {
-                        '8xl': '1440px',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            color: #111827;
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        /* Custom focus styles */
-        .focus-primary:focus {
-            outline: none;
-            ring: 2px;
-            ring-color: #7C9286;
-            border-color: #7C9286;
-        }
-
-        /* Event card animations */
-        .event-card-content {
-            height: 0px;
-            overflow: hidden;
-            transition: height 0.3s ease-out;
-        }
-
-        .event-card-content--open {
-            height: max-content;
-            overflow: visible;
-            transition: all 0.3s ease-in;
-        }
-
-        .event-card-arrow {
-            transition: transform 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    <script src="tailwind.config.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body
