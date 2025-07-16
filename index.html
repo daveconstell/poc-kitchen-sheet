@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" data-i18n-lang="nl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keukenblad</title>
+    <title data-i18n="app_name">Keukenblad</title>
     <meta name="description"
         content="Beheer en bekijk al uw aankomende evenementen met het Evenementenbeheer Dashboard.">
     <meta name="keywords" content="evenementenbeheer, dashboard, bedrijfsevenementen, bruiloften, conferenties">
@@ -22,6 +22,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="tailwind.config.js"></script>
     <link rel="stylesheet" href="style.css">
+    <!-- i18next for internationalization -->
+    <script src="https://unpkg.com/i18next@latest/i18next.min.js"></script>
+    <script src="./i18n/translations/nl.js"></script>
+    <script src="./i18n/translations/en.js"></script>
+    <script src="./i18n/i18n.js"></script>
 </head>
 
 <body
@@ -66,54 +71,62 @@
             </div>
             <div class="absolute inset-0 bg-black bg-opacity-50"></div>
             <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-6">
-                <h1 id="page-title" class="text-2xl md:text-4xl lg:text-6xl font-serif font-bold mb-4">
+                <h1 id="page-title" class="text-2xl md:text-4xl lg:text-6xl font-serif font-bold mb-4"
+                    data-i18n="main.title">
                     Event Operation Dashboard
                 </h1>
-                <p class="text-base md:text-xl lg:text-2xl font-sans max-w-2xl mx-auto leading-relaxed text-balance">
+                <p class="text-base md:text-xl lg:text-2xl font-sans max-w-2xl mx-auto leading-relaxed text-balance"
+                    data-i18n="main.subtitle">
                     Beheer en bekijk al uw aankomende evenementen op één centrale locatie.
                 </p>
             </div>
         </header>
         <!-- Filter Section -->
         <div class="mb-16 p-7 md:p-10 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-200 shadow-lg">
-            <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-8 flex items-center">
+            <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-8 flex items-center"
+                data-i18n="main.filters.title">
                 <i class="fas fa-filter mr-3 text-primary"></i>
                 Filters & Zoeken
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <label for="search-box"
-                        class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide truncate">
+                        class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide truncate"
+                        data-i18n="main.filters.search">
                         Zoek Evenementen
                     </label>
-                    <input type="text" id="search-box" placeholder="Voer evenementnaam in..."
+                    <input type="text" id="search-box" data-i18n-placeholder="main.filters.search_placeholder"
+                        placeholder="Voer evenementnaam in..."
                         class="w-full px-4 py-4 rounded-lg bg-white text-gray-900 border border-gray-200 focus:ring focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
                 </div>
                 <div>
                     <label for="status-filter"
-                        class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide truncate">
+                        class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide truncate"
+                        data-i18n="main.filters.status">
                         Filteren op Status
                     </label>
                     <select id="status-filter"
                         class="w-full px-4 py-4 rounded-lg bg-white text-gray-900 border border-gray-200 focus:ring focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
-                        <option value="all">Alle Statussen</option>
-                        <option value="Confirmed">Bevestigd</option>
-                        <option value="Pending">In afwachting</option>
+                        <option value="all" data-i18n="main.filters.status_all">Alle Statussen</option>
+                        <option value="Confirmed" data-i18n="main.filters.status_confirmed">Bevestigd</option>
+                        <option value="Pending" data-i18n="main.filters.status_pending">In afwachting</option>
                     </select>
                 </div>
                 <div>
                     <label for="type-filter"
-                        class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide truncate">
+                        class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide truncate"
+                        data-i18n="main.filters.type">
                         Filteren op Evenementtype
                     </label>
                     <select id="type-filter"
                         class="w-full px-4 py-4 rounded-lg bg-white text-gray-900 border border-gray-200 focus:ring focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
-                        <option value="all">Alle Types</option>
-                        <option value="Corporate Event">Bedrijfsevenement</option>
-                        <option value="Wedding">Bruiloft</option>
-                        <option value="Conference">Conferentie</option>
-                        <option value="Private Party">Privéfeest</option>
-                        <option value="Workshop">Workshop</option>
+                        <option value="all" data-i18n="main.filters.type_all">Alle Types</option>
+                        <option value="Corporate Event" data-i18n="main.filters.type_corporate">Bedrijfsevenement
+                        </option>
+                        <option value="Wedding" data-i18n="main.filters.type_wedding">Bruiloft</option>
+                        <option value="Conference" data-i18n="main.filters.type_conference">Conferentie</option>
+                        <option value="Private Party" data-i18n="main.filters.type_private">Privéfeest</option>
+                        <option value="Workshop" data-i18n="main.filters.type_workshop">Workshop</option>
                     </select>
                 </div>
             </div>
@@ -122,8 +135,8 @@
         <div id="events-container" class="space-y-12">
             <!-- Today's Events -->
             <div class="event-group">
-                <h2
-                    class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 text-center mb-10 pb-4 border-b border-gray-200/60">
+                <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 text-center mb-10 pb-4 border-b border-gray-200/60"
+                    data-i18n="main.events.today">
                     <i class="fas fa-calendar-day mr-3 text-primary"></i>
                     Vandaag
                 </h2>
@@ -408,8 +421,8 @@
             </div>
             <!-- Upcoming Events -->
             <div class="event-group">
-                <h2
-                    class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 text-center mb-10 pb-4 border-b border-gray-200/60">
+                <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 text-center mb-10 pb-4 border-b border-gray-200/60"
+                    data-i18n="main.events.upcoming">
                     <i class="fas fa-calendar-alt mr-3 text-primary"></i>
                     Aankomend
                 </h2>
@@ -418,10 +431,12 @@
                     <div
                         class="empty-state-upcoming bg-white rounded-xl p-8 border border-gray-200 shadow-lg w-full text-center">
                         <i class="fas fa-calendar-day text-primary text-5xl mb-6 opacity-70"></i>
-                        <h3 class="font-serif font-bold text-xl md:text-2xl text-gray-900 mb-3">
+                        <h3 class="font-serif font-bold text-xl md:text-2xl text-gray-900 mb-3"
+                            data-i18n="main.events.no_upcoming">
                             Geen aankomende evenementen
                         </h3>
-                        <p class="text-sm md:text-base text-gray-600 leading-relaxed max-w-lg mx-auto">
+                        <p class="text-sm md:text-base text-gray-600 leading-relaxed max-w-lg mx-auto"
+                            data-i18n="main.events.no_upcoming_desc">
                             Er zijn momenteel geen aankomende evenementen gepland. Nieuwe evenementen zullen hier
                             verschijnen zodra ze zijn toegevoegd.
                         </p>
@@ -433,13 +448,12 @@
         <div id="empty-state" class="hidden text-center">
             <div class="bg-white rounded-xl p-11 border border-gray-200 shadow-lg w-full">
                 <i class="fas fa-calendar-times text-primary text-6xl mb-6"></i>
-                <h3 class="font-serif font-bold text-xl md:text-2xl lg:text-3xl text-gray-900 mb-3">
-                    Geen
-                    evenementen gevonden
+                <h3 class="font-serif font-bold text-xl md:text-2xl lg:text-3xl text-gray-900 mb-3"
+                    data-i18n="main.events.no_events">
+                    Geen evenementen gevonden
                 </h3>
-                <p class="text-sm md:text-base text-gray-600 leading-relaxed">
-                    Probeer uw zoek- of
-                    filtercriteria aan te passen.
+                <p class="text-sm md:text-base text-gray-600 leading-relaxed" data-i18n="main.events.no_events_desc">
+                    Probeer uw zoek- of filtercriteria aan te passen.
                 </p>
             </div>
         </div>
