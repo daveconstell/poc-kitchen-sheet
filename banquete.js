@@ -1,8 +1,4 @@
-// Mobile menu toggle
-document.getElementById('mobile-menu-button').addEventListener('click', function () {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('hidden');
-});
+// Mobile menu toggle removed
 
 // Back to top button
 const backToTopButton = document.getElementById('back-to-top');
@@ -25,12 +21,15 @@ backToTopButton.addEventListener('click', function () {
 function toggleTimeslot(slotId) {
     const content = document.getElementById(slotId);
     const icon = document.getElementById(slotId + '-icon');
-    if (content.classList.contains('hidden')) {
-        content.classList.remove('hidden');
-        icon.style.transform = 'rotate(180deg)';
-    } else {
-        content.classList.add('hidden');
-        icon.style.transform = 'rotate(0deg)';
+
+    if (content) {
+        if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            if (icon) icon.style.transform = 'rotate(180deg)';
+        } else {
+            content.classList.add('hidden');
+            if (icon) icon.style.transform = 'rotate(0deg)';
+        }
     }
 }
 
