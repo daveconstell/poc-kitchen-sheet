@@ -36,7 +36,7 @@ const modalStatusSelect = document.getElementById("modalStatusSelect");
 function openProductModal(productId) {
   currentProductId = productId;
   const order = findOrderById(productId);
-  
+
   if (!order) return;
 
   console.log("Opening product modal for order:", order);
@@ -84,7 +84,7 @@ function openProductModal(productId) {
             <img id="productImage" src="${order.image || ''}" alt="${order.product || order.name || ''}" class="w-full h-full object-cover" width="336" height="192">
           </div>
           <h4 id="productTitle" class="text-3xl font-serif font-bold text-gray-900 mb-3">${order.product || order.name || ''}</h4>
-          
+
           <!-- Status Toggle Group Buttons -->
           <div class="flex justify-center mt-4 mb-8">
             <button id="statusPendingBtn" class="px-6 py-3 flex-1 rounded-l-lg bg-gray-300 text-gray-700 data-[active=true]:bg-blue-500 data-[active=true]:text-white font-semibold text-sm md:text-base transition-all duration-200 flex items-center justify-center gap-3 shadow-md">
@@ -97,7 +97,7 @@ function openProductModal(productId) {
               <i class="fas fa-check mr-2"></i>Ready
             </button>
           </div>
-          
+
           <p id="productDescription" class="text-gray-600 text-base leading-relaxed text-balance">${order.description || ''}</p>
         </div>
         <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
@@ -108,7 +108,8 @@ function openProductModal(productId) {
           <div class="space-y-4">
             <div class="flex justify-between items-center">
               <span class="text-gray-600 font-medium">Aantal/Type Gast:</span>
-              <span id="modalGuestType" class="text-gray-900 font-bold">${order.guestType || '-'} (${order.quantity || order.amount || '-'})</span>
+              <span id="modalGuestType" class="text-gray-900 font-bold">${order.guestTypeAmount && order.guestTypeAmount.length > 0 ?
+                order.guestTypeAmount.map(gta => `${gta.guestType} (${gta.amount})`).join(', ') : '-'}</span>
             </div>
             <div class="flex justify-between items-center">
               <span class="text-gray-600 font-medium">Categorie:</span>
@@ -116,7 +117,7 @@ function openProductModal(productId) {
             </div>
             <div class="flex justify-between items-center">
               <span class="text-gray-600 font-medium">Locatie:</span>
-              <span id="modalSpace" class="text-gray-900 font-bold">${order.space || order.location || '-'}</span>
+              <span id="modalSpace" class="text-gray-900 font-bold">${Array.isArray(order.space) ? order.space.join(', ') : (order.space || order.location || '-')}</span>
             </div>
           </div>
         </div>
@@ -160,7 +161,7 @@ function openProductModal(productId) {
 
   // Attach close and status update events
   document.getElementById('closeModal').onclick = closeProductModal;
-  
+
   // Attach status button events
   document.getElementById('statusPendingBtn').onclick = function() {
     updateProductStatus('Pending');
@@ -242,7 +243,7 @@ function updateProductStatus(newStatus) {
 function initializeTableView() {
   tableBody.innerHTML = ""; // Clear existing cards
   const tableEmptyState = document.getElementById("tableEmptyState");
-  
+
   // Check if there are any items to display
   if (orderData.length === 0) {
     tableEmptyState.classList.remove("hidden");
@@ -257,13 +258,13 @@ function initializeTableView() {
     // Create card container
     const card = document.createElement("div");
     card.className = "bg-white border-t border-gray-200 transition-colors duration-200 overflow-hidden border-l-0 border-r-0";
-    
+
     card.setAttribute("data-order-index", index);
 
     // Status badge color and icon
     let statusClass = 'bg-blue-100 text-blue-800';
     let statusIcon = '<i class="fas fa-clock mr-2"></i>';
-    
+
     if (order.status === 'Ready') {
       statusClass = 'bg-emerald-100 text-emerald-800';
       statusIcon = '<i class="fas fa-check mr-2"></i>';
@@ -290,22 +291,23 @@ function initializeTableView() {
               ${statusIcon}${order.status}
             </span>
           </div>
-          
+
           <!-- Product Name (centered) -->
           <h3 class="font-bold text-lg text-gray-800 mb-3 text-center truncate">
             ${order.product}
           </h3>
-          
+
           <!-- Info underneath product name -->
           <div class="text-center space-y-2">
             <div class="flex justify-center items-center text-sm text-gray-600">
               <i class="fas fa-users text-primary mr-2"></i>
-              <span class="font-semibold">${order.guestType} (${order.quantity})</span>
+              <span class="font-semibold">${order.guestTypeAmount && order.guestTypeAmount.length > 0 ?
+                order.guestTypeAmount.map(gta => `${gta.guestType} (${gta.amount})`).join(', ') : '-'}</span>
             </div>
             <div class="flex justify-center gap-4 text-sm text-gray-600">
               <div class="flex items-center">
                 <i class="fas fa-map-marker-alt text-primary mr-1"></i>
-                <span>${order.space}</span>
+                <span>${Array.isArray(order.space) ? order.space.join(', ') : order.space}</span>
               </div>
               <div class="flex items-center">
                 <i class="fas fa-tag text-primary mr-1"></i>
@@ -328,7 +330,7 @@ function initializeTableView() {
               </div>
               <div class="flex items-center">
                 <i class="fas fa-map-marker-alt text-primary mr-1"></i>
-                <span>${order.space}</span>
+                <span>${Array.isArray(order.space) ? order.space.join(', ') : order.space}</span>
               </div>
               <div class="flex items-center">
                 <i class="fas fa-tag text-primary mr-1"></i>
@@ -336,15 +338,16 @@ function initializeTableView() {
               </div>
             </div>
           </div>
-          
+
           <!-- Column 2: Guest Type Amount -->
           <div class="flex justify-end">
             <div class="flex items-center text-sm">
               <i class="fas fa-users text-primary mr-2"></i>
-              <span class="font-semibold">${order.guestType} (${order.quantity})</span>
+              <span class="font-semibold">${order.guestTypeAmount && order.guestTypeAmount.length > 0 ?
+                order.guestTypeAmount.map(gta => `${gta.guestType} (${gta.amount})`).join(', ') : '-'}</span>
             </div>
           </div>
-          
+
           <!-- Column 3: Status -->
           <div class="flex justify-end">
             <span class="px-4 py-2 rounded-full text-sm font-bold ${statusClass} flex items-center whitespace-nowrap">
@@ -359,7 +362,7 @@ function initializeTableView() {
           <div class="flex justify-start">
             <span class="text-sm text-gray-600 font-medium">${startTime} – ${endTime}</span>
           </div>
-          
+
           <!-- Column 2: Product Name with space, category underneath (flexible width) -->
           <div>
             <h3 class="font-bold text-lg text-gray-800 mb-2 truncate">
@@ -368,7 +371,7 @@ function initializeTableView() {
             <div class="flex gap-4 text-sm text-gray-600">
               <div class="flex items-center">
                 <i class="fas fa-map-marker-alt text-primary mr-1"></i>
-                <span>${order.space}</span>
+                <span>${Array.isArray(order.space) ? order.space.join(', ') : order.space}</span>
               </div>
               <div class="flex items-center">
                 <i class="fas fa-tag text-primary mr-1"></i>
@@ -376,15 +379,16 @@ function initializeTableView() {
               </div>
             </div>
           </div>
-          
+
           <!-- Column 3: Guest Type Amount (auto width) -->
           <div class="flex justify-end">
             <div class="flex items-center text-sm">
               <i class="fas fa-users text-primary mr-2"></i>
-              <span class="font-semibold">${order.guestType} (${order.quantity})</span>
+              <span class="font-semibold">${order.guestTypeAmount && order.guestTypeAmount.length > 0 ?
+                order.guestTypeAmount.map(gta => `${gta.guestType} (${gta.amount})`).join(', ') : '-'}</span>
             </div>
           </div>
-          
+
           <!-- Column 4: Status (fixed width 140px) -->
           <div class="flex justify-end">
             <span class="px-4 py-2 rounded-full text-sm font-bold ${statusClass} flex items-center whitespace-nowrap">
@@ -393,22 +397,22 @@ function initializeTableView() {
           </div>
         </div>
       </div>
-      
+
       <!-- Card Content -->
       <div class="card-body p-4">
         <div class="flex flex-wrap lg:flex-nowrap gap-8">
           <!-- Product Image -->
           <div class="w-full lg:w-1/4 mb-4 lg:mb-0">
             <div class="w-full h-40 bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
-              ${order.image ? 
-                `<img src="${order.image}" alt="${order.product}" class="w-full h-full object-cover">` : 
+              ${order.image ?
+                `<img src="${order.image}" alt="${order.product}" class="w-full h-full object-cover">` :
                 `<div class="w-full h-full flex items-center justify-center bg-gray-100">
                   <i class="fas fa-image text-gray-400 text-3xl"></i>
                 </div>`
               }
             </div>
           </div>
-          
+
           <!-- Product Info -->
           <div class="w-full lg:w-3/4">
             ${order.description ? `
@@ -420,7 +424,7 @@ function initializeTableView() {
               </p>
             </div>
             ` : ''}
-            
+
             ${order.notes ? `
             <!-- Product Notes -->
             <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
@@ -430,9 +434,9 @@ function initializeTableView() {
                   <span class="font-semibold text-lg">Notes:</span>
                 </div>
                 <ul class="list-disc pl-10 space-y-2">
-                  ${Array.isArray(order.notes) 
+                  ${Array.isArray(order.notes)
                     ? order.notes.map(note => `<li>${note}</li>`).join('')
-                    : typeof order.notes === 'string' && order.notes.includes('.') 
+                    : typeof order.notes === 'string' && order.notes.includes('.')
                       ? order.notes.split('.').filter(Boolean).map(note => `<li>${note.trim()}.</li>`).join('')
                       : `<li>${order.notes}</li>`
                   }
@@ -453,7 +457,7 @@ function initializeTableView() {
 
     tableBody.appendChild(card);
   });
-  
+
   // Check if we need to show empty state after filtering
   filterTable();
 }
@@ -476,10 +480,10 @@ function saveFullViewState(isFullView) {
 
 function toggleFullView() {
     const isFullView = fullViewToggle.checked;
-    
+
     // Save state to localStorage
     saveFullViewState(isFullView);
-    
+
     // Handle table view card bodies
     const cardBodies = document.querySelectorAll('#ordersTableBody .card-body');
     cardBodies.forEach(body => {
@@ -490,7 +494,7 @@ function toggleFullView() {
             body.style.padding = '0';
         }
     });
-    
+
     // Handle table view card headers border bottom
     const cardHeaders = document.querySelectorAll('#ordersTableBody > div > div:first-child');
     cardHeaders.forEach(header => {
@@ -500,11 +504,11 @@ function toggleFullView() {
             header.classList.remove('border-b', 'border-gray-200');
         }
     });
-    
+
     // Handle kanban view descriptions and notes
     const kanbanDescriptions = document.querySelectorAll('#kanbanView .kanban-description');
     const kanbanNotes = document.querySelectorAll('#kanbanView .kanban-notes');
-    
+
     [...kanbanDescriptions, ...kanbanNotes].forEach(element => {
         if (isFullView) {
             element.classList.remove('hidden');
@@ -521,17 +525,17 @@ function switchToTableView() {
   currentView = "table";
   tableView.classList.remove("hidden");
   kanbanView.classList.add("hidden");
-  
+
   // Reset all buttons
   tableViewBtn.removeAttribute('data-active');
   kanbanViewBtn.removeAttribute('data-active');
-  
+
   // Set active button
   tableViewBtn.setAttribute('data-active', 'true');
-  
+
   // Apply current full view state to table view
   toggleFullView();
-  
+
   // Update kanban counts even when switching to table view
   updateKanbanCounts();
 }
@@ -540,16 +544,16 @@ function switchToKanbanView() {
   currentView = "kanban";
   kanbanView.classList.remove("hidden");
   tableView.classList.add("hidden");
-  
+
   // Reset all buttons
   tableViewBtn.removeAttribute('data-active');
   kanbanViewBtn.removeAttribute('data-active');
-  
+
   // Set active button
   kanbanViewBtn.setAttribute('data-active', 'true');
-  
+
   populateKanbanView();
-  
+
   // Apply current full view state to kanban view after populating
   toggleFullView();
 }
@@ -560,12 +564,16 @@ function createKanbanCard(order) {
   card.className =
     "kanban-card bg-white rounded-lg p-4 border border-gray-200 hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm text-sm md:text-base";
   card.setAttribute("data-category", order.category);
-  card.setAttribute("data-guest-type", order.guestType);
-  card.setAttribute("data-space", order.space);
+  card.setAttribute("data-guest-type", order.guestTypeAmount && order.guestTypeAmount.length > 0 ? order.guestTypeAmount[0].guestType : "");
+  card.setAttribute("data-space", Array.isArray(order.space) && order.space.length > 0 ? order.space[0] : "");
   card.setAttribute("data-order-id", order.id);
 
+  const guestTypeAmountText = order.guestTypeAmount && order.guestTypeAmount.length > 0
+    ? order.guestTypeAmount.map(gta => `${gta.guestType} (${gta.amount})`).join(', ')
+    : '-';
+
   card.innerHTML = `
-                ${order.image ? 
+                ${order.image ?
                   `<div class="relative w-full aspect-video mb-2 overflow-hidden rounded-t-lg">
                     <img src="${order.image}" alt="${order.product}" class="w-full h-full object-cover">
                     <span class="absolute top-2 right-2 border border-gray-300 bg-gray-100/80 backdrop-blur-sm text-gray-700 px-2 py-1 rounded text-xs shadow-sm"><i class="fas fa-clock mr-1"></i>${order.time}</span>
@@ -574,28 +582,28 @@ function createKanbanCard(order) {
                     <div class="flex items-center">
                         <h4 class="font-semibold text-gray-800 text-sm md:text-base truncate">${order.product}</h4>
                     </div>
-                    ${order.description ? 
+                    ${order.description ?
                       `<div class="kanban-description">
                         <p class="text-gray-600 text-sm mt-2">${order.description}</p>
-                        ${order.notes ? 
+                        ${order.notes ?
                           `<div class="kanban-notes mt-2 bg-yellow-50/50 p-2 rounded">
                             <p class="text-sm font-semibold text-gray-700 mb-1">Opmerkingen:</p>
                             <ul class="list-disc pl-4 space-y-1">
-                              ${Array.isArray(order.notes) 
+                              ${Array.isArray(order.notes)
                                 ? order.notes.map(note => `<li class="text-gray-600 text-sm">${note}</li>`).join('')
-                                : typeof order.notes === 'string' && order.notes.includes('.') 
+                                : typeof order.notes === 'string' && order.notes.includes('.')
                                   ? order.notes.split('.').filter(Boolean).map(note => `<li class="text-gray-600 text-sm">${note.trim()}.</li>`).join('')
                                   : `<li class="text-gray-600 text-sm">${order.notes}</li>`
                               }
                             </ul>
-                           </div>` 
+                           </div>`
                           : ''}
-                      </div>` 
+                      </div>`
                       : ''}
                 </div>
                 <div class="flex justify-between items-center text-xs md:text-sm text-gray-600">
-                    <span><i class="fas fa-map-marker-alt mr-1"></i>${order.space}</span>
-                    <span class="text-gray-600 text-xs"><i class="fas fa-users mr-1"></i>${order.guestType} (${order.quantity})</span>
+                    <span><i class="fas fa-map-marker-alt mr-1"></i>${Array.isArray(order.space) ? order.space.join(', ') : order.space}</span>
+                    <span class="text-gray-600 text-xs"><i class="fas fa-users mr-1"></i>${guestTypeAmountText}</span>
                 </div>
             `;
 
@@ -604,7 +612,7 @@ function createKanbanCard(order) {
   cardHeader.addEventListener("click", () => {
     openProductModal(order.id);
   });
-  
+
   // Add cursor-pointer class only to the header
   cardHeader.classList.add('cursor-pointer');
 
@@ -616,7 +624,7 @@ function populateKanbanView() {
   const readyColumn = document.getElementById("readyColumn");
   const progressColumn = document.getElementById("progressColumn");
   const pendingColumn = document.getElementById("pendingColumn");
-  
+
   // Get empty states
   const readyEmptyState = document.getElementById("readyEmptyState");
   const progressEmptyState = document.getElementById("progressEmptyState");
@@ -626,12 +634,12 @@ function populateKanbanView() {
   readyColumn.innerHTML = "";
   progressColumn.innerHTML = "";
   pendingColumn.innerHTML = "";
-  
+
   // Add empty states back
   readyColumn.appendChild(readyEmptyState);
   progressColumn.appendChild(progressEmptyState);
   pendingColumn.appendChild(pendingEmptyState);
-  
+
   // Hide all empty states initially
   readyEmptyState.classList.add("hidden");
   readyEmptyState.classList.remove("flex");
@@ -686,12 +694,12 @@ function populateKanbanView() {
     readyEmptyState.classList.remove("hidden");
     readyEmptyState.classList.add("flex");
   }
-  
+
   if (progressCount === 0) {
     progressEmptyState.classList.remove("hidden");
     progressEmptyState.classList.add("flex");
   }
-  
+
   if (pendingCount === 0) {
     pendingEmptyState.classList.remove("hidden");
     pendingEmptyState.classList.add("flex");
@@ -699,7 +707,7 @@ function populateKanbanView() {
 
   // Update counts with visible items in each column
   updateKanbanCounts();
-  
+
   // Initialize SortableJS for each column
   initializeSortable();
 }
@@ -724,11 +732,11 @@ function initializeSortable() {
         onEnd: (evt) => {
           const card = evt.item;
           const orderId = card.getAttribute('data-order-id');
-          
+
           // Determine the new status based on the target column
           const targetColumn = evt.to;
           let newStatus = 'Pending'; // default
-          
+
           if (targetColumn.id === 'pendingColumn') {
             newStatus = 'Pending';
           } else if (targetColumn.id === 'progressColumn') {
@@ -736,21 +744,21 @@ function initializeSortable() {
           } else if (targetColumn.id === 'readyColumn') {
             newStatus = 'Ready';
           }
-          
+
           console.log('Kanban card moved:', { orderId, newStatus, targetColumnId: targetColumn.id });
-          
+
           if (orderId) {
             const order = findOrderById(orderId);
             if (order) {
               const oldStatus = order.status;
-              
+
               // Only update if the status is actually different
               if (oldStatus !== newStatus) {
                 // Update the order status in the data
                 order.status = newStatus;
-                
+
                 console.log('Order status updated:', { orderId, oldStatus, newStatus });
-                
+
                 // Update table view if it's the current view
                 if (currentView === "table") {
                   const orderIndex = findOrderIndexById(orderId);
@@ -758,10 +766,10 @@ function initializeSortable() {
                     updateTableRowStatus(orderIndex, newStatus);
                   }
                 }
-                
+
                 // Update counts without refreshing the kanban
                 updateKanbanCounts();
-                
+
                 // If the modal is currently open for this item, update it to reflect the new status
                 if (currentProductId === orderId) {
                   console.log('Refreshing modal for updated order:', orderId);
@@ -789,7 +797,7 @@ function updateKanbanCounts() {
   const readyColumn = document.getElementById("readyColumn");
   const progressColumn = document.getElementById("progressColumn");
   const pendingColumn = document.getElementById("pendingColumn");
-  
+
   const readyCount = readyColumn ? readyColumn.querySelectorAll('.kanban-card').length : 0;
   const progressCount = progressColumn ? progressColumn.querySelectorAll('.kanban-card').length : 0;
   const pendingCount = pendingColumn ? pendingColumn.querySelectorAll('.kanban-card').length : 0;
@@ -827,7 +835,7 @@ function filterTable() {
   const guestTypeValue = guestTypeFilter.value.toLowerCase();
   const spaceValue = spaceFilter.value.toLowerCase();
   const statusValue = statusFilter.value.toLowerCase();
-  
+
   let visibleCount = 0;
   let lastVisibleCard = null;
 
@@ -847,21 +855,21 @@ function filterTable() {
 
     const isVisible = categoryMatch && guestTypeMatch && spaceMatch && statusMatch;
     card.style.display = isVisible ? "" : "none";
-    
+
     // Remove border-b from all cards first
     card.classList.remove("border-b");
-    
+
     if (isVisible) {
       visibleCount++;
       lastVisibleCard = card;
     }
   });
-  
+
   // Add border-b only to the last visible card
   if (lastVisibleCard) {
     lastVisibleCard.classList.add("border-b");
   }
-  
+
   // Show or hide empty state based on visible items
   const tableEmptyState = document.getElementById("tableEmptyState");
   if (visibleCount === 0) {
@@ -891,15 +899,15 @@ function addTableRowListeners() {
 function updateTableRowStatus(orderIndex, newStatus) {
   const cards = tableBody.querySelectorAll('[data-order-index]');
   const card = cards[orderIndex];
-  
+
   if (card) {
     // Update all status badges in the card (there are multiple for different responsive layouts)
     const statusBadges = card.querySelectorAll('.rounded-full');
-    
+
     // Status badge color and icon
     let statusClass = 'bg-blue-100 text-blue-800';
     let statusIcon = '<i class="fas fa-clock mr-2"></i>';
-    
+
     if (newStatus === "Ready") {
       statusClass = 'bg-emerald-100 text-emerald-800';
       statusIcon = '<i class="fas fa-check mr-2"></i>';
@@ -907,12 +915,12 @@ function updateTableRowStatus(orderIndex, newStatus) {
       statusClass = 'bg-yellow-100 text-yellow-800';
       statusIcon = '<i class="fas fa-spinner fa-spin mr-2"></i>';
     }
-    
+
     // Update all status badges
     statusBadges.forEach(statusBadge => {
       // Remove old classes and reset
       statusBadge.className = "rounded-full font-bold flex items-center whitespace-nowrap";
-      
+
       // Add size-specific classes based on the badge
       if (statusBadge.classList.contains('text-xs') || statusBadge.parentElement.classList.contains('md:hidden')) {
         // Mobile badge (smaller)
@@ -921,10 +929,10 @@ function updateTableRowStatus(orderIndex, newStatus) {
         // Tablet/Desktop badge (larger)
         statusBadge.classList.add('px-4', 'py-2', 'text-sm');
       }
-      
+
       // Add status-specific classes
       statusBadge.classList.add(...statusClass.split(' '));
-      
+
       // Update content
       statusBadge.innerHTML = `${statusIcon}${newStatus}`;
     });
