@@ -54,7 +54,7 @@ window.translations_nl = {
       "total_spaces": "Totaal Ruimtes",
       "total_components": "Total Onderdelen",
       "total_hours": "Totaal Uren",
-      "max_guests": "Maximaal Aantal Gasten",
+      "max_guests": "Max. Aantal Gasten",
       "booker": "Boeker",
       "location_manager": "Locatiemanager",
       "program": "Programma",
@@ -150,7 +150,7 @@ window.translations_nl = {
       "total_hours": "Totaal Uren",
       "total_spaces": "Totaal Ruimtes",
       "total_products": "Totaal Producten",
-      "max_guests": "Maximaal Aantal Gasten",
+      "max_guests": "Max. Aantal Gasten",
       "financial_summary": {
         "total_excl_vat": "Totaal Exclusief BTW:",
         "vat_amount": "BTW-bedrag:",
