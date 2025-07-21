@@ -18,7 +18,8 @@ function initI18n() {
     debug: false,
     resources: {
       nl: window.translations_nl || {},
-      en: window.translations_en || {}
+      en: window.translations_en || {},
+      de: window.translations_de || {}
     }
   });
 }
@@ -87,53 +88,61 @@ function addLanguageSwitcher() {
 
   if (headerContainer) {
     // If we found the header container, we'll add the switcher there
-    switcher.className = 'language-switcher flex items-center';
+    switcher.className = 'flex items-center language-switcher';
 
-    // Create language buttons
-    const languages = [
-      { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
-      { code: 'en', name: 'English', flag: '🇬🇧' }
-    ];
+    // Create language dropdown
+    const dropdown = document.createElement('select');
+    dropdown.className = 'p-2 text-black rounded-md language-dropdown bg-white/20';
 
-    // Create a single toggle button that shows the current language flag
-    const toggleButton = document.createElement('button');
-    toggleButton.className = 'language-toggle-button w-10 h-10 flex items-center justify-center rounded-full transition-colors bg-white/20 hover:bg-white/30';
-    toggleButton.setAttribute('title', i18next.language === 'nl' ? 'Switch to English' : 'Schakel naar Nederlands');
-    toggleButton.innerHTML = i18next.language === 'nl' ? '🇳🇱' : '🇬🇧';
+    // Get available languages from the global function
+    const languages = window.getAvailableLanguages();
 
-    // Add click event to toggle between languages
-    toggleButton.addEventListener('click', () => {
-      const newLang = i18next.language === 'nl' ? 'en' : 'nl';
-      changeLanguage(newLang);
-
-      // Update button content
-      toggleButton.innerHTML = newLang === 'nl' ? '🇳🇱' : '🇬🇧';
-      toggleButton.setAttribute('title', newLang === 'nl' ? 'Switch to English' : 'Schakel naar Nederlands');
+    languages.forEach(lang => {
+      const option = document.createElement('option');
+      option.value = lang.code;
+      option.textContent = `${lang.flag} ${lang.code.toUpperCase()}`;
+      if (lang.code === i18next.language) {
+        option.selected = true;
+      }
+      dropdown.appendChild(option);
     });
 
-    switcher.appendChild(toggleButton);
+    // Add change event to switch languages
+    dropdown.addEventListener('change', (e) => {
+      const newLang = e.target.value;
+      changeLanguage(newLang);
+    });
+
+    switcher.appendChild(dropdown);
     headerContainer.appendChild(switcher);
   } else {
     // Fallback to the original fixed position if header container not found
-    switcher.className = 'language-switcher fixed top-4 right-4 z-50 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-gray-200 p-2';
+    switcher.className = 'fixed z-50 p-2 border border-gray-200 rounded-full shadow-lg language-switcher top-4 right-4 bg-white/80 backdrop-blur-sm';
 
-    // Create a single toggle button
-    const toggleButton = document.createElement('button');
-    toggleButton.className = 'language-toggle-button w-10 h-10 flex items-center justify-center rounded-full transition-colors';
-    toggleButton.setAttribute('title', i18next.language === 'nl' ? 'Switch to English' : 'Schakel naar Nederlands');
-    toggleButton.innerHTML = i18next.language === 'nl' ? '🇳🇱' : '🇬🇧';
+    // Create language dropdown
+    const dropdown = document.createElement('select');
+    dropdown.className = 'p-2 text-black rounded-md language-dropdown bg-white/20';
 
-    // Add click event to toggle between languages
-    toggleButton.addEventListener('click', () => {
-      const newLang = i18next.language === 'nl' ? 'en' : 'nl';
-      changeLanguage(newLang);
+    // Get available languages from the global function
+    const languages = window.getAvailableLanguages();
 
-      // Update button content
-      toggleButton.innerHTML = newLang === 'nl' ? '🇳🇱' : '🇬🇧';
-      toggleButton.setAttribute('title', newLang === 'nl' ? 'Switch to English' : 'Schakel naar Nederlands');
+    languages.forEach(lang => {
+      const option = document.createElement('option');
+      option.value = lang.code;
+      option.textContent = `${lang.flag} ${lang.code.toUpperCase()}`;
+      if (lang.code === i18next.language) {
+        option.selected = true;
+      }
+      dropdown.appendChild(option);
     });
 
-    switcher.appendChild(toggleButton);
+    // Add change event to switch languages
+    dropdown.addEventListener('change', (e) => {
+      const newLang = e.target.value;
+      changeLanguage(newLang);
+    });
+
+    switcher.appendChild(dropdown);
     document.body.appendChild(switcher);
   }
 }

@@ -146,7 +146,13 @@ window.translations_en = {
       "full_view": "Full View",
       "table_view": "Table View",
       "kanban_view": "Kanban View",
+      "home": "Home",
+      "description": "Real-time preparation and service schedule for the Tuesday Lunch event. Monitor progress, timing and quality control for all menu items.",
       "filter": {
+        "category_label": "Filter by Category",
+        "guest_type_label": "Filter by Guest Type",
+        "space_label": "Filter by Space",
+        "status_label": "Filter by Status",
         "category": "Filter by Category",
         "all_categories": "All Categories",
         "beverages": "Beverages",
@@ -187,7 +193,6 @@ window.translations_en = {
       "end_time": "End Time:",
       "duration": "Duration:",
       "special_notes": "Special Notes",
-      "description": "Real-time preparation and service schedule for the Tuesday Lunch event. Monitor progress, timing and quality control for all menu items.",
       "notes": "Notes:"
     },
 

@@ -26,87 +26,89 @@
     <script src="https://unpkg.com/i18next@latest/i18next.min.js"></script>
     <script src="./i18n/translations/nl.js"></script>
     <script src="./i18n/translations/en.js"></script>
+    <script src="./i18n/translations/de.js"></script>
+    <script src="./i18n/translations/index.js"></script>
     <script src="./i18n/i18n.js"></script>
 </head>
 
 <body
-    class="min-h-screen font-sans transition-all duration-300 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 text-sm md:text-base">
+    class="min-h-screen font-sans text-sm transition-all duration-300 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 md:text-base">
     <!-- Header -->
-    <header class="bg-primary backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-600/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header class="sticky top-0 z-50 border-b shadow-lg bg-primary backdrop-blur-md border-gray-600/50">
+        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-[124px]">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
+                    <div class="flex items-center flex-shrink-0">
                         <img src="https://kloosterbethlehem.nl/wp-content/uploads/2022/06/Logo-wit.svg"
-                            alt="Keukenblad Logo" class="h-12 w-auto" width="120" height="48">
+                            alt="Keukenblad Logo" class="w-auto h-12" width="120" height="48">
                     </div>
                 </div>
                 <!-- Navigation -->
-                <nav class="hidden md:flex space-x-8">
+                <nav class="hidden space-x-8 md:flex">
                     <!-- Home link removed -->
                 </nav>
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
                     <button id="mobile-menu-button"
-                        class="text-gray-200 hover:text-white transition-colors duration-200">
-                        <i class="fas fa-bars text-xl"></i>
+                        class="text-gray-200 transition-colors duration-200 hover:text-white">
+                        <i class="text-xl fas fa-bars"></i>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-primary/95 backdrop-blur-md border-t border-gray-600/50">
+        <div id="mobile-menu" class="hidden border-t md:hidden bg-primary/95 backdrop-blur-md border-gray-600/50">
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <!-- Home link removed -->
             </div>
         </div>
     </header>
     <!-- Main Content -->
-    <main role="main" class="max-w-8xl mx-auto p-6 md:p-10 md:pt-20">
+    <main role="main" class="p-6 mx-auto max-w-8xl md:p-10 md:pt-20">
         <!-- Page Header -->
-        <header class="relative h-64 rounded-xl overflow-hidden mb-16" aria-labelledby="page-title">
-            <div class="absolute inset-0 bg-cover bg-center"
+        <header class="relative h-64 mb-16 overflow-hidden rounded-xl" aria-labelledby="page-title">
+            <div class="absolute inset-0 bg-center bg-cover"
                 data-bg-url="https://images.pexels.com/photos/326281/pexels-photo-326281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
             </div>
             <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-            <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-6">
-                <h1 id="page-title" class="text-2xl md:text-4xl lg:text-6xl font-serif font-bold mb-4"
+            <div class="relative flex flex-col items-center justify-center h-full p-6 text-center text-white">
+                <h1 id="page-title" class="mb-4 font-serif text-2xl font-bold md:text-4xl lg:text-6xl"
                     data-i18n="main.title">
                     Event Operation Dashboard
                 </h1>
-                <p class="text-base md:text-xl lg:text-2xl font-sans max-w-2xl mx-auto leading-relaxed text-balance"
+                <p class="max-w-2xl mx-auto font-sans text-base leading-relaxed md:text-xl lg:text-2xl text-balance"
                     data-i18n="main.subtitle">
                     Beheer en bekijk al uw aankomende evenementen op één centrale locatie.
                 </p>
             </div>
         </header>
         <!-- Filter Section -->
-        <div class="mb-16 p-7 md:p-10 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-200 shadow-lg">
-            <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-8 flex items-center"
+        <div class="mb-16 border border-gray-200 shadow-lg p-7 md:p-10 bg-white/90 backdrop-blur-sm rounded-xl">
+            <h2 class="flex items-center mb-8 font-serif text-xl font-bold text-gray-900 md:text-2xl lg:text-4xl"
                 data-i18n="main.filters.title">
-                <i class="fas fa-filter mr-3 text-primary"></i>
+                <i class="mr-3 fas fa-filter text-primary"></i>
                 Filters & Zoeken
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
                 <div>
                     <label for="search-box"
-                        class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide truncate"
+                        class="block mb-3 text-sm font-bold tracking-wide text-gray-700 uppercase truncate"
                         data-i18n="main.filters.search">
                         Zoek Evenementen
                     </label>
                     <input type="text" id="search-box" data-i18n-placeholder="main.filters.search_placeholder"
                         placeholder="Voer evenementnaam in..."
-                        class="w-full px-4 py-4 rounded-lg bg-white text-gray-900 border border-gray-200 focus:ring focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
+                        class="w-full px-4 py-4 font-medium text-gray-900 transition-colors bg-white border border-gray-200 rounded-lg focus:ring focus:ring-primary focus:border-primary focus:outline-none">
                 </div>
                 <div>
                     <label for="status-filter"
-                        class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide truncate"
+                        class="block mb-3 text-sm font-bold tracking-wide text-gray-700 uppercase truncate"
                         data-i18n="main.filters.status">
                         Filteren op Status
                     </label>
                     <select id="status-filter"
-                        class="w-full px-4 py-4 rounded-lg bg-white text-gray-900 border border-gray-200 focus:ring focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
+                        class="w-full px-4 py-4 font-medium text-gray-900 transition-colors bg-white border border-gray-200 rounded-lg focus:ring focus:ring-primary focus:border-primary focus:outline-none">
                         <option value="all" data-i18n="main.filters.status_all">Alle Statussen</option>
                         <option value="Confirmed" data-i18n="main.filters.status_confirmed">Bevestigd</option>
                         <option value="Pending" data-i18n="main.filters.status_pending">In afwachting</option>
@@ -114,12 +116,12 @@
                 </div>
                 <div>
                     <label for="type-filter"
-                        class="block text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide truncate"
+                        class="block mb-3 text-sm font-bold tracking-wide text-gray-700 uppercase truncate"
                         data-i18n="main.filters.type">
                         Filteren op Evenementtype
                     </label>
                     <select id="type-filter"
-                        class="w-full px-4 py-4 rounded-lg bg-white text-gray-900 border border-gray-200 focus:ring focus:ring-primary focus:border-primary focus:outline-none transition-colors font-medium">
+                        class="w-full px-4 py-4 font-medium text-gray-900 transition-colors bg-white border border-gray-200 rounded-lg focus:ring focus:ring-primary focus:border-primary focus:outline-none">
                         <option value="all" data-i18n="main.filters.type_all">Alle Types</option>
                         <option value="Corporate Event" data-i18n="main.filters.type_corporate">Bedrijfsevenement
                         </option>
@@ -135,55 +137,55 @@
         <div id="events-container" class="space-y-12">
             <!-- Today's Events -->
             <div class="event-group">
-                <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 text-center mb-10 pb-4 border-b border-gray-200/60"
+                <h2 class="pb-4 mb-10 font-serif text-xl font-bold text-center text-gray-900 border-b md:text-2xl lg:text-4xl border-gray-200/60"
                     data-i18n="main.events.today">
-                    <i class="fas fa-calendar-day mr-3 text-primary"></i>
+                    <i class="mr-3 fas fa-calendar-day text-primary"></i>
                     Vandaag
                 </h2>
                 <div class="space-y-8">
                     <!-- Event Card 5 -->
-                    <div class="event-card bg-white rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+                    <div class="overflow-hidden transition-all duration-300 bg-white border border-gray-200 shadow-lg event-card rounded-xl hover:shadow-xl"
                         data-status="Confirmed" data-type="Workshop">
                         <!-- Event Header (now a clickable div) -->
                         <div
-                            class="event-card-header block p-6 md:p-8 bg-white hover:bg-gray-50 transition-colors cursor-pointer">
-                            <div class="flex items-start md:items-center justify-between">
+                            class="block p-6 transition-colors bg-white cursor-pointer event-card-header md:p-8 hover:bg-gray-50">
+                            <div class="flex items-start justify-between md:items-center">
                                 <div
-                                    class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-start md:items-center">
+                                    class="grid items-start flex-1 grid-cols-1 gap-6 lg:grid-cols-2 md:gap-8 md:items-center">
                                     <div class="flex items-center flex-1">
                                         <img src="https://i.pravatar.cc/40?u=synergy" alt="Avatar of Synergy Inc."
-                                            class="w-12 h-12 md:w-16 md:h-16 rounded-full mr-4 md:mr-6 ring-4 ring-primary/20"
+                                            class="w-12 h-12 mr-4 rounded-full md:w-16 md:h-16 md:mr-6 ring-4 ring-primary/20"
                                             width="64" height="64">
                                         <div>
-                                            <h3 class="font-serif font-bold text-gray-900 text-base md:text-lg lg:text-xl event-name mb-2"
+                                            <h3 class="mb-2 font-serif text-base font-bold text-gray-900 md:text-lg lg:text-xl event-name"
                                                 data-i18n="event.name_placeholder">
                                                 Event name goes here
                                             </h3>
-                                            <p class="text-primary font-sans font-semibold text-sm md:text-base">
-                                                <i class="fas fa-building mr-1"></i>
+                                            <p class="font-sans text-sm font-semibold text-primary md:text-base">
+                                                <i class="mr-1 fas fa-building"></i>
                                                 <span data-i18n="event.company_placeholder">Company or Mainbooker</span>
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                                    <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
                                         <!-- Date and Time on same row for both mobile and desktop -->
-                                        <div class="md:col-span-2 flex flex-row gap-4 md:gap-8">
+                                        <div class="flex flex-row gap-4 md:col-span-2 md:gap-8">
                                             <div class="flex-1">
                                                 <p
-                                                    class="text-xs md:text-sm font-semibold text-gray-500 uppercase tracking-wide font-sans mb-2">
-                                                    <i class="fas fa-calendar mr-1"></i>
+                                                    class="mb-2 font-sans text-xs font-semibold tracking-wide text-gray-500 uppercase md:text-sm">
+                                                    <i class="mr-1 fas fa-calendar"></i>
                                                     <span data-i18n="event.date">Datum</span>
                                                 </p>
-                                                <p class="text-gray-600 font-sans text-sm md:text-base"
+                                                <p class="font-sans text-sm text-gray-600 md:text-base"
                                                     data-i18n-date="15 Jul 2025">15 Jul 2025</p>
                                             </div>
                                             <div class="flex-1">
                                                 <p
-                                                    class="text-xs md:text-sm font-semibold text-gray-500 uppercase tracking-wide font-sans mb-2">
-                                                    <i class="fas fa-clock mr-1"></i>
+                                                    class="mb-2 font-sans text-xs font-semibold tracking-wide text-gray-500 uppercase md:text-sm">
+                                                    <i class="mr-1 fas fa-clock"></i>
                                                     <span data-i18n="event.time">Tijd</span>
                                                 </p>
-                                                <p class="text-gray-600 font-sans text-sm md:text-base"
+                                                <p class="font-sans text-sm text-gray-600 md:text-base"
                                                     data-i18n-time="10:00 - 17:00">10:00 - 17:00
                                                 </p>
                                             </div>
@@ -191,34 +193,34 @@
                                         <!-- Guest types in same row on mobile -->
                                         <div>
                                             <p
-                                                class="text-xs md:text-sm font-semibold text-gray-500 uppercase tracking-wide font-sans mb-2">
-                                                <i class="fas fa-users mr-1"></i>
+                                                class="mb-2 font-sans text-xs font-semibold tracking-wide text-gray-500 uppercase md:text-sm">
+                                                <i class="mr-1 fas fa-users"></i>
                                                 <span data-i18n="event.guest_count">10-100</span>
                                             </p>
-                                            <p class="text-gray-600 font-sans text-sm md:text-base event-type"
+                                            <p class="font-sans text-sm text-gray-600 md:text-base event-type"
                                                 data-i18n="event.guest_types">AR/BR/XF
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="ml-4 md:ml-6 flex-shrink-0">
+                                <div class="flex-shrink-0 ml-4 md:ml-6">
                                     <i
-                                        class="fas fa-chevron-down text-primary transition-transform duration-300 event-card-arrow text-xl md:text-2xl"></i>
+                                        class="text-xl transition-transform duration-300 fas fa-chevron-down text-primary event-card-arrow md:text-2xl"></i>
                                 </div>
                             </div>
                         </div>
                         <!-- Event Body (Hidden by default) -->
-                        <div class="event-card-content transition-all duration-500 bg-white">
+                        <div class="transition-all duration-500 bg-white event-card-content">
                             <!-- Cover Image -->
-                            <div class="h-64 bg-cover bg-center"
+                            <div class="h-64 bg-center bg-cover"
                                 data-bg-url="https://images.pexels.com/photos/1595391/pexels-photo-1595391.jpeg?auto=compress&cs=tinysrgb&w=1200">
-                                <div class="h-full bg-black bg-opacity-40 flex items-end">
+                                <div class="flex items-end h-full bg-black bg-opacity-40">
                                     <div class="p-8">
-                                        <h2 class="text-white text-xl md:text-2xl lg:text-4xl font-serif font-bold"
+                                        <h2 class="font-serif text-xl font-bold text-white md:text-2xl lg:text-4xl"
                                             data-i18n="event.title_placeholder">
                                             Team Building Workshop
                                         </h2>
-                                        <p class="text-white/90 font-sans font-medium text-sm md:text-base lg:text-lg"
+                                        <p class="font-sans text-sm font-medium text-white/90 md:text-base lg:text-lg"
                                             data-i18n="event.description_placeholder">
                                             Interactive team development session</p>
                                     </div>
@@ -226,73 +228,73 @@
                             </div>
                             <div class="p-7">
                                 <!-- Row 1: Overview and Guest Types -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                <div class="grid grid-cols-1 gap-8 mb-8 md:grid-cols-2">
                                     <!-- Overview Card -->
-                                    <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                                    <div class="p-5 border border-gray-200 bg-gray-50 rounded-xl">
                                         <h4
-                                            class="font-serif font-bold text-gray-900 border-b border-gray-200/50 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
-                                            <i class="fas fa-info-circle mr-3 text-primary"></i>
+                                            class="flex items-center pb-4 mb-6 font-serif text-sm font-bold text-gray-900 border-b border-gray-200/50 md:text-base lg:text-lg">
+                                            <i class="mr-3 fas fa-info-circle text-primary"></i>
                                             <span data-i18n="event.overview">Overview</span>
                                         </h4>
                                         <div class="space-y-4 font-sans text-sm">
-                                            <div class="flex justify-between items-center">
-                                                <span class="text-gray-600 font-medium"
+                                            <div class="flex items-center justify-between">
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.status">Status:</span>
                                                 <span
-                                                    class="event-status inline-flex px-4 py-2 rounded-full text-sm font-bold bg-primary text-white">
-                                                    <i class="fas fa-check mr-2"></i><span
+                                                    class="inline-flex px-4 py-2 text-sm font-bold text-white rounded-full event-status bg-primary">
+                                                    <i class="mr-2 fas fa-check"></i><span
                                                         data-i18n="event.status_confirmed">Bevestigd</span>
                                                 </span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 font-medium"
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.total_products">Totaal
                                                     Producten:</span>
-                                                <span class="font-bold text-gray-900 text-base">45</span>
+                                                <span class="text-base font-bold text-gray-900">45</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 font-medium"
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.total_spaces">Totaal
                                                     Ruimtes:</span>
-                                                <span class="font-bold text-gray-900 text-base">3</span>
+                                                <span class="text-base font-bold text-gray-900">3</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 font-medium"
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.total_components">Total
                                                     Onderdelen:</span>
-                                                <span class="font-bold text-gray-900 text-base">127</span>
+                                                <span class="text-base font-bold text-gray-900">127</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 font-medium"
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.total_hours">Totaal
                                                     Uren:</span>
-                                                <span class="font-bold text-gray-900 text-base">5h</span>
+                                                <span class="text-base font-bold text-gray-900">5h</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 font-medium"
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.max_guests">Maximaal
                                                     Aantal Gasten:</span>
-                                                <span class="font-bold text-gray-900 text-base">250</span>
+                                                <span class="text-base font-bold text-gray-900">250</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 font-medium"
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.booker">Boeker:</span>
-                                                <span class="font-bold text-gray-900 text-base">Sarah
+                                                <span class="text-base font-bold text-gray-900">Sarah
                                                     Johnson</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 font-medium"
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.location_manager">Locatiemanager:</span>
-                                                <span class="font-bold text-gray-900 text-base">Michael
+                                                <span class="text-base font-bold text-gray-900">Michael
                                                     Chen</span>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Guest Types Card -->
-                                    <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                                    <div class="p-5 border border-gray-200 bg-gray-50 rounded-xl">
                                         <h4
-                                            class="font-serif font-bold text-gray-900 border-b border-gray-200/50 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
-                                            <i class="fas fa-users mr-3 text-primary"></i>
+                                            class="flex items-center pb-4 mb-6 font-serif text-sm font-bold text-gray-900 border-b border-gray-200/50 md:text-base lg:text-lg">
+                                            <i class="mr-3 fas fa-users text-primary"></i>
                                             <span data-i18n="event.program">Programma</span> - <span
                                                 data-i18n="event.program_name">Program Name</span>
                                         </h4>
@@ -300,18 +302,18 @@
                                             <div class="flex items-center">
                                                 <div class="flex flex-col flex-1 lg:flex-row lg:items-center lg:gap-2">
                                                     <div class="lg:w-24">
-                                                        <span class="text-gray-600 text-sm font-medium"
+                                                        <span class="text-sm font-medium text-gray-600"
                                                             data-i18n-time="10:00 - 17:00">10:00 -
                                                             17:00</span>
                                                     </div>
                                                     <div class="lg:flex-1">
-                                                        <span class="font-semibold text-gray-900 text-sm truncate"
+                                                        <span class="text-sm font-semibold text-gray-900 truncate"
                                                             data-i18n="event.timeslot1">Timeslot
                                                             1</span>
                                                     </div>
                                                 </div>
                                                 <div class="flex items-center justify-start md:justify-end">
-                                                    <span class="font-bold text-gray-900 text-sm truncate"
+                                                    <span class="text-sm font-bold text-gray-900 truncate"
                                                         data-i18n="event.guest_details">10 Kids, 2
                                                         Adults</span>
                                                 </div>
@@ -320,116 +322,116 @@
                                     </div>
                                 </div>
                                 <!-- Row 2: Spaces and Products -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                <div class="grid grid-cols-1 gap-8 mb-8 md:grid-cols-2">
                                     <!-- Spaces Card -->
-                                    <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                                    <div class="p-5 border border-gray-200 bg-gray-50 rounded-xl">
                                         <h4
-                                            class="font-serif font-bold text-gray-900 border-b border-gray-200/50 pb-4 mb-4 text-sm md:text-base lg:text-lg flex items-center">
-                                            <i class="fas fa-map-marker-alt mr-3 text-primary"></i>
+                                            class="flex items-center pb-4 mb-4 font-serif text-sm font-bold text-gray-900 border-b border-gray-200/50 md:text-base lg:text-lg">
+                                            <i class="mr-3 fas fa-map-marker-alt text-primary"></i>
                                             <span data-i18n="event.spaces">Ruimtes</span>
                                         </h4>
                                         <div class="space-y-4 font-sans text-sm">
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 font-medium"
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.space1_name">Grand Ballroom</span>
-                                                <span class="font-bold text-gray-900 text-base"
+                                                <span class="text-base font-bold text-gray-900"
                                                     data-i18n-time="10:00 - 17:00">10:00 - 17:00</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 font-medium"
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.space2_name">VIP Lounge</span>
-                                                <span class="font-bold text-gray-900 text-base"
+                                                <span class="text-base font-bold text-gray-900"
                                                     data-i18n-time="10:00 - 17:00">10:00 - 17:00</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 font-medium"
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.space3_name">Outdoor Terrace</span>
-                                                <span class="font-bold text-gray-900 text-base"
+                                                <span class="text-base font-bold text-gray-900"
                                                     data-i18n-time="10:00 - 17:00">10:00 - 17:00</span>
                                             </div>
-                                            <div class="flex justify-between border-t border-primary/40 pt-4 mt-6">
-                                                <span class="font-semibold text-gray-900 text-base"
+                                            <div class="flex justify-between pt-4 mt-6 border-t border-primary/40">
+                                                <span class="text-base font-semibold text-gray-900"
                                                     data-i18n="event.total_hours">Totaal Uren:</span>
-                                                <span class="font-bold text-primary text-xl">24</span>
+                                                <span class="text-xl font-bold text-primary">24</span>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Products Card -->
-                                    <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                                    <div class="p-5 border border-gray-200 bg-gray-50 rounded-xl">
                                         <h4
-                                            class="font-serif font-bold text-gray-900 border-b border-gray-200/50 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
-                                            <i class="fas fa-box mr-3 text-primary"></i>
+                                            class="flex items-center pb-4 mb-6 font-serif text-sm font-bold text-gray-900 border-b border-gray-200/50 md:text-base lg:text-lg">
+                                            <i class="mr-3 fas fa-box text-primary"></i>
                                             <span data-i18n="event.products">Producten</span>
                                         </h4>
                                         <div class="space-y-4 font-sans text-sm">
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 font-medium"
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.product1_name">Premium Catering</span>
-                                                <span class="font-bold text-gray-900 text-base">250</span>
+                                                <span class="text-base font-bold text-gray-900">250</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 font-medium"
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.product2_name">Audio Equipment</span>
-                                                <span class="font-bold text-gray-900 text-base">5</span>
+                                                <span class="text-base font-bold text-gray-900">5</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 font-medium"
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.product3_name">Floral Arrangements</span>
-                                                <span class="font-bold text-gray-900 text-base">12</span>
+                                                <span class="text-base font-bold text-gray-900">12</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-gray-600 font-medium"
+                                                <span class="font-medium text-gray-600"
                                                     data-i18n="event.product4_name">Bar Service</span>
-                                                <span class="font-bold text-gray-900 text-base">3</span>
+                                                <span class="text-base font-bold text-gray-900">3</span>
                                             </div>
-                                            <div class="flex justify-between border-t border-primary/40 pt-4 mt-6">
-                                                <span class="font-semibold text-gray-900 text-base"
+                                            <div class="flex justify-between pt-4 mt-6 border-t border-primary/40">
+                                                <span class="text-base font-semibold text-gray-900"
                                                     data-i18n="event.total_products">Totaal Producten:</span>
-                                                <span class="font-bold text-primary text-xl">45</span>
+                                                <span class="text-xl font-bold text-primary">45</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Row 3: Financial Summary -->
                                 <div
-                                    class="bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl p-5 border border-primary/30">
+                                    class="p-5 border bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl border-primary/30">
                                     <h4
-                                        class="font-serif font-bold text-gray-900 border-b border-primary/40 pb-4 mb-6 text-sm md:text-base lg:text-lg flex items-center">
-                                        <i class="fas fa-euro-sign mr-3 text-primary"></i>
+                                        class="flex items-center pb-4 mb-6 font-serif text-sm font-bold text-gray-900 border-b border-primary/40 md:text-base lg:text-lg">
+                                        <i class="mr-3 fas fa-euro-sign text-primary"></i>
                                         <span data-i18n="event.financial">Financieel Overzicht</span>
                                     </h4>
                                     <div class="space-y-4 font-sans text-sm">
                                         <div class="flex justify-between">
-                                            <span class="text-gray-700 font-medium" data-i18n="event.amount_excl">Bedrag
+                                            <span class="font-medium text-gray-700" data-i18n="event.amount_excl">Bedrag
                                                 (excl. BTW):</span>
-                                            <span class="font-bold text-gray-900 text-base">€15.750,00</span>
+                                            <span class="text-base font-bold text-gray-900">€15.750,00</span>
                                         </div>
                                         <div class="flex justify-between">
-                                            <span class="text-gray-700 font-medium"
+                                            <span class="font-medium text-gray-700"
                                                 data-i18n="event.vat_amount">BTW-bedrag:</span>
-                                            <span class="font-bold text-gray-900 text-base">€3.150,00</span>
+                                            <span class="text-base font-bold text-gray-900">€3.150,00</span>
                                         </div>
-                                        <div class="flex justify-between border-t border-primary/40 pt-4 mt-6">
-                                            <span class="font-semibold text-gray-900 text-lg"
+                                        <div class="flex justify-between pt-4 mt-6 border-t border-primary/40">
+                                            <span class="text-lg font-semibold text-gray-900"
                                                 data-i18n="event.total_incl">Totaal (incl. BTW):</span>
-                                            <span class="font-bold text-primary text-2xl">€18.900,00</span>
+                                            <span class="text-2xl font-bold text-primary">€18.900,00</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- Event Footer -->
-                            <div class="bg-gray-50 px-4 sm:px-6 md:px-8 py-4 md:py-6 border-t border-gray-200/50">
-                                <div class="flex justify-center md:justify-end items-center w-full">
+                            <div class="px-4 py-4 border-t bg-gray-50 sm:px-6 md:px-8 md:py-6 border-gray-200/50">
+                                <div class="flex items-center justify-center w-full md:justify-end">
                                     <div
-                                        class="grid w-full md:w-auto grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 font-sans">
+                                        class="grid w-full grid-cols-1 gap-3 font-sans md:w-auto md:grid-cols-2 md:gap-4">
                                         <a href="./banquete.html"
-                                            class="text-center bg-primary hover:bg-primary/90 text-white px-4 sm:px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold transition-all duration-200 shadow-lg hover:shadow-xl text-sm md:text-base">
-                                            <i class="fas fa-concierge-bell mr-2"></i>
+                                            class="px-4 py-3 text-sm font-bold text-center text-white transition-all duration-200 shadow-lg bg-primary hover:bg-primary/90 sm:px-6 md:px-8 md:py-4 rounded-xl hover:shadow-xl md:text-base">
+                                            <i class="mr-2 fas fa-concierge-bell"></i>
                                             <span data-i18n="event.banqueting">Banqueting</span>
                                         </a>
                                         <a href="./kitchen-kanban.html"
-                                            class="text-center border border-primary bg-transparent text-primary hover:bg-primary hover:text-white px-4 sm:px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold transition-all duration-200 shadow-lg hover:shadow-xl text-sm md:text-base">
-                                            <i class="fas fa-utensils mr-2"></i>
+                                            class="px-4 py-3 text-sm font-bold text-center transition-all duration-200 bg-transparent border shadow-lg border-primary text-primary hover:bg-primary hover:text-white sm:px-6 md:px-8 md:py-4 rounded-xl hover:shadow-xl md:text-base">
+                                            <i class="mr-2 fas fa-utensils"></i>
                                             <span data-i18n="event.kitchen_view">Keukenweergave</span>
                                         </a>
                                     </div>
@@ -441,21 +443,21 @@
             </div>
             <!-- Upcoming Events -->
             <div class="event-group">
-                <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 text-center mb-10 pb-4 border-b border-gray-200/60"
+                <h2 class="pb-4 mb-10 font-serif text-xl font-bold text-center text-gray-900 border-b md:text-2xl lg:text-4xl border-gray-200/60"
                     data-i18n="main.events.upcoming">
-                    <i class="fas fa-calendar-alt mr-3 text-primary"></i>
+                    <i class="mr-3 fas fa-calendar-alt text-primary"></i>
                     Aankomend
                 </h2>
                 <div class="space-y-8">
                     <!-- Empty state for upcoming events -->
                     <div
-                        class="empty-state-upcoming bg-white rounded-xl p-8 border border-gray-200 shadow-lg w-full text-center">
-                        <i class="fas fa-calendar-day text-primary text-5xl mb-6 opacity-70"></i>
-                        <h3 class="font-serif font-bold text-xl md:text-2xl text-gray-900 mb-3"
+                        class="w-full p-8 text-center bg-white border border-gray-200 shadow-lg empty-state-upcoming rounded-xl">
+                        <i class="mb-6 text-5xl fas fa-calendar-day text-primary opacity-70"></i>
+                        <h3 class="mb-3 font-serif text-xl font-bold text-gray-900 md:text-2xl"
                             data-i18n="main.events.no_upcoming">
                             Geen aankomende evenementen
                         </h3>
-                        <p class="text-sm md:text-base text-gray-600 leading-relaxed max-w-lg mx-auto"
+                        <p class="max-w-lg mx-auto text-sm leading-relaxed text-gray-600 md:text-base"
                             data-i18n="main.events.no_upcoming_desc">
                             Er zijn momenteel geen aankomende evenementen gepland. Nieuwe evenementen zullen hier
                             verschijnen zodra ze zijn toegevoegd.
@@ -466,13 +468,13 @@
         </div>
         <!-- Empty State -->
         <div id="empty-state" class="hidden text-center">
-            <div class="bg-white rounded-xl p-11 border border-gray-200 shadow-lg w-full">
-                <i class="fas fa-calendar-times text-primary text-6xl mb-6"></i>
-                <h3 class="font-serif font-bold text-xl md:text-2xl lg:text-3xl text-gray-900 mb-3"
+            <div class="w-full bg-white border border-gray-200 shadow-lg rounded-xl p-11">
+                <i class="mb-6 text-6xl fas fa-calendar-times text-primary"></i>
+                <h3 class="mb-3 font-serif text-xl font-bold text-gray-900 md:text-2xl lg:text-3xl"
                     data-i18n="main.events.no_events">
                     Geen evenementen gevonden
                 </h3>
-                <p class="text-sm md:text-base text-gray-600 leading-relaxed" data-i18n="main.events.no_events_desc">
+                <p class="text-sm leading-relaxed text-gray-600 md:text-base" data-i18n="main.events.no_events_desc">
                     Probeer uw zoek- of filtercriteria aan te passen.
                 </p>
             </div>
