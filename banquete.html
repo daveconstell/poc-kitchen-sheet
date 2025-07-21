@@ -26,26 +26,28 @@
     <script src="https://unpkg.com/i18next@latest/i18next.min.js"></script>
     <script src="./i18n/translations/nl.js"></script>
     <script src="./i18n/translations/en.js"></script>
+    <script src="./i18n/translations/de.js"></script>
+    <script src="./i18n/translations/index.js"></script>
     <script src="./i18n/i18n.js"></script>
 </head>
 
-<body class="min-h-screen font-sans transition-all duration-300 text-sm md:text-base">
+<body class="min-h-screen font-sans text-sm transition-all duration-300 md:text-base">
     <!-- Header -->
-    <header class="bg-primary backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-600/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header class="sticky top-0 z-50 border-b shadow-lg bg-primary backdrop-blur-md border-gray-600/50">
+        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-[124px]">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
+                    <div class="flex items-center flex-shrink-0">
                         <img src="https://kloosterbethlehem.nl/wp-content/uploads/2022/06/Logo-wit.svg"
-                            alt="Keukenblad Logo" class="h-12 w-auto" height="48" width="192">
+                            alt="Keukenblad Logo" class="w-auto h-12" height="48" width="192">
                     </div>
                 </div>
                 <!-- Navigation -->
-                <nav class="hidden md:flex space-x-8 ml-auto mr-4">
+                <nav class="hidden ml-auto mr-4 space-x-8 md:flex">
                     <a href="./index.html"
-                        class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-colors duration-200 font-medium flex items-center">
-                        <i class="fas fa-home-alt mr-2"></i>
+                        class="flex items-center px-4 py-2 font-medium text-white transition-colors duration-200 rounded-lg bg-white/20 hover:bg-white/30">
+                        <i class="mr-2 fas fa-home-alt"></i>
                         Home
                     </a>
                 </nav>
@@ -54,22 +56,22 @@
     </header>
     <!-- Back to Top Button -->
     <button id="back-to-top"
-        class="fixed bottom-6 right-6 bg-primary text-white p-3 rounded-full shadow-lg hover:bg-opacity-90 transition-all duration-300 z-40 hidden">
+        class="fixed z-40 hidden p-3 text-white transition-all duration-300 rounded-full shadow-lg bottom-6 right-6 bg-primary hover:bg-opacity-90">
         <i class="fas fa-arrow-up"></i>
     </button>
     <!-- Main Content -->
-    <main role="main" class="max-w-8xl mx-auto p-6 md:p-10 md:pt-20">
+    <main role="main" class="p-6 mx-auto max-w-8xl md:p-10 md:pt-20">
         <!-- Page Header -->
-        <header class="relative h-64 rounded-xl overflow-hidden mb-16" aria-labelledby="page-title">
-            <div class="absolute inset-0 bg-cover bg-center"
+        <header class="relative h-64 mb-16 overflow-hidden rounded-xl" aria-labelledby="page-title">
+            <div class="absolute inset-0 bg-center bg-cover"
                 style="background-image: url('https://images.pexels.com/photos/326281/pexels-photo-326281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')">
             </div>
             <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-            <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-6">
-                <h1 id="page-title" class="text-3xl md:text-5xl lg:text-6xl font-serif font-bold mb-4"
+            <div class="relative flex flex-col items-center justify-center h-full p-6 text-center text-white">
+                <h1 id="page-title" class="mb-4 font-serif text-3xl font-bold md:text-5xl lg:text-6xl"
                     data-i18n="banquete.title">Banquete Sheet
                 </h1>
-                <p class="text-base md:text-xl lg:text-2xl font-sans max-w-2xl mx-auto text-balance leading-relaxed"
+                <p class="max-w-2xl mx-auto font-sans text-base leading-relaxed md:text-xl lg:text-2xl text-balance"
                     data-i18n="banquete.subtitle">
                     Een gedetailleerd overzicht van uw banketplanning en activiteiten.
                 </p>
@@ -77,120 +79,120 @@
         </header>
         <!-- Summary Section -->
         <section id="summary"
-            class="bg-white/90 backdrop-blur-sm p-7 md:p-10 rounded-xl shadow-lg mb-10 border border-gray-200">
-            <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-4 md:mb-8 pb-4">
-                <i class="fas fa-calendar-alt mr-3 text-primary"></i>
+            class="mb-10 border border-gray-200 shadow-lg bg-white/90 backdrop-blur-sm p-7 md:p-10 rounded-xl">
+            <h2 class="pb-4 mb-4 font-serif text-xl font-bold text-gray-900 md:text-2xl lg:text-4xl md:mb-8">
+                <i class="mr-3 fas fa-calendar-alt text-primary"></i>
                 <span data-i18n="banquete.summary">Summary</span>
             </h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-7 mb-12">
+            <div class="grid mb-12 md:grid-cols-2 lg:grid-cols-4 gap-7">
                 <!-- Total Hours -->
-                <div class="bg-gray-50 rounded-xl p-5 text-center border">
-                    <div class="text-primary mb-3">
-                        <i class="fas fa-clock text-2xl md:text-3xl"></i>
+                <div class="p-5 text-center border bg-gray-50 rounded-xl">
+                    <div class="mb-3 text-primary">
+                        <i class="text-2xl fas fa-clock md:text-3xl"></i>
                     </div>
-                    <h3 class="font-serif text-lg md:text-2xl font-semibold mb-2" data-i18n="banquete.total_hours">Total
+                    <h3 class="mb-2 font-serif text-lg font-semibold md:text-2xl" data-i18n="banquete.total_hours">Total
                         Hours</h3>
-                    <p class="font-sans text-base md:text-xl font-bold" data-i18n-hours="8">8 hours</p>
+                    <p class="font-sans text-base font-bold md:text-xl" data-i18n-hours="8">8 hours</p>
                 </div>
                 <!-- Total Spaces -->
-                <div class="bg-gray-50 rounded-xl p-5 text-center border">
-                    <div class="text-primary mb-3">
-                        <i class="fas fa-building text-2xl md:text-3xl"></i>
+                <div class="p-5 text-center border bg-gray-50 rounded-xl">
+                    <div class="mb-3 text-primary">
+                        <i class="text-2xl fas fa-building md:text-3xl"></i>
                     </div>
-                    <h3 class="font-serif text-lg md:text-2xl font-semibold mb-2" data-i18n="banquete.total_spaces">
+                    <h3 class="mb-2 font-serif text-lg font-semibold md:text-2xl" data-i18n="banquete.total_spaces">
                         Total Spaces</h3>
-                    <p class="font-sans text-base md:text-xl font-bold" data-i18n-spaces="2">2 spaces</p>
+                    <p class="font-sans text-base font-bold md:text-xl" data-i18n-spaces="2">2 spaces</p>
                 </div>
                 <!-- Total Products -->
-                <div class="bg-gray-50 rounded-xl p-5 text-center border">
-                    <div class="text-primary mb-3">
-                        <i class="fas fa-box text-2xl md:text-3xl"></i>
+                <div class="p-5 text-center border bg-gray-50 rounded-xl">
+                    <div class="mb-3 text-primary">
+                        <i class="text-2xl fas fa-box md:text-3xl"></i>
                     </div>
-                    <h3 class="font-serif text-lg md:text-2xl font-semibold mb-2" data-i18n="banquete.total_products">
+                    <h3 class="mb-2 font-serif text-lg font-semibold md:text-2xl" data-i18n="banquete.total_products">
                         Total Products</h3>
-                    <p class="font-sans text-base md:text-xl font-bold" data-i18n-items="18">18 items</p>
+                    <p class="font-sans text-base font-bold md:text-xl" data-i18n-items="18">18 items</p>
                 </div>
                 <!-- Max Guests -->
-                <div class="bg-gray-50 rounded-xl p-5 text-center border">
-                    <div class="text-primary mb-3">
-                        <i class="fas fa-users text-2xl md:text-3xl"></i>
+                <div class="p-5 text-center border bg-gray-50 rounded-xl">
+                    <div class="mb-3 text-primary">
+                        <i class="text-2xl fas fa-users md:text-3xl"></i>
                     </div>
-                    <h3 class="font-serif text-lg md:text-2xl font-semibold mb-2" data-i18n="banquete.max_guests">Max
+                    <h3 class="mb-2 font-serif text-lg font-semibold md:text-2xl" data-i18n="banquete.max_guests">Max
                         Guests</h3>
-                    <p class="font-sans text-base md:text-xl font-bold" data-i18n-guests="100">100 Kids</p>
+                    <p class="font-sans text-base font-bold md:text-xl" data-i18n-guests="100">100 Kids</p>
                 </div>
             </div>
             <!-- Financial Summary -->
-            <div class="bg-gray-50 rounded-xl p-7 border">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center items-center">
+            <div class="border bg-gray-50 rounded-xl p-7">
+                <div class="grid items-center grid-cols-1 gap-4 text-center md:grid-cols-3">
                     <div>
-                        <h4 class="font-serif text-base md:text-lg text-gray-600"
+                        <h4 class="font-serif text-base text-gray-600 md:text-lg"
                             data-i18n="banquete.financial_summary.total_excl_vat">Total Excluding VAT:</h4>
-                        <p class="font-sans text-base md:text-lg font-semibold">€4,496.65</p>
+                        <p class="font-sans text-base font-semibold md:text-lg">€4,496.65</p>
                     </div>
                     <div>
-                        <h4 class="font-serif text-base md:text-lg text-gray-600"
+                        <h4 class="font-serif text-base text-gray-600 md:text-lg"
                             data-i18n="banquete.financial_summary.vat_amount">VAT Amount:</h4>
-                        <p class="font-sans text-base md:text-lg font-semibold">€875.79</p>
+                        <p class="font-sans text-base font-semibold md:text-lg">€875.79</p>
                     </div>
                     <div>
-                        <h4 class="font-serif text-base md:text-lg text-gray-600"
+                        <h4 class="font-serif text-base text-gray-600 md:text-lg"
                             data-i18n="banquete.financial_summary.total_incl_vat">Total Including VAT:</h4>
-                        <p class="font-sans text-base md:text-lg font-semibold">€5,372.44</p>
+                        <p class="font-sans text-base font-semibold md:text-lg">€5,372.44</p>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Event Details Section -->
         <section id="event-details"
-            class="bg-white/90 backdrop-blur-sm p-7 md:p-10 rounded-xl shadow-lg mb-10 border border-gray-200">
-            <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-4 md:mb-8 pb-4">
-                <i class="fas fa-calendar-alt mr-3 text-primary"></i>
+            class="mb-10 border border-gray-200 shadow-lg bg-white/90 backdrop-blur-sm p-7 md:p-10 rounded-xl">
+            <h2 class="pb-4 mb-4 font-serif text-xl font-bold text-gray-900 md:text-2xl lg:text-4xl md:mb-8">
+                <i class="mr-3 fas fa-calendar-alt text-primary"></i>
                 <span data-i18n="banquete.overview">Overzicht</span>
             </h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-50 rounded-xl p-5 border flex flex-col">
-                    <h3 class="font-serif text-xl font-semibold mb-2" data-i18n="banquete.event.status">Status</h3>
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <div class="flex flex-col p-5 border bg-gray-50 rounded-xl">
+                    <h3 class="mb-2 font-serif text-xl font-semibold" data-i18n="banquete.event.status">Status</h3>
                     <p class="font-sans text-lg text-gray-600">Confirmed</p>
                 </div>
-                <div class="bg-gray-50 rounded-xl p-5 border flex flex-col">
-                    <h3 class="font-serif text-xl font-semibold mb-2" data-i18n="banquete.event.name">Event Name</h3>
+                <div class="flex flex-col p-5 border bg-gray-50 rounded-xl">
+                    <h3 class="mb-2 font-serif text-xl font-semibold" data-i18n="banquete.event.name">Event Name</h3>
                     <p class="font-sans text-lg text-gray-600">Summer Gala</p>
                 </div>
-                <div class="bg-gray-50 rounded-xl p-5 border flex flex-col">
-                    <h3 class="font-serif text-xl font-semibold mb-2" data-i18n="banquete.event.type">Event Type</h3>
+                <div class="flex flex-col p-5 border bg-gray-50 rounded-xl">
+                    <h3 class="mb-2 font-serif text-xl font-semibold" data-i18n="banquete.event.type">Event Type</h3>
                     <p class="font-sans text-lg text-gray-600">Corporate</p>
                 </div>
-                <div class="bg-gray-50 rounded-xl p-5 border flex flex-col">
-                    <h3 class="font-serif text-xl font-semibold mb-2" data-i18n="banquete.event.dates">Event Dates</h3>
+                <div class="flex flex-col p-5 border bg-gray-50 rounded-xl">
+                    <h3 class="mb-2 font-serif text-xl font-semibold" data-i18n="banquete.event.dates">Event Dates</h3>
                     <p class="font-sans text-lg text-gray-600">July 13, 2025 - July 14, 2025</p>
                 </div>
-                <div class="bg-gray-50 rounded-xl p-5 border flex flex-col">
-                    <h3 class="font-serif text-xl font-semibold mb-2" data-i18n="banquete.event.main_booker">Main Booker
+                <div class="flex flex-col p-5 border bg-gray-50 rounded-xl">
+                    <h3 class="mb-2 font-serif text-xl font-semibold" data-i18n="banquete.event.main_booker">Main Booker
                     </h3>
                     <div class="flex items-center gap-3">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Doe avatar"
-                            class="w-8 h-8 rounded-full object-cover border border-gray-300">
+                            class="object-cover w-8 h-8 border border-gray-300 rounded-full">
                         <div>
                             <p class="font-sans text-lg text-gray-600">John Doe</p>
-                            <p class="font-sans text-md text-gray-500">john.doe@example.com</p>
+                            <p class="font-sans text-gray-500 text-md">john.doe@example.com</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray-50 rounded-xl p-5 border flex flex-col">
-                    <h3 class="font-serif text-xl font-semibold mb-2" data-i18n="banquete.event.venue_manager">Venue
+                <div class="flex flex-col p-5 border bg-gray-50 rounded-xl">
+                    <h3 class="mb-2 font-serif text-xl font-semibold" data-i18n="banquete.event.venue_manager">Venue
                         Manager</h3>
                     <div class="flex items-center gap-3">
                         <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jane Smith avatar"
-                            class="w-8 h-8 rounded-full object-cover border border-gray-300">
+                            class="object-cover w-8 h-8 border border-gray-300 rounded-full">
                         <div>
                             <p class="font-sans text-lg text-gray-600">Jane Smith</p>
-                            <p class="font-sans text-md text-gray-500">jane.smith@example.com</p>
+                            <p class="font-sans text-gray-500 text-md">jane.smith@example.com</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray-50 rounded-xl p-5 border flex flex-col col-span-full">
-                    <h3 class="font-serif text-xl font-semibold mb-2" data-i18n="banquete.event.description">Event
+                <div class="flex flex-col p-5 border bg-gray-50 rounded-xl col-span-full">
+                    <h3 class="mb-2 font-serif text-xl font-semibold" data-i18n="banquete.event.description">Event
                         Description</h3>
                     <p class="font-sans text-lg text-gray-600">
                         An elegant summer gala to celebrate our company's success. The event will feature a dinner,
@@ -201,69 +203,69 @@
             </div>
         </section>
         <section id="programma"
-            class="bg-white/90 backdrop-blur-sm p-7 md:p-10 rounded-xl shadow-lg mb-10 border border-gray-200">
-            <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-4 md:mb-8 pb-4">
-                <i class="fas fa-calendar-alt mr-3 text-primary"></i>
+            class="mb-10 border border-gray-200 shadow-lg bg-white/90 backdrop-blur-sm p-7 md:p-10 rounded-xl">
+            <h2 class="pb-4 mb-4 font-serif text-xl font-bold text-gray-900 md:text-2xl lg:text-4xl md:mb-8">
+                <i class="mr-3 fas fa-calendar-alt text-primary"></i>
                 <span data-i18n="banquete.program">Programma</span>
             </h2>
             <!-- Day 1 Program Card -->
-            <div class="bg-white rounded-xl border border-gray-200 mb-8 overflow-hidden">
-                <div class="bg-gray-100 px-7 py-5 flex justify-between items-center">
-                    <h3 class="font-serif font-semibold text-base md:text-lg lg:text-xl" data-i18n-day="1"
+            <div class="mb-8 overflow-hidden bg-white border border-gray-200 rounded-xl">
+                <div class="flex items-center justify-between py-5 bg-gray-100 px-7">
+                    <h3 class="font-serif text-base font-semibold md:text-lg lg:text-xl" data-i18n-day="1"
                         data-i18n-date="July 13, 2025">Day 1 - July 13, 2025</h3>
-                    <span class="font-sans font-bold text-base md:text-lg lg:text-2xl text-primary">€4,089.44</span>
+                    <span class="font-sans text-base font-bold md:text-lg lg:text-2xl text-primary">€4,089.44</span>
                 </div>
                 <div class="p-5 space-y-4">
                     <!-- Algemeen Timeslot -->
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <div class="timeslot-header bg-primary/10 p-4 cursor-pointer hover:bg-gray-100 transition-colors gap-4 flex lg:grid lg:grid-cols-2 items-center"
+                    <div class="overflow-hidden border border-gray-200 rounded-lg">
+                        <div class="flex items-center gap-4 p-4 transition-colors cursor-pointer timeslot-header bg-primary/10 hover:bg-gray-100 lg:grid lg:grid-cols-2"
                             onclick="toggleTimeslot('day1-slot-algemeen')">
-                            <div class="flex-1 flex flex-col gap-1">
-                                <h4 class="font-serif font-semibold text-sm md:text-base lg:text-lg">gelegenheid-1</h4>
-                                <p class="font-sans text-gray-600 text-sm">
-                                    <i class="fas fa-calendar mr-2"></i>Juli 13
+                            <div class="flex flex-col flex-1 gap-1">
+                                <h4 class="font-serif text-sm font-semibold md:text-base lg:text-lg">gelegenheid-1</h4>
+                                <p class="font-sans text-sm text-gray-600">
+                                    <i class="mr-2 fas fa-calendar"></i>Juli 13
                                 </p>
                             </div>
-                            <div class="flex flex-col lg:flex-row gap-1 items-end lg:items-center justify-end">
-                                <p class="font-sans text-xs text-gray-500 mt-1 text-center mr-auto">
-                                    <i class="fas fa-users mr-1"></i>115 Kids, 20 Adults, 2 VIP
+                            <div class="flex flex-col items-end justify-end gap-1 lg:flex-row lg:items-center">
+                                <p class="mt-1 mr-auto font-sans text-xs text-center text-gray-500">
+                                    <i class="mr-1 fas fa-users"></i>115 Kids, 20 Adults, 2 VIP
                                 </p>
-                                <div class="flex items-center space-x-4 justify-end">
+                                <div class="flex items-center justify-end space-x-4">
                                     <span class="font-sans text-lg font-semibold text-primary">€303.94</span>
-                                    <i class="fas fa-chevron-down transition-transform duration-300"
+                                    <i class="transition-transform duration-300 fas fa-chevron-down"
                                         id="day1-slot1-icon"></i>
                                 </div>
                             </div>
                         </div>
-                        <div id="day1-slot-algemeen" class="timeslot-content hidden">
+                        <div id="day1-slot-algemeen" class="hidden timeslot-content">
                             <div class="p-5 border-t border-gray-100">
-                                <p class="font-sans text-gray-500 italic" data-i18n="banquete.no_items">No items
+                                <p class="font-sans italic text-gray-500" data-i18n="banquete.no_items">No items
                                     scheduled for this timeslot.</p>
                             </div>
                         </div>
                     </div>
                     <!-- Timeslot 1 -->
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <div class="timeslot-header bg-gray-50 p-4 cursor-pointer hover:bg-gray-100 transition-colors gap-4 flex lg:grid lg:grid-cols-2 items-center"
+                    <div class="overflow-hidden border border-gray-200 rounded-lg">
+                        <div class="flex items-center gap-4 p-4 transition-colors cursor-pointer timeslot-header bg-gray-50 hover:bg-gray-100 lg:grid lg:grid-cols-2"
                             onclick="toggleTimeslot('day1-slot1')">
-                            <div class="flex-1 flex flex-col gap-1">
-                                <h4 class="font-serif font-semibold text-sm md:text-base lg:text-lg">gelegenheid-1</h4>
-                                <p class="font-sans text-gray-600 text-sm">
-                                    <i class="fas fa-clock mr-2"></i>09:00 - 10:00
+                            <div class="flex flex-col flex-1 gap-1">
+                                <h4 class="font-serif text-sm font-semibold md:text-base lg:text-lg">gelegenheid-1</h4>
+                                <p class="font-sans text-sm text-gray-600">
+                                    <i class="mr-2 fas fa-clock"></i>09:00 - 10:00
                                 </p>
                             </div>
-                            <div class="flex flex-col lg:flex-row gap-1 items-end lg:items-center justify-end">
-                                <p class="font-sans text-xs text-gray-500 mt-1 text-center mr-auto">
-                                    <i class="fas fa-users mr-1"></i>115 Kids, 20 Adults, 2 VIP
+                            <div class="flex flex-col items-end justify-end gap-1 lg:flex-row lg:items-center">
+                                <p class="mt-1 mr-auto font-sans text-xs text-center text-gray-500">
+                                    <i class="mr-1 fas fa-users"></i>115 Kids, 20 Adults, 2 VIP
                                 </p>
-                                <div class="flex items-center space-x-4 justify-end">
+                                <div class="flex items-center justify-end space-x-4">
                                     <span class="font-sans text-lg font-semibold text-primary">€303.94</span>
-                                    <i class="fas fa-chevron-down transition-transform duration-300"
+                                    <i class="transition-transform duration-300 fas fa-chevron-down"
                                         id="day1-slot1-icon"></i>
                                 </div>
                             </div>
                         </div>
-                        <div id="day1-slot1" class="timeslot-content hidden">
+                        <div id="day1-slot1" class="hidden timeslot-content">
                             <div class="p-6 border-t border-gray-100">
                                 <!-- Description with Read More -->
                                 <div class="mb-6">
@@ -275,15 +277,15 @@
                                             boring. This is the most interesting part, as the rest of the day will be
                                             not very interesting and boring. And maybe too boring. </span>
                                         <button onclick="toggleDescription('day1-slot1')"
-                                            class="text-primary hover:text-primary/80 ml-2 font-medium"
+                                            class="ml-2 font-medium text-primary hover:text-primary/80"
                                             id="day1-slot1-toggle" data-i18n="banquete.read_more">Read More</button>
                                     </div>
                                 </div>
                                 <!-- For each timeslot, ensure a Spaces table exists. If missing, add a placeholder: -->
-                                <div class="overflow-x-auto mb-6">
+                                <div class="mb-6 overflow-x-auto">
                                     <table class="w-full">
                                         <caption
-                                            class="font-sans font-semibold text-base md:text-lg lg:text-xl pb-4 text-left text-gray-900"
+                                            class="pb-4 font-sans text-base font-semibold text-left text-gray-900 md:text-lg lg:text-xl"
                                             data-i18n="banquete.spaces">Spaces</caption>
                                         <thead>
                                             <tr class="border-b border-gray-200">
@@ -291,16 +293,16 @@
                                                     data-i18n="banquete.time">Time</th>
                                                 <th class="font-serif text-left px-6 py-4 text-primary min-w-[140px] lg:min-w-[240px] lg:w-1/3"
                                                     data-i18n="banquete.name">Name</th>
-                                                <th class="font-serif text-left px-6 py-4 text-primary hidden lg:table-cell"
+                                                <th class="hidden px-6 py-4 font-serif text-left text-primary lg:table-cell"
                                                     data-i18n="banquete.amount">Amount</th>
-                                                <th class="font-serif text-right px-6 py-4 text-primary"
+                                                <th class="px-6 py-4 font-serif text-right text-primary"
                                                     data-i18n="banquete.unit_price">Unit Price</th>
-                                                <th class="font-serif text-right px-6 py-4 text-primary"
+                                                <th class="px-6 py-4 font-serif text-right text-primary"
                                                     data-i18n="banquete.total">Total</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="border-b border-gray-100 space-row cursor-pointer hover:bg-primary/10"
+                                            <tr class="border-b border-gray-100 cursor-pointer space-row hover:bg-primary/10"
                                                 data-space='{"name":"Blauwe Kamer-1","time":"09:00 - 10:00","capacity":"50","layout":"Theater","amount":"1 hour","unitPrice":"€10.00","total":"€10.00","cover":"https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&w=600&h=400&fit=crop","description":"A bright, spacious room perfect for presentations and workshops. Features large windows and modern AV equipment.","notes":"Windows can be opened for fresh air. Projector remote is in the drawer."}'>
                                                 <td
                                                     class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">
@@ -309,27 +311,27 @@
                                                     <span class="font-semibold truncate" title="Blauwe Kamer-1">Blauwe
                                                         Kamer-1</span>
                                                     <div
-                                                        class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
-                                                        <span><i class='fas fa-clock mr-1'></i><span
+                                                        class="flex flex-col block gap-1 mt-2 text-xs text-gray-600 lg:hidden">
+                                                        <span><i class='mr-1 fas fa-clock'></i><span
                                                                 class="font-semibold"
                                                                 data-i18n="banquete.time_label">Time:</span> 09:00 -
                                                             10:00</span>
-                                                        <span><i class='fas fa-box mr-1'></i><span class="font-semibold"
+                                                        <span><i class='mr-1 fas fa-box'></i><span class="font-semibold"
                                                                 data-i18n="banquete.amount_label">Amount:</span> 1
                                                             hour</span>
-                                                        <span><i class="fas fa-users mr-1"></i><span
+                                                        <span><i class="mr-1 fas fa-users"></i><span
                                                                 class="font-semibold"
                                                                 data-i18n="banquete.capacity_label">Capacity:</span>100</span>
-                                                        <span><i class="fas fa-th-large mr-1"></i><span
+                                                        <span><i class="mr-1 fas fa-th-large"></i><span
                                                                 class="font-semibold"
                                                                 data-i18n="banquete.layout_label">Layout:</span>U-Shape</span>
                                                     </div>
                                                 </td>
-                                                <td class="font-sans px-6 py-4 hidden lg:table-cell">1 hour</td>
-                                                <td class="font-sans px-6 py-4 text-right">€10.00</td>
-                                                <td class="font-sans px-6 py-4 text-right">€10.00</td>
+                                                <td class="hidden px-6 py-4 font-sans lg:table-cell">1 hour</td>
+                                                <td class="px-6 py-4 font-sans text-right">€10.00</td>
+                                                <td class="px-6 py-4 font-sans text-right">€10.00</td>
                                             </tr>
-                                            <tr class="border-b border-gray-100 space-row cursor-pointer hover:bg-primary/10"
+                                            <tr class="border-b border-gray-100 cursor-pointer space-row hover:bg-primary/10"
                                                 data-space='{"name":"BRAT Room","time":"09:00 - 10:00","capacity":"100","layout":"U-Shape","amount":"1 hour","unitPrice":"€200.00","total":"€200.00","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","description":"Ideal for large meetings and conferences, the BRAT Room offers flexible seating and a private atmosphere.","notes":"Check AV setup before event. Coffee machine in the corner."}'>
                                                 <td
                                                     class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">
@@ -338,20 +340,20 @@
                                                     <span class="font-semibold truncate" title="BRAT Room">BRAT
                                                         Room</span>
                                                     <div
-                                                        class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
-                                                        <span><i class='fas fa-clock mr-1'></i><span
+                                                        class="flex flex-col block gap-1 mt-2 text-xs text-gray-600 lg:hidden">
+                                                        <span><i class='mr-1 fas fa-clock'></i><span
                                                                 class="font-semibold">Time:</span> 09:00 - 10:00</span>
-                                                        <span><i class='fas fa-box mr-1'></i><span
+                                                        <span><i class='mr-1 fas fa-box'></i><span
                                                                 class="font-semibold">Amount:</span> 1 hour</span>
-                                                        <span><i class="fas fa-users mr-1"></i><span
+                                                        <span><i class="mr-1 fas fa-users"></i><span
                                                                 class="font-semibold">Capacity:</span>100</span>
-                                                        <span><i class="fas fa-th-large mr-1"></i><span
+                                                        <span><i class="mr-1 fas fa-th-large"></i><span
                                                                 class="font-semibold">Layout:</span>U-Shape</span>
                                                     </div>
                                                 </td>
-                                                <td class="font-sans px-6 py-4 hidden lg:table-cell">1 hour</td>
-                                                <td class="font-sans px-6 py-4 text-right">€200.00</td>
-                                                <td class="font-sans px-6 py-4 text-right">€200.00</td>
+                                                <td class="hidden px-6 py-4 font-sans lg:table-cell">1 hour</td>
+                                                <td class="px-6 py-4 font-sans text-right">€200.00</td>
+                                                <td class="px-6 py-4 font-sans text-right">€200.00</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -360,7 +362,7 @@
                                 <div class="overflow-x-auto">
                                     <table class="w-full">
                                         <caption
-                                            class="font-sans font-semibold text-base md:text-lg lg:text-xl pb-4 text-left text-gray-900"
+                                            class="pb-4 font-sans text-base font-semibold text-left text-gray-900 md:text-lg lg:text-xl"
                                             data-i18n="banquete.products">Producten</caption>
                                         <thead>
                                             <tr class="border-b border-gray-200">
@@ -368,16 +370,16 @@
                                                     data-i18n="banquete.time">Time</th>
                                                 <th class="font-serif text-left px-6 py-4 text-primary min-w-[140px] lg:min-w-[240px] lg:w-1/3"
                                                     data-i18n="banquete.name">Name</th>
-                                                <th class="font-serif text-left px-6 py-4 text-primary hidden lg:table-cell"
+                                                <th class="hidden px-6 py-4 font-serif text-left text-primary lg:table-cell"
                                                     data-i18n="banquete.amount">Amount</th>
-                                                <th class="font-serif text-right px-6 py-4 text-primary"
+                                                <th class="px-6 py-4 font-serif text-right text-primary"
                                                     data-i18n="banquete.unit_price">Unit Price</th>
-                                                <th class="font-serif text-right px-6 py-4 text-primary"
+                                                <th class="px-6 py-4 font-serif text-right text-primary"
                                                     data-i18n="banquete.total">Total</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10"
+                                            <tr class="border-b border-gray-100 cursor-pointer product-row hover:bg-secondary/10"
                                                 data-product='{"name":"Chocolate Cookies","description":"Delicious chocolate cookies, freshly baked.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€81.00","total":"€81.00","time":"09:00 - 10:00","category":"Dessert","location":"Blauwe Kamer-1","notes":["Contains nuts. Serve with milk."],"guestTypes":[{"type":"Kids","count":10},{"type":"Adults","count":20}]}'>
                                                 <td
                                                     class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">
@@ -386,18 +388,18 @@
                                                     <div class="font-sans font-semibold truncate"
                                                         title="Chocolate Cookies">Chocolate Cookies</div>
                                                     <div
-                                                        class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
-                                                        <span><i class='fas fa-clock mr-1'></i><span
+                                                        class="flex flex-col block gap-1 mt-2 text-xs text-gray-600 lg:hidden">
+                                                        <span><i class='mr-1 fas fa-clock'></i><span
                                                                 class="font-semibold">Time:</span> 09:00 - 10:00</span>
-                                                        <span><i class='fas fa-box mr-1'></i><span
+                                                        <span><i class='mr-1 fas fa-box'></i><span
                                                                 class="font-semibold">Amount:</span> 1 piece</span>
                                                     </div>
                                                 </td>
-                                                <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
-                                                <td class="font-sans px-6 py-4 text-right">€81.00</td>
-                                                <td class="font-sans px-6 py-4 text-right">€81.00</td>
+                                                <td class="hidden px-6 py-4 font-sans lg:table-cell">1 piece</td>
+                                                <td class="px-6 py-4 font-sans text-right">€81.00</td>
+                                                <td class="px-6 py-4 font-sans text-right">€81.00</td>
                                             </tr>
-                                            <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10"
+                                            <tr class="border-b border-gray-100 cursor-pointer product-row hover:bg-secondary/10"
                                                 data-product='{"name":"Cannoli","description":"Classic Italian pastry with sweet ricotta filling.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"1 piece","unitPrice":"€3.00","total":"€3.00","time":"09:00 - 10:00","category":"Dessert","location":"Blauwe Kamer-1","notes":["Keep refrigerated until serving."],"guestTypes":[{"type":"Kids","count":5},{"type":"VIP","count":2}]}'>
                                                 <td
                                                     class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">
@@ -406,18 +408,18 @@
                                                     <div class="font-sans font-semibold truncate" title="Cannoli">
                                                         Cannoli</div>
                                                     <div
-                                                        class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
-                                                        <span><i class='fas fa-clock mr-1'></i><span
+                                                        class="flex flex-col block gap-1 mt-2 text-xs text-gray-600 lg:hidden">
+                                                        <span><i class='mr-1 fas fa-clock'></i><span
                                                                 class="font-semibold">Time:</span> 09:00 - 10:00</span>
-                                                        <span><i class='fas fa-box mr-1'></i><span
+                                                        <span><i class='mr-1 fas fa-box'></i><span
                                                                 class="font-semibold">Amount:</span> 1 piece</span>
                                                     </div>
                                                 </td>
-                                                <td class="font-sans px-6 py-4 hidden lg:table-cell">1 piece</td>
-                                                <td class="font-sans px-6 py-4 text-right">€3.00</td>
-                                                <td class="font-sans px-6 py-4 text-right">€3.00</td>
+                                                <td class="hidden px-6 py-4 font-sans lg:table-cell">1 piece</td>
+                                                <td class="px-6 py-4 font-sans text-right">€3.00</td>
+                                                <td class="px-6 py-4 font-sans text-right">€3.00</td>
                                             </tr>
-                                            <tr class="border-b border-gray-100 product-row cursor-pointer hover:bg-secondary/10"
+                                            <tr class="border-b border-gray-100 cursor-pointer product-row hover:bg-secondary/10"
                                                 data-product='{"name":"Quiche Lorraine","description":"Savory French tart with bacon, cheese, and custard.","cover":"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop","amount":"100 Kids","unitPrice":"€9.94","total":"€9.94","time":"09:00 - 10:00","category":"Main","location":"Blauwe Kamer-1","notes":["Vegetarian option available on request."],"guestTypes":[{"type":"Kids","count":100}]}'>
                                                 <td
                                                     class="font-sans px-6 py-4 min-w-[150px] w-[150px] hidden lg:table-cell">
@@ -426,16 +428,16 @@
                                                     <div class="font-sans font-semibold truncate"
                                                         title="Quiche Lorraine">Quiche Lorraine</div>
                                                     <div
-                                                        class="flex flex-col gap-1 text-xs text-gray-600 mt-2 block lg:hidden">
-                                                        <span><i class='fas fa-clock mr-1'></i><span
+                                                        class="flex flex-col block gap-1 mt-2 text-xs text-gray-600 lg:hidden">
+                                                        <span><i class='mr-1 fas fa-clock'></i><span
                                                                 class="font-semibold">Time:</span> 09:00 - 10:00</span>
-                                                        <span><i class='fas fa-box mr-1'></i><span
+                                                        <span><i class='mr-1 fas fa-box'></i><span
                                                                 class="font-semibold">Amount:</span> 100 Kids</span>
                                                     </div>
                                                 </td>
-                                                <td class="font-sans px-6 py-4 hidden lg:table-cell">100 Kids</td>
-                                                <td class="font-sans px-6 py-4 text-right">€9.94</td>
-                                                <td class="font-sans px-6 py-4 text-right">€9.94</td>
+                                                <td class="hidden px-6 py-4 font-sans lg:table-cell">100 Kids</td>
+                                                <td class="px-6 py-4 font-sans text-right">€9.94</td>
+                                                <td class="px-6 py-4 font-sans text-right">€9.94</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -451,7 +453,7 @@
     <div id="space-offcanvas"
         class="fixed inset-y-0 right-0 w-full sm:w-[500px] bg-white transform transition-transform duration-300 ease-in-out z-50 shadow-2xl border-l-0 sm:border-l-4 border-primary translate-x-full flex flex-col">
     </div>
-    <div id="offcanvas-backdrop" class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden"></div>
+    <div id="offcanvas-backdrop" class="fixed inset-0 z-40 hidden bg-black bg-opacity-30"></div>
     <script src="./common.js"></script>
     <script src="banquete.js"></script>
 </body>

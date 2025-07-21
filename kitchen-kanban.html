@@ -28,26 +28,28 @@
     <script src="https://unpkg.com/i18next@latest/i18next.min.js"></script>
     <script src="./i18n/translations/nl.js"></script>
     <script src="./i18n/translations/en.js"></script>
+    <script src="./i18n/translations/de.js"></script>
+    <script src="./i18n/translations/index.js"></script>
     <script src="./i18n/i18n.js"></script>
 </head>
 
-<body class="min-h-screen font-sans transition-all duration-300 text-sm md:text-base">
+<body class="min-h-screen font-sans text-sm transition-all duration-300 md:text-base">
     <!-- Header -->
-    <header class="bg-primary backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-600/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header class="sticky top-0 z-50 border-b shadow-lg bg-primary backdrop-blur-md border-gray-600/50">
+        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-[124px]">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
+                    <div class="flex items-center flex-shrink-0">
                         <img src="https://kloosterbethlehem.nl/wp-content/uploads/2022/06/Logo-wit.svg"
-                            alt="Keukenblad Logo" class="h-12 w-auto" height="48" width="192" />
+                            alt="Keukenblad Logo" class="w-auto h-12" height="48" width="192" />
                     </div>
                 </div>
                 <!-- Navigation -->
-                <nav class="hidden md:flex space-x-8 ml-auto mr-4">
+                <nav class="hidden ml-auto mr-4 space-x-8 md:flex">
                     <a href="./index.html"
-                        class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-colors duration-200 font-medium flex items-center">
-                        <i class="fas fa-home-alt mr-2"></i>
+                        class="flex items-center px-4 py-2 font-medium text-white transition-colors duration-200 rounded-lg bg-white/20 hover:bg-white/30">
+                        <i class="mr-2 fas fa-home-alt"></i>
                         <span data-i18n="kitchen.home">Home</span>
                     </a>
                 </nav>
@@ -57,15 +59,15 @@
     <!-- Main Content -->
     <main role="main" class="max-w-[1440px] mx-auto p-6 md:p-10 md:pt-20">
         <!-- Page Header -->
-        <header class="relative h-64 rounded-xl overflow-hidden mb-16" aria-labelledby="page-title">
+        <header class="relative h-64 mb-16 overflow-hidden rounded-xl" aria-labelledby="page-title">
             <div
                 class="absolute inset-0 bg-cover bg-center bg-[url('https://images.pexels.com/photos/326281/pexels-photo-326281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')]">
             </div>
             <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-            <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-6">
-                <h1 id="page-title" class="text-2xl md:text-4xl lg:text-6xl font-serif font-bold mb-4"
+            <div class="relative flex flex-col items-center justify-center h-full p-6 text-center text-white">
+                <h1 id="page-title" class="mb-4 font-serif text-2xl font-bold md:text-4xl lg:text-6xl"
                     data-i18n="app_name">Keukenblad</h1>
-                <p class="text-base md:text-xl lg:text-2xl font-sans max-w-2xl mx-auto leading-relaxed text-balance"
+                <p class="max-w-2xl mx-auto font-sans text-base leading-relaxed md:text-xl lg:text-2xl text-balance"
                     data-i18n="kitchen.subtitle">
                     Een uitgebreid overzicht van de activiteiten in uw keuken.
                 </p>
@@ -73,54 +75,54 @@
         </header>
         <!-- Event Details Section -->
         <section id="event-details"
-            class="bg-white/90 backdrop-blur-sm p-7 md:p-10 rounded-xl shadow-lg mb-10 border border-gray-200">
-            <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 mb-4 md:mb-8 pb-4">
-                <i class="fas fa-calendar-alt mr-3 text-primary"></i>
+            class="mb-10 border border-gray-200 shadow-lg bg-white/90 backdrop-blur-sm p-7 md:p-10 rounded-xl">
+            <h2 class="pb-4 mb-4 font-serif text-xl font-bold text-gray-900 md:text-2xl lg:text-4xl md:mb-8">
+                <i class="mr-3 fas fa-calendar-alt text-primary"></i>
                 <span data-i18n="banquete.overview">Overzicht</span>
             </h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-50 rounded-xl p-5 border flex flex-col">
-                    <h3 class="font-serif text-xl font-semibold mb-2" data-i18n="banquete.event.status">Status</h3>
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <div class="flex flex-col p-5 border bg-gray-50 rounded-xl">
+                    <h3 class="mb-2 font-serif text-xl font-semibold" data-i18n="banquete.event.status">Status</h3>
                     <p class="font-sans text-lg text-gray-600">Confirmed</p>
                 </div>
-                <div class="bg-gray-50 rounded-xl p-5 border flex flex-col">
-                    <h3 class="font-serif text-xl font-semibold mb-2" data-i18n="banquete.event.name">Event Name</h3>
+                <div class="flex flex-col p-5 border bg-gray-50 rounded-xl">
+                    <h3 class="mb-2 font-serif text-xl font-semibold" data-i18n="banquete.event.name">Event Name</h3>
                     <p class="font-sans text-lg text-gray-600">Summer Gala</p>
                 </div>
-                <div class="bg-gray-50 rounded-xl p-5 border flex flex-col">
-                    <h3 class="font-serif text-xl font-semibold mb-2" data-i18n="banquete.event.type">Event Type</h3>
+                <div class="flex flex-col p-5 border bg-gray-50 rounded-xl">
+                    <h3 class="mb-2 font-serif text-xl font-semibold" data-i18n="banquete.event.type">Event Type</h3>
                     <p class="font-sans text-lg text-gray-600">Corporate</p>
                 </div>
-                <div class="bg-gray-50 rounded-xl p-5 border flex flex-col">
-                    <h3 class="font-serif text-xl font-semibold mb-2" data-i18n="banquete.event.dates">Event Dates</h3>
+                <div class="flex flex-col p-5 border bg-gray-50 rounded-xl">
+                    <h3 class="mb-2 font-serif text-xl font-semibold" data-i18n="banquete.event.dates">Event Dates</h3>
                     <p class="font-sans text-lg text-gray-600">July 13, 2025 - July 14, 2025</p>
                 </div>
-                <div class="bg-gray-50 rounded-xl p-5 border flex flex-col">
-                    <h3 class="font-serif text-xl font-semibold mb-2" data-i18n="banquete.event.main_booker">Main Booker
+                <div class="flex flex-col p-5 border bg-gray-50 rounded-xl">
+                    <h3 class="mb-2 font-serif text-xl font-semibold" data-i18n="banquete.event.main_booker">Main Booker
                     </h3>
                     <div class="flex items-center gap-3">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Doe avatar"
-                            class="w-8 h-8 rounded-full object-cover border border-gray-300" width="32" height="32">
+                            class="object-cover w-8 h-8 border border-gray-300 rounded-full" width="32" height="32">
                         <div>
                             <p class="font-sans text-lg text-gray-600">John Doe</p>
-                            <p class="font-sans text-md text-gray-500">john.doe@example.com</p>
+                            <p class="font-sans text-gray-500 text-md">john.doe@example.com</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray-50 rounded-xl p-5 border flex flex-col">
-                    <h3 class="font-serif text-xl font-semibold mb-2" data-i18n="banquete.event.venue_manager">Venue
+                <div class="flex flex-col p-5 border bg-gray-50 rounded-xl">
+                    <h3 class="mb-2 font-serif text-xl font-semibold" data-i18n="banquete.event.venue_manager">Venue
                         Manager</h3>
                     <div class="flex items-center gap-3">
                         <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jane Smith avatar"
-                            class="w-8 h-8 rounded-full object-cover border border-gray-300" width="32" height="32">
+                            class="object-cover w-8 h-8 border border-gray-300 rounded-full" width="32" height="32">
                         <div>
                             <p class="font-sans text-lg text-gray-600">Jane Smith</p>
-                            <p class="font-sans text-md text-gray-500">jane.smith@example.com</p>
+                            <p class="font-sans text-gray-500 text-md">jane.smith@example.com</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray-50 rounded-xl p-5 border flex flex-col col-span-full">
-                    <h3 class="font-serif text-xl font-semibold mb-2" data-i18n="banquete.event.description">Event
+                <div class="flex flex-col p-5 border bg-gray-50 rounded-xl col-span-full">
+                    <h3 class="mb-2 font-serif text-xl font-semibold" data-i18n="banquete.event.description">Event
                         Description</h3>
                     <p class="font-sans text-lg text-gray-600">
                         An elegant summer gala to celebrate our company's success. The event will feature a dinner,
@@ -131,15 +133,15 @@
             </div>
         </section>
         <!-- Orders Card -->
-        <section class="bg-white/90 backdrop-blur-sm p-7 md:p-10 rounded-xl shadow-lg border border-gray-200">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
-                <h2 class="font-serif font-bold text-xl md:text-2xl lg:text-4xl text-gray-900">
-                    <i class="fas fa-utensils mr-3 text-primary"></i>
+        <section class="border border-gray-200 shadow-lg bg-white/90 backdrop-blur-sm p-7 md:p-10 rounded-xl">
+            <div class="flex flex-col items-start justify-between gap-4 mb-4 md:flex-row md:items-center">
+                <h2 class="font-serif text-xl font-bold text-gray-900 md:text-2xl lg:text-4xl">
+                    <i class="mr-3 fas fa-utensils text-primary"></i>
                     <span data-i18n="kitchen.production_schedule">Keuken Productie Schema</span>
                 </h2>
                 <!-- Full View Toggle -->
                 <div class="flex items-center gap-3">
-                    <span class="text-gray-600 font-medium" data-i18n="kitchen.full_view">Full View</span>
+                    <span class="font-medium text-gray-600" data-i18n="kitchen.full_view">Full View</span>
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input type="checkbox" id="fullViewToggle" class="sr-only peer" />
                         <div
@@ -148,7 +150,7 @@
                     </label>
                 </div>
             </div>
-            <p class="text-sm md:text-base text-gray-600 mb-10 leading-relaxed max-w-4xl"
+            <p class="max-w-4xl mb-10 text-sm leading-relaxed text-gray-600 md:text-base"
                 data-i18n="kitchen.description">
                 Real-time voorbereidings- en serviceschema voor het Dinsdag Lunch
                 evenement. Monitor voortgang, timing en kwaliteitscontrole voor alle
@@ -156,7 +158,7 @@
             </p>
             <!-- View Toggle Buttons -->
             <div
-                class="flex flex-col md:flex-row bg-gray-100 rounded-xl p-1 mb-10 border border-gray-200 w-full md:max-w-md">
+                class="flex flex-col w-full p-1 mb-10 bg-gray-100 border border-gray-200 md:flex-row rounded-xl md:max-w-md">
                 <button id="tableViewBtn"
                     class="px-6 py-3 flex-1 md:rounded-l-lg bg-gray-300 text-gray-700 data-[active=true]:bg-primary data-[active=true]:text-white font-semibold text-sm md:text-base transition-all duration-200 flex items-center justify-center gap-3 shadow-md rounded-t-lg md:rounded-t-l-lg md:rounded-tr-none">
                     <i class="fas fa-table"></i>
@@ -169,15 +171,15 @@
                 </button>
             </div>
             <!-- Filters -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+            <div class="grid grid-cols-1 gap-5 mb-10 md:grid-cols-2 lg:grid-cols-4">
                 <div>
                     <label for="categoryFilter"
-                        class="block text-gray-700 text-xs md:text-sm font-bold mb-3 uppercase tracking-wide truncate"
+                        class="block mb-3 text-xs font-bold tracking-wide text-gray-700 uppercase truncate md:text-sm"
                         data-i18n="kitchen.filter.category">
                         Filteren op Categorie
                     </label>
                     <select id="categoryFilter"
-                        class="w-full p-4 rounded-lg bg-white text-gray-900 border-2 border-gray-200 focus-primary font-medium text-sm md:text-base">
+                        class="w-full p-4 text-sm font-medium text-gray-900 bg-white border-2 border-gray-200 rounded-lg focus-primary md:text-base">
                         <option value="" data-i18n="kitchen.filter.all_categories">Alle Categorieën</option>
                         <option value="Beverages" data-i18n="kitchen.filter.beverages">Dranken</option>
                         <option value="Appetizers" data-i18n="kitchen.filter.appetizers">Voorgerechten</option>
@@ -189,12 +191,12 @@
                 </div>
                 <div>
                     <label for="guestTypeFilter"
-                        class="block text-gray-700 text-xs md:text-sm font-bold mb-3 uppercase tracking-wide truncate"
+                        class="block mb-3 text-xs font-bold tracking-wide text-gray-700 uppercase truncate md:text-sm"
                         data-i18n="kitchen.filter.guest_type">
                         Filteren op Gasttype
                     </label>
                     <select id="guestTypeFilter"
-                        class="w-full p-4 rounded-lg bg-white text-gray-900 border-2 border-gray-200 focus-primary font-medium text-sm md:text-base">
+                        class="w-full p-4 text-sm font-medium text-gray-900 bg-white border-2 border-gray-200 rounded-lg focus-primary md:text-base">
                         <option value="" data-i18n="kitchen.filter.all_guest_types">Alle Gasttypes</option>
                         <option value="All" data-i18n="kitchen.filter.all_guests">Alle Gasten</option>
                         <option value="Adults" data-i18n="kitchen.filter.adults">Volwassenen</option>
@@ -205,12 +207,12 @@
                 </div>
                 <div>
                     <label for="spaceFilter"
-                        class="block text-gray-700 text-xs md:text-sm font-bold mb-3 uppercase tracking-wide truncate"
+                        class="block mb-3 text-xs font-bold tracking-wide text-gray-700 uppercase truncate md:text-sm"
                         data-i18n="kitchen.filter.space">
                         Filteren op Ruimte
                     </label>
                     <select id="spaceFilter"
-                        class="w-full p-4 rounded-lg bg-white text-gray-900 border-2 border-gray-200 focus-primary font-medium text-sm md:text-base">
+                        class="w-full p-4 text-sm font-medium text-gray-900 bg-white border-2 border-gray-200 rounded-lg focus-primary md:text-base">
                         <option value="" data-i18n="kitchen.filter.all_spaces">Alle Ruimtes</option>
                         <option value="Banquet Hall B">Banquet Hall B</option>
                         <option value="Kitchen">Kitchen</option>
@@ -220,12 +222,12 @@
                 </div>
                 <div>
                     <label for="statusFilter"
-                        class="block text-gray-700 text-xs md:text-sm font-bold mb-3 uppercase tracking-wide truncate"
+                        class="block mb-3 text-xs font-bold tracking-wide text-gray-700 uppercase truncate md:text-sm"
                         data-i18n="kitchen.filter.status">
                         Filteren op Status
                     </label>
                     <select id="statusFilter"
-                        class="w-full p-4 rounded-lg bg-white text-gray-900 border-2 border-gray-200 focus-primary font-medium text-sm md:text-base">
+                        class="w-full p-4 text-sm font-medium text-gray-900 bg-white border-2 border-gray-200 rounded-lg focus-primary md:text-base">
                         <option value="" data-i18n="kitchen.filter.all_statuses">Alle Statussen</option>
                         <option value="Ready" data-i18n="kitchen.filter.ready">Klaar</option>
                         <option value="In Progress" data-i18n="kitchen.filter.in_progress">In behandeling</option>
@@ -236,15 +238,15 @@
             <!-- Table View (Enhanced Card Layout) -->
             <div id="tableView">
                 <!-- Empty State -->
-                <div id="tableEmptyState" class="rounded-xl border border-gray-200 p-4 bg-gray-50 hidden">
-                    <div class="items-center justify-center flex h-full w-full">
-                        <div class="py-16 flex flex-col items-center justify-center">
-                            <div class="bg-gray-100 p-6 rounded-full mb-6">
-                                <i class="fas fa-utensils text-4xl text-gray-400"></i>
+                <div id="tableEmptyState" class="hidden p-4 border border-gray-200 rounded-xl bg-gray-50">
+                    <div class="flex items-center justify-center w-full h-full">
+                        <div class="flex flex-col items-center justify-center py-16">
+                            <div class="p-6 mb-6 bg-gray-100 rounded-full">
+                                <i class="text-4xl text-gray-400 fas fa-utensils"></i>
                             </div>
-                            <h3 class="text-xl font-serif font-bold text-gray-700 mb-2"
+                            <h3 class="mb-2 font-serif text-xl font-bold text-gray-700"
                                 data-i18n="kitchen.empty_state.no_items">Geen items gevonden</h3>
-                            <p class="text-gray-500 text-center max-w-md" data-i18n="kitchen.empty_state.no_items_desc">
+                            <p class="max-w-md text-center text-gray-500" data-i18n="kitchen.empty_state.no_items_desc">
                                 Er zijn momenteel geen items om weer te geven. Pas uw filters
                                 aan of voeg nieuwe items toe.
                             </p>
@@ -258,67 +260,67 @@
             </div>
             <!-- Kanban View -->
             <div id="kanbanView" class="hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
                     <!-- Pending Column -->
-                    <div class="rounded-xl border-2 border-blue-200 bg-white shadow-lg" data-status="Pending">
-                        <div class="bg-blue-500 rounded-t-xl p-5 border-b-2 border-blue-200">
+                    <div class="bg-white border-2 border-blue-200 shadow-lg rounded-xl" data-status="Pending">
+                        <div class="p-5 bg-blue-500 border-b-2 border-blue-200 rounded-t-xl">
                             <div class="flex items-center gap-3">
                                 <div class="w-4 h-4 bg-white rounded-full"></div>
                                 <h3 class="text-xl font-bold text-white" data-i18n="kitchen.filter.pending">Pending</h3>
-                                <span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm font-bold"
+                                <span class="px-3 py-1 text-sm font-bold text-white rounded-full bg-white/20"
                                     id="pendingCount">0</span>
                             </div>
                         </div>
                         <div id="pendingColumn" class="p-5 space-y-4 min-h-[300px]">
                             <!-- Empty state for Pending column -->
-                            <div id="pendingEmptyState" class="hidden py-10 flex flex-col items-center justify-center">
-                                <div class="bg-gray-100 p-4 rounded-full mb-4">
-                                    <i class="fas fa-inbox text-2xl text-blue-400"></i>
+                            <div id="pendingEmptyState" class="flex flex-col items-center justify-center hidden py-10">
+                                <div class="p-4 mb-4 bg-gray-100 rounded-full">
+                                    <i class="text-2xl text-blue-400 fas fa-inbox"></i>
                                 </div>
-                                <p class="text-gray-500 text-center" data-i18n="kitchen.empty_state.no_pending">Geen
+                                <p class="text-center text-gray-500" data-i18n="kitchen.empty_state.no_pending">Geen
                                     items in afwachting</p>
                             </div>
                         </div>
                     </div>
                     <!-- In Progress Column -->
-                    <div class="rounded-xl border-2 border-yellow-200 bg-white shadow-lg" data-status="In Progress">
-                        <div class="bg-yellow-500 rounded-t-xl p-5 border-b-2 border-yellow-200">
+                    <div class="bg-white border-2 border-yellow-200 shadow-lg rounded-xl" data-status="In Progress">
+                        <div class="p-5 bg-yellow-500 border-b-2 border-yellow-200 rounded-t-xl">
                             <div class="flex items-center gap-3">
                                 <div class="w-4 h-4 bg-white rounded-full"></div>
                                 <h3 class="text-xl font-bold text-white" data-i18n="kitchen.filter.in_progress">In
                                     Progress</h3>
-                                <span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm font-bold"
+                                <span class="px-3 py-1 text-sm font-bold text-white rounded-full bg-white/20"
                                     id="progressCount">0</span>
                             </div>
                         </div>
                         <div id="progressColumn" class="p-5 space-y-4 min-h-[300px]">
                             <!-- Empty state for In Progress column -->
-                            <div id="progressEmptyState" class="hidden py-10 flex flex-col items-center justify-center">
-                                <div class="bg-gray-100 p-4 rounded-full mb-4">
-                                    <i class="fas fa-spinner text-2xl text-yellow-400"></i>
+                            <div id="progressEmptyState" class="flex flex-col items-center justify-center hidden py-10">
+                                <div class="p-4 mb-4 bg-gray-100 rounded-full">
+                                    <i class="text-2xl text-yellow-400 fas fa-spinner"></i>
                                 </div>
-                                <p class="text-gray-500 text-center" data-i18n="kitchen.empty_state.no_progress">Geen
+                                <p class="text-center text-gray-500" data-i18n="kitchen.empty_state.no_progress">Geen
                                     items in behandeling</p>
                             </div>
                         </div>
                     </div>
                     <!-- Ready Column -->
-                    <div class="rounded-xl border-2 border-emerald-200 bg-white shadow-lg" data-status="Ready">
-                        <div class="bg-emerald-500 rounded-t-xl p-5 border-b-2 border-emerald-200">
+                    <div class="bg-white border-2 shadow-lg rounded-xl border-emerald-200" data-status="Ready">
+                        <div class="p-5 border-b-2 bg-emerald-500 rounded-t-xl border-emerald-200">
                             <div class="flex items-center gap-3">
                                 <div class="w-4 h-4 bg-white rounded-full"></div>
                                 <h3 class="text-xl font-bold text-white" data-i18n="kitchen.filter.ready">Ready</h3>
-                                <span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm font-bold"
+                                <span class="px-3 py-1 text-sm font-bold text-white rounded-full bg-white/20"
                                     id="readyCount">0</span>
                             </div>
                         </div>
                         <div id="readyColumn" class="p-5 space-y-4 min-h-[300px]">
                             <!-- Empty state for Ready column -->
-                            <div id="readyEmptyState" class="hidden py-10 flex flex-col items-center justify-center">
-                                <div class="bg-gray-100 p-4 rounded-full mb-4">
-                                    <i class="fas fa-check text-2xl text-emerald-400"></i>
+                            <div id="readyEmptyState" class="flex flex-col items-center justify-center hidden py-10">
+                                <div class="p-4 mb-4 bg-gray-100 rounded-full">
+                                    <i class="text-2xl fas fa-check text-emerald-400"></i>
                                 </div>
-                                <p class="text-gray-500 text-center" data-i18n="kitchen.empty_state.no_ready">Geen items
+                                <p class="text-center text-gray-500" data-i18n="kitchen.empty_state.no_ready">Geen items
                                     klaar</p>
                             </div>
                         </div>
@@ -330,27 +332,27 @@
         <div id="productModal"
             class="fixed inset-y-0 right-0 w-full sm:w-[700px] bg-white transform transition-transform duration-300 ease-in-out z-50 shadow-2xl border-l-0 sm:border-l-4 border-primary translate-x-full">
             <!-- Status Selection Buttons -->
-            <div class="flex flex-col md:flex-row gap-4 p-6">
+            <div class="flex flex-col gap-4 p-6 md:flex-row">
                 <button data-status="Pending"
-                    class="status-btn w-full md:w-auto flex-1 px-6 py-3 rounded-lg text-sm md:text-base font-semibold transition-all duration-200 bg-blue-100 text-blue-700 hover:bg-blue-200 md:flex-initial flex flex-col items-center justify-center">
-                    <i class="fas fa-clock mb-2"></i>
+                    class="flex flex-col items-center justify-center flex-1 w-full px-6 py-3 text-sm font-semibold text-blue-700 transition-all duration-200 bg-blue-100 rounded-lg status-btn md:w-auto md:text-base hover:bg-blue-200 md:flex-initial">
+                    <i class="mb-2 fas fa-clock"></i>
                     <span data-i18n="kitchen.filter.pending">Pending</span>
                 </button>
                 <button data-status="In Progress"
-                    class="status-btn w-full md:w-auto flex-1 px-6 py-3 rounded-lg text-sm md:text-base font-semibold transition-all duration-200 bg-yellow-100 text-yellow-700 hover:bg-yellow-200 md:flex-initial flex flex-col items-center justify-center">
-                    <i class="fas fa-spinner mb-2"></i>
+                    class="flex flex-col items-center justify-center flex-1 w-full px-6 py-3 text-sm font-semibold text-yellow-700 transition-all duration-200 bg-yellow-100 rounded-lg status-btn md:w-auto md:text-base hover:bg-yellow-200 md:flex-initial">
+                    <i class="mb-2 fas fa-spinner"></i>
                     <span data-i18n="kitchen.filter.in_progress">In Progress</span>
                 </button>
                 <button data-status="Ready"
-                    class="status-btn w-full md:w-auto flex-1 px-6 py-3 rounded-lg text-sm md:text-base font-semibold transition-all duration-200 bg-emerald-100 text-emerald-700 hover:bg-emerald-200 md:flex-initial flex flex-col items-center justify-center">
-                    <i class="fas fa-check mb-2"></i>
+                    class="flex flex-col items-center justify-center flex-1 w-full px-6 py-3 text-sm font-semibold transition-all duration-200 rounded-lg status-btn md:w-auto md:text-base bg-emerald-100 text-emerald-700 hover:bg-emerald-200 md:flex-initial">
+                    <i class="mb-2 fas fa-check"></i>
                     <span data-i18n="kitchen.filter.ready">Ready</span>
                 </button>
             </div>
         </div>
         <!-- Modal Overlay -->
         <div id="modalOverlay"
-            class="fixed inset-0 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 z-40">
+            class="fixed inset-0 z-40 transition-opacity duration-300 opacity-0 pointer-events-none bg-black/50 backdrop-blur-sm">
         </div>
     </main>
     <script src="./common.js"></script>
