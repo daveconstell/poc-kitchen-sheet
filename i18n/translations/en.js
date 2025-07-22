@@ -85,10 +85,10 @@ window.translations_en = {
     },
 
 
-    // Banquete page
-    "banquete": {
-      "title": "Banquete Sheet",
-      "subtitle": "A detailed overview of your banquet planning and activities.",
+    // Banqueting page
+    "banqueting": {
+      "title": "Banqueting Sheet",
+      "subtitle": "A detailed overview of all events",
       "summary": "Summary",
       "total_hours": "Total Hours",
       "total_spaces": "Total Spaces",

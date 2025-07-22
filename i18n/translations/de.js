@@ -125,10 +125,10 @@ window.translations_de = {
       }
     },
 
-    // Banquete page
-    "banquete": {
+    // Banqueting page
+    "banqueting": {
       "title": "Bankett-Blatt",
-      "subtitle": "Ein detaillierter Überblick über Ihre Bankett-Planung und -Aktivitäten.",
+      "subtitle": "Ein detaillierter Überblick über alle Veranstaltungen",
       "summary": "Zusammenfassung",
       "overview": "Überblick",
       "program": "Programm",

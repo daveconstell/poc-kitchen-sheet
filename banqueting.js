@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('space-offcanvas').innerHTML = `
             <div class="h-full flex flex-col">
                 <div class="flex items-center justify-between p-8 border-b border-gray-200 bg-primary text-white">
-                    <h3 class="text-2xl font-serif font-bold" data-i18n="banquete.space_details">Ruimte Details</h3>
+                    <h3 class="text-2xl font-serif font-bold" data-i18n="banqueting.space_details">Ruimte Details</h3>
                     <button id="offcanvas-close" class="text-white hover:text-gray-200 transition-colors">
                         <i class="fas fa-times text-2xl"></i>
                     </button>
@@ -89,21 +89,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
                         <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
                             <i class="fas fa-building mr-3 text-primary"></i>
-                            <span data-i18n="banquete.space_information">Ruimte Informatie</span>
+                            <span data-i18n="banqueting.space_information">Ruimte Informatie</span>
                         </h5>
                         <div class="space-y-4">
-                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banquete.time_label">Tijd:</span><span class="text-gray-900 font-bold">${data.time || '-'}</span></div>
-                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banquete.capacity_label">Capaciteit:</span><span class="text-gray-900 font-bold">${data.capacity || '-'}</span></div>
-                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banquete.layout_label">Opstelling:</span><span class="text-gray-900 font-bold">${data.layout || '-'}</span></div>
-                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banquete.amount_label">Aantal:</span><span class="text-gray-900 font-bold">${data.amount || '-'}</span></div>
-                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banquete.unit_price">Prijs per eenheid:</span><span class="text-gray-900 font-bold">${data.unitPrice || '-'}</span></div>
-                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banquete.total">Totaal:</span><span class="text-gray-900 font-bold">${data.total || '-'}</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banqueting.time_label">Tijd:</span><span class="text-gray-900 font-bold">${data.time || '-'}</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banqueting.capacity_label">Capaciteit:</span><span class="text-gray-900 font-bold">${data.capacity || '-'}</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banqueting.layout_label">Opstelling:</span><span class="text-gray-900 font-bold">${data.layout || '-'}</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banqueting.amount_label">Aantal:</span><span class="text-gray-900 font-bold">${data.amount || '-'}</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banqueting.unit_price">Prijs per eenheid:</span><span class="text-gray-900 font-bold">${data.unitPrice || '-'}</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banqueting.total">Totaal:</span><span class="text-gray-900 font-bold">${data.total || '-'}</span></div>
                         </div>
                     </div>
                     <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
                         <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
                             <i class="fas fa-sticky-note mr-3 text-primary"></i>
-                            <span data-i18n="banquete.special_notes">Speciale opmerkingen</span>
+                            <span data-i18n="banqueting.special_notes">Speciale opmerkingen</span>
                         </h5>
                         <div class="text-gray-700 text-base leading-relaxed">${data.notes ? `<div class='mb-2'><i class='fas fa-circle text-xs text-gray-400 mr-2'></i>${data.notes}</div>` : ''}</div>
                     </div>
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('space-offcanvas').innerHTML = `
             <div class="h-full flex flex-col">
                 <div class="flex items-center justify-between p-8 border-b border-gray-200 bg-primary text-white">
-                    <h3 class="text-2xl font-serif font-bold" data-i18n="banquete.product_details">Product Details</h3>
+                    <h3 class="text-2xl font-serif font-bold" data-i18n="banqueting.product_details">Product Details</h3>
                     <button id="offcanvas-close" class="text-white hover:text-gray-200 transition-colors">
                         <i class="fas fa-times text-2xl"></i>
                     </button>
@@ -135,30 +135,30 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
                         <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
                             <i class="fas fa-clipboard-list mr-3 text-primary"></i>
-                            <span data-i18n="banquete.order_information">Bestelinformatie</span>
+                            <span data-i18n="banqueting.order_information">Bestelinformatie</span>
                         </h5>
                         <div class="space-y-4">
-                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banquete.guest_type">Type Gast:</span><span class="text-gray-900 font-bold">${Array.isArray(data.guestTypes) && data.guestTypes.length ? data.guestTypes.map(gt => gt.type).join(', ') : '-'}</span></div>
-                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banquete.amount_label">Aantal:</span><span class="text-gray-900 font-bold">${Array.isArray(data.guestTypes) && data.guestTypes.length ? data.guestTypes.map(gt => gt.count).join(', ') : (data.amount || '-')}</span></div>
-                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banquete.category">Categorie:</span><span class="text-gray-900 font-bold">${data.category || '-'}</span></div>
-                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banquete.location">Locatie:</span><span class="text-gray-900 font-bold">${data.location || '-'}</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banqueting.guest_type">Type Gast:</span><span class="text-gray-900 font-bold">${Array.isArray(data.guestTypes) && data.guestTypes.length ? data.guestTypes.map(gt => gt.type).join(', ') : '-'}</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banqueting.amount_label">Aantal:</span><span class="text-gray-900 font-bold">${Array.isArray(data.guestTypes) && data.guestTypes.length ? data.guestTypes.map(gt => gt.count).join(', ') : (data.amount || '-')}</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banqueting.category">Categorie:</span><span class="text-gray-900 font-bold">${data.category || '-'}</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banqueting.location">Locatie:</span><span class="text-gray-900 font-bold">${data.location || '-'}</span></div>
                         </div>
                     </div>
                     <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
                         <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
                             <i class="fas fa-clock mr-3 text-primary"></i>
-                            <span data-i18n="banquete.time">Tijdstip</span>
+                            <span data-i18n="banqueting.time">Tijdstip</span>
                         </h5>
                         <div class="space-y-4">
-                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banquete.start_time">Starttijd:</span><span class="text-gray-900 font-bold">${data.time ? data.time.split('-')[0].trim() : '-'}</span></div>
-                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banquete.end_time">Eindtijd:</span><span class="text-gray-900 font-bold">${data.time ? data.time.split('-')[1].trim() : '-'}</span></div>
-                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banquete.duration">Duur:</span><span class="text-gray-900 font-bold">-</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banqueting.start_time">Starttijd:</span><span class="text-gray-900 font-bold">${data.time ? data.time.split('-')[0].trim() : '-'}</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banqueting.end_time">Eindtijd:</span><span class="text-gray-900 font-bold">${data.time ? data.time.split('-')[1].trim() : '-'}</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-600 font-medium" data-i18n="banqueting.duration">Duur:</span><span class="text-gray-900 font-bold">-</span></div>
                         </div>
                     </div>
                     <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
                         <h5 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
                             <i class="fas fa-sticky-note mr-3 text-primary"></i>
-                            <span data-i18n="banquete.special_notes">Speciale opmerkingen</span>
+                            <span data-i18n="banqueting.special_notes">Speciale opmerkingen</span>
                         </h5>
                         <div class="text-gray-700 text-base leading-relaxed">${Array.isArray(data.notes) ? data.notes.map(note => `<div class='mb-2'><i class='fas fa-circle text-xs text-gray-400 mr-2'></i>${note}</div>`).join('') : (data.notes ? `<div class='mb-2'><i class='fas fa-circle text-xs text-gray-400 mr-2'></i>${data.notes}</div>` : '')}</div>
                     </div>

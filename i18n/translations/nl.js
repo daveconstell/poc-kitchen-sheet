@@ -142,10 +142,10 @@ window.translations_nl = {
       "notes": "Opmerkingen:"
     },
 
-    // Banquete page
-    "banquete": {
-      "title": "Banquete Sheet",
-      "subtitle": "Een gedetailleerd overzicht van uw banketplanning en activiteiten.",
+    // Banqueting page
+    "banqueting": {
+      "title": "Banqueting Sheet",
+      "subtitle": "Een gedetailleerd overzicht van alle evenementen",
       "summary": "Samenvatting",
       "total_hours": "Totaal Uren",
       "total_spaces": "Totaal Ruimtes",
